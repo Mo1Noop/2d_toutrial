@@ -11,7 +11,7 @@ var previous_state : Player_state:
 #region var
 var dirction : Vector2 = Vector2.ZERO
 var gravity : float = 980
-var speed : float = 200
+var speed : float = 300
 #endregion
 
 @onready var idle: PlayerState_Idle = $states/idle

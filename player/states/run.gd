@@ -33,9 +33,9 @@ func process(_delta: float) -> Player_state:
 
 func physics_process(_delta: float) -> Player_state:
 	if Input.is_action_pressed("left"):
-		player.velocity.x = -300
+		player.velocity.x = -player.speed
 	
 	if Input.is_action_pressed("right"):
-		player.velocity.x = 300
+		player.velocity.x = player.speed
 	
 	return next_state
