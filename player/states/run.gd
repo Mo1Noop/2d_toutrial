@@ -1,11 +1,6 @@
 class_name PlayerState_Run extends Player_state
 
 
-func init() -> void:
-	print("init: ", name)
-	pass
-
-
 func enter() -> void:
 	print("enter: ", name)
 	pass
@@ -17,6 +12,8 @@ func exit() -> void:
 
 
 func handle_input(_event : InputEvent) -> Player_state:
+	if _event.is_action_pressed("jump") and player.is_on_floor():
+		return jump
 	return next_state
 
 

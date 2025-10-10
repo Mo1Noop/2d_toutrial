@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 #region export var
 @export var move_speed : float = 150
+@export var jump_velocity : float = -425
 #endregion
 
 #region get states
@@ -15,6 +16,7 @@ var previous_state : Player_state:
 #region var
 var dirction : Vector2 = Vector2.ZERO
 var gravity : float = 980
+
 #endregion
 
 
@@ -79,5 +81,8 @@ func update_dirction() -> void:
 	var x_axis : float = Input.get_axis("left", "right")
 	var y_axis : float = Input.get_axis("up", "down")
 	dirction = Vector2(x_axis, y_axis)
-	
 	pass
+
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	get_tree().call_deferred("reload_current_scene")
