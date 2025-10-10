@@ -17,8 +17,6 @@ func exit() -> void:
 
 
 func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_released():
-		return player.previous_state
 	return next_state
 
 

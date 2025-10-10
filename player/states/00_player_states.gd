@@ -4,6 +4,13 @@ class_name Player_state extends Node
 var player : Player
 var next_state : Player_state
 
+#region state references
+@onready var idle: PlayerState_Idle = %idle
+@onready var run: PlayerState_Run = %run
+@onready var jump: PlayerState_jump = %jump
+
+#endregion
+
 
 func init() -> void:
 	pass

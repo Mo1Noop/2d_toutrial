@@ -1,5 +1,9 @@
 class_name Player extends CharacterBody2D
 
+#region export var
+@export var move_speed : float = 150
+#endregion
+
 #region get states
 var states : Array[Player_state]
 var current_state : Player_state :
@@ -11,13 +15,7 @@ var previous_state : Player_state:
 #region var
 var dirction : Vector2 = Vector2.ZERO
 var gravity : float = 980
-var speed : float = 300
 #endregion
-
-@onready var idle: PlayerState_Idle = $states/idle
-@onready var run: PlayerState_Run = $states/run
-@onready var jump: PlayerState_jump = $states/jump
-
 
 
 func _ready() -> void:
@@ -29,8 +27,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	change_state( current_state.handle_input(event) )
 
 
-
 func _process(delta: float) -> void:
+	update_dirction()
 	change_state( current_state.process(delta) )
 	pass
 
@@ -57,6 +55,7 @@ func initialize_states() -> void:
 	
 	change_state(current_state)
 	current_state.enter()
+	$Label.text = current_state.name
 	
 	pass
 
@@ -71,12 +70,14 @@ func change_state( new_state : Player_state ) -> void:
 	states.push_front( new_state )
 	current_state.enter()
 	states.resize(3)
-	
+	$Label.text = current_state.name
 	pass
 
 
 func update_dirction() -> void:
 	#var prev_dirction : Vector2 = dirction
-	dirction = Input.get_vector( "left", "right", "up", "down" )
+	var x_axis : float = Input.get_axis("left", "right")
+	var y_axis : float = Input.get_axis("up", "down")
+	dirction = Vector2(x_axis, y_axis)
 	
 	pass

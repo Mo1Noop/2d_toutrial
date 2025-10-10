@@ -8,8 +8,6 @@ func init() -> void:
 
 
 func enter() -> void:
-	if player.velocity.x != 0:
-		player.velocity.x = lerp(player.velocity.x, 0.0, 1)
 	print("enter: ", name)
 	pass
 
@@ -20,16 +18,15 @@ func exit() -> void:
 
 
 func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_action_pressed("left") or _event.is_action_pressed("right"):
-		return player.run
-	elif _event.is_action_pressed("jump"):
-		return player.jump
 	return next_state
 
 
 func process(_delta: float) -> Player_state:
+	if player.dirction.x != 0:
+		return run
 	return next_state
 
 
 func physics_process(_delta: float) -> Player_state:
+	player.velocity.x = 0
 	return next_state
