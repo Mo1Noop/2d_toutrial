@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 
 #region get states
 var states : Array[Player_state]
+
 var current_state : Player_state :
 	get : return states.front()
 var previous_state : Player_state:
@@ -36,8 +37,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity.y += gravity * delta
 	move_and_slide()
+	player_gravity(delta)
 	change_state( current_state.physics_process(delta) )
 	pass
 
@@ -86,3 +87,10 @@ func update_dirction() -> void:
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("reload_current_scene")
+
+
+func move() -> void:
+	velocity.x = dirction.x * move_speed
+
+func player_gravity(delta:float) -> void:
+	velocity.y += gravity * delta

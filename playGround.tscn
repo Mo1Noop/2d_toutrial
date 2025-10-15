@@ -40,7 +40,7 @@ texture = SubResource("GradientTexture2D_wtcfe")
 shape = SubResource("RectangleShape2D_y32ns")
 
 [node name="Sprite2D3" type="Sprite2D" parent="world"]
-position = Vector2(-196, 183)
+position = Vector2(-182, 200)
 rotation = -1.5707964
 scale = Vector2(1, 8)
 texture = SubResource("GradientTexture2D_wtcfe")
@@ -62,9 +62,9 @@ texture = SubResource("GradientTexture2D_wtcfe")
 shape = SubResource("RectangleShape2D_y32ns")
 
 [node name="Sprite2D5" type="Sprite2D" parent="world"]
-position = Vector2(44.000008, 210)
+position = Vector2(262.00003, 206.00002)
 rotation = 1.5707964
-scale = Vector2(1.6249995, 1.8124992)
+scale = Vector2(1.9118845, 2.1324863)
 texture = SubResource("GradientTexture2D_wtcfe")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="world/Sprite2D5"]
@@ -148,7 +148,8 @@ drag_right_margin = 0.15
 drag_bottom_margin = 0.1
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-46, 423)
+position = Vector2(-42, 503)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("WorldBoundaryShape2D_ohfjk")

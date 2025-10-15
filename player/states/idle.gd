@@ -2,12 +2,7 @@ class_name PlayerState_Idle extends Player_state
 
 
 func enter() -> void:
-	print("enter: ", name)
-	pass
-
-
-func exit() -> void:
-	print("exit: ", name)
+	player.velocity = Vector2.ZERO
 	pass
 
 
@@ -26,5 +21,4 @@ func process(_delta: float) -> Player_state:
 
 
 func physics_process(_delta: float) -> Player_state:
-	player.velocity.x = 0
 	return next_state
