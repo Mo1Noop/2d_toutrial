@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody2D
 
+const DEBUG = preload("uid://c08vbptobbyb3")
+
+
 #region export var
 @export var move_speed : float = 150
 @export var jump_velocity : float = -425
@@ -17,6 +20,7 @@ var previous_state : Player_state:
 #region var
 var dirction : Vector2 = Vector2.ZERO
 var gravity : float = 980
+var gravity_mulitplier : float = 1.0
 
 #endregion
 
@@ -88,9 +92,17 @@ func update_dirction() -> void:
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("reload_current_scene")
 
+func debug(color : Color) -> void:
+	var d : Node2D = DEBUG.instantiate()
+	get_tree().root.add_child(d)
+	d.global_position = global_position
+	d.modulate = color
+	await get_tree().create_timer( 2.0 ).timeout
+	d.queue_free()
+
 
 func move() -> void:
 	velocity.x = dirction.x * move_speed
 
 func player_gravity(delta:float) -> void:
-	velocity.y += gravity * delta
+	velocity.y += gravity * delta * gravity_mulitplier
