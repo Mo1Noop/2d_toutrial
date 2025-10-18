@@ -12,7 +12,7 @@ func enter() -> void:
 	player.debug( Color.RED )
 	player.velocity.y *= 0.4
 	player.gravity_mulitplier = fall_gravity_mulitplier
-	if player.previous_state == jump:
+	if player.previous_state in [jump, hover]:
 		coyote_timer = 0.0
 	else:
 		coyote_timer = coyote_time
@@ -24,6 +24,8 @@ func handle_input(_event : InputEvent) -> Player_state:
 	if _event.is_action_pressed("jump"):
 		if coyote_timer > 0.0:
 			return jump
+		elif !player.is_on_floor():
+			return hover
 		else:
 			buffer_timer = jump_buffer_time
 	return next_state

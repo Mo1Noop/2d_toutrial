@@ -100,9 +100,9 @@ func debug(color : Color) -> void:
 	await get_tree().create_timer( 2.0 ).timeout
 	d.queue_free()
 
-
-func move() -> void:
-	velocity.x = dirction.x * move_speed
+## I can assign different values depending on the state
+func move(_move:float=move_speed) -> void:
+	velocity.x = dirction.x * _move
 
 func player_gravity(delta:float) -> void:
 	velocity.y += gravity * delta * gravity_mulitplier
