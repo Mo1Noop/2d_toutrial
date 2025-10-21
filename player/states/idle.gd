@@ -3,20 +3,28 @@ class_name PlayerState_Idle extends Player_state
 
 func enter() -> void:
 	player.velocity = Vector2.ZERO
+	if player.previous_state == crouch:
+		player.player_anim.play_backwards("crouch")
+		await player.player_anim.animation_finished
+		player.player_anim.play("idle")
+	else:
+		player.player_anim.play("idle")
 	pass
 
 
 func handle_input(_event : InputEvent) -> Player_state:
 	if _event.is_action_pressed("jump") and player.is_on_floor():
 		return jump
-	if _event.is_action_pressed("down"):
-		return crouch
+	if _event.is_action_pressed("dash"):
+		return dash
 	return next_state
 
 
 func process(_delta: float) -> Player_state:
 	if player.dirction.x != 0:
 		return run
+	if player.dirction.y > 0.5:
+		return crouch
 	if !player.is_on_floor():
 		return fall
 	return next_state

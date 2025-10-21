@@ -2,6 +2,7 @@ class_name PlayerState_jump extends Player_state
 
 
 func enter() -> void:
+	player.player_anim.play("jump")
 	player.debug(Color.GREEN)
 	player.velocity.y = player.jump_velocity
 	pass

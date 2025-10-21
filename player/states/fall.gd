@@ -9,6 +9,7 @@ var buffer_timer : float = 0.0
 
 
 func enter() -> void:
+	player.player_anim.play("fall")
 	player.debug( Color.RED )
 	player.velocity.y *= 0.4
 	player.gravity_mulitplier = fall_gravity_mulitplier

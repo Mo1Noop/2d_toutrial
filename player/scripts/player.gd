@@ -2,6 +2,11 @@ class_name Player extends CharacterBody2D
 
 const DEBUG = preload("uid://c08vbptobbyb3")
 
+@onready var collision_stand: CollisionShape2D = %CollisionStand
+@onready var collision_crouch: CollisionShape2D = %CollisionCrouch
+@onready var hero: Sprite2D = %Hero
+@onready var player_anim: AnimationPlayer = %PlayerAnim
+
 
 #region export var
 @export var move_speed : float = 150
@@ -37,7 +42,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	update_dirction()
 	change_state( current_state.process(delta) )
-	pass
 
 
 func _physics_process(delta: float) -> void:
@@ -92,6 +96,7 @@ func update_dirction() -> void:
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("reload_current_scene")
 
+
 func debug(color : Color) -> void:
 	var d : Node2D = DEBUG.instantiate()
 	get_tree().root.add_child(d)
@@ -103,6 +108,25 @@ func debug(color : Color) -> void:
 ## I can assign different values depending on the state
 func move(_move:float=move_speed) -> void:
 	velocity.x = dirction.x * _move
+	if dirction.x < 0.0:
+		hero.flip_h = true
+	elif dirction.x > 0.0:
+		hero.flip_h = false
 
 func player_gravity(delta:float) -> void:
 	velocity.y += gravity * delta * gravity_mulitplier
+
+
+# with this, I don’t have to assign every platform to another layer
+func _get_collisions() -> bool:
+	var collision = get_last_slide_collision()
+	if collision == null:
+		return false
+
+	var collider = collision.get_collider()
+	if collider is CollisionObject2D:
+		var shape_index = collision.get_collider_shape_index()
+		if collider.is_shape_owner_one_way_collision_enabled(shape_index):
+			return true
+
+	return false
