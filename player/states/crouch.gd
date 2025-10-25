@@ -13,11 +13,11 @@ func exit() -> void:
 
 
 func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_action_pressed("jump") and !player._get_collisions():
-		return jump
-	elif _event.is_action_pressed("jump") and player._get_collisions():
-		player.position.y += 1
+	if _event.is_action_pressed("jump") and player._get_collisions():
+		player.position.y += 2
 		return fall
+	elif _event.is_action_pressed("jump") and not player._get_collisions():
+		return jump
 	return next_state
 
 func process(_delta: float) -> Player_state:

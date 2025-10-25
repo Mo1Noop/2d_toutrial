@@ -10,7 +10,7 @@ const DEBUG = preload("uid://c08vbptobbyb3")
 
 #region export var
 @export var move_speed : float = 150
-@export var jump_velocity : float = -425
+@export var max_fall_velocity : float = 600.0
 #endregion
 
 #region get states
@@ -86,10 +86,17 @@ func change_state( new_state : Player_state ) -> void:
 
 
 func update_dirction() -> void:
-	#var prev_dirction : Vector2 = dirction
+	var prev_dirction : Vector2 = dirction
 	var x_axis : float = Input.get_axis("left", "right")
 	var y_axis : float = Input.get_axis("up", "down")
 	dirction = Vector2(x_axis, y_axis)
+	
+	if prev_dirction.x != dirction.x:
+		if dirction.x < 0.0:
+			hero.flip_h = true
+		elif dirction.x > 0.0:
+			hero.flip_h = false
+	
 	pass
 
 
@@ -108,13 +115,11 @@ func debug(color : Color) -> void:
 ## I can assign different values depending on the state
 func move(_move:float=move_speed) -> void:
 	velocity.x = dirction.x * _move
-	if dirction.x < 0.0:
-		hero.flip_h = true
-	elif dirction.x > 0.0:
-		hero.flip_h = false
+
 
 func player_gravity(delta:float) -> void:
 	velocity.y += gravity * delta * gravity_mulitplier
+	velocity.y = clampf(velocity.y, -1000.0, max_fall_velocity)
 
 
 # with this, I don’t have to assign every platform to another layer

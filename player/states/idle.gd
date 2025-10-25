@@ -3,12 +3,7 @@ class_name PlayerState_Idle extends Player_state
 
 func enter() -> void:
 	player.velocity = Vector2.ZERO
-	if player.previous_state == crouch:
-		player.player_anim.play_backwards("crouch")
-		await player.player_anim.animation_finished
-		player.player_anim.play("idle")
-	else:
-		player.player_anim.play("idle")
+	player.player_anim.play("idle")
 	pass
 
 
