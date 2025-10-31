@@ -26,6 +26,8 @@ var previous_state : Player_state:
 var dirction : Vector2 = Vector2.ZERO
 var gravity : float = 980
 var gravity_mulitplier : float = 1.0
+var can_duble_jump : bool = true
+var jump_counter : int = 0
 
 #endregion
 
@@ -42,6 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	update_dirction()
 	change_state( current_state.process(delta) )
+	printt(jump_counter, current_state)
 
 
 func _physics_process(delta: float) -> void:

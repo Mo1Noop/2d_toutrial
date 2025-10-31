@@ -2,16 +2,26 @@ class_name PlayerState_jump extends Player_state
 
 @export var jump_velocity : float = -425
 
+
 func enter() -> void:
+	if player.jump_counter >= 2:
+		player.change_state(fall)
+		return
+	elif player.can_duble_jump == false:
+		player.velocity.y = (jump_velocity * 0.88)
+	else:
+		player.velocity.y = jump_velocity
+	player.jump_counter += 1
 	player.player_anim.play("jump")
 	player.player_anim.pause()
-	player.debug(Color.GREEN)
-	player.velocity.y = jump_velocity
-	pass
+	#player.debug(Color.GREEN)
 
 
 func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_action_released("jump"):
+
+	if _event.is_action_pressed("dash"):
+		return dash
+	elif _event.is_action_released("jump"):
 		return fall
 	return next_state
 

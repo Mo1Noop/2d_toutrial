@@ -14,7 +14,7 @@ func enter() -> void:
 	player.debug( Color.RED )
 	player.velocity.y *= 0.4
 	player.gravity_mulitplier = fall_gravity_mulitplier
-	if player.previous_state == jump:
+	if player.previous_state in [jump, dash]:
 		coyote_timer = 0.0
 	else:
 		coyote_timer = coyote_time
@@ -23,8 +23,13 @@ func exit() -> void:
 	player.gravity_mulitplier = 1.0
 
 func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_action_pressed("jump"):
-		if coyote_timer > 0.0:
+	if _event.is_action_pressed("dash") and player.previous_state != dash:
+		return dash
+	elif _event.is_action_pressed("jump") and player.jump_counter < 3:
+		if player.can_duble_jump:
+			player.can_duble_jump = false
+			return jump
+		elif coyote_timer > 0.0:
 			return jump
 		else:
 			buffer_timer = jump_buffer_time
@@ -44,10 +49,10 @@ func physics_process(_delta: float) -> Player_state:
 		if buffer_timer > 0.0:
 			return jump
 		return idle
+	
 	return next_state
 
 
 func set_jump_frame() -> void:
 	var frame : float = remap(player.velocity.y, 0.0, player.max_fall_velocity, 0.5, 1.0)
 	player.player_anim.seek(frame, true)
-	pass
