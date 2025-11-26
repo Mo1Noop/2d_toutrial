@@ -13,15 +13,17 @@ func exit() -> void:
 
 
 func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_action_pressed("jump") and player._get_collisions():
-		player.position.y += 2
-		return fall
-	elif _event.is_action_pressed("jump") and not player._get_collisions():
+	if _event.is_action_pressed("jump"):
+		player.one_way_chape_cast.force_shapecast_update()
+		if player.one_way_chape_cast.is_colliding():
+			player.position.y += 2
+			return fall
+	elif _event.is_action_pressed("jump") and not player.is_one_way_chape_cast():
 		return jump
 	return next_state
 
 func process(_delta: float) -> Player_state:
-	if player.dirction.y == 0.0:
+	if player.dirction.y <= 0.5:
 		if player.is_on_floor():
 			player.player_anim.play_backwards("crouch")
 			return idle

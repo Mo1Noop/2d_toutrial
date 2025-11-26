@@ -6,6 +6,7 @@ const DEBUG = preload("uid://c08vbptobbyb3")
 @onready var collision_crouch: CollisionShape2D = %CollisionCrouch
 @onready var hero: Sprite2D = %Hero
 @onready var player_anim: AnimationPlayer = %PlayerAnim
+@onready var one_way_chape_cast: ShapeCast2D = %one_way_chapeCast
 
 
 #region export var
@@ -44,12 +45,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	update_dirction()
 	change_state( current_state.process(delta) )
-	printt(jump_counter, current_state)
 
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
-	player_gravity(delta)
+	velocity.y += gravity * delta * gravity_mulitplier
+	velocity.y = clampf(velocity.y, -1000.0, max_fall_velocity)
 	change_state( current_state.physics_process(delta) )
 	pass
 
@@ -99,8 +100,6 @@ func update_dirction() -> void:
 			hero.flip_h = true
 		elif dirction.x > 0.0:
 			hero.flip_h = false
-	
-	pass
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -115,26 +114,6 @@ func debug(color : Color) -> void:
 	await get_tree().create_timer( 2.0 ).timeout
 	d.queue_free()
 
-## I can assign different values depending on the state
-func move(_move:float=move_speed) -> void:
-	velocity.x = dirction.x * _move
 
-
-func player_gravity(delta:float) -> void:
-	velocity.y += gravity * delta * gravity_mulitplier
-	velocity.y = clampf(velocity.y, -1000.0, max_fall_velocity)
-
-
-# with this, I don’t have to assign every platform to another layer
-func _get_collisions() -> bool:
-	var collision = get_last_slide_collision()
-	if collision == null:
-		return false
-
-	var collider = collision.get_collider()
-	if collider is CollisionObject2D:
-		var shape_index = collision.get_collider_shape_index()
-		if collider.is_shape_owner_one_way_collision_enabled(shape_index):
-			return true
-
-	return false
+func move() -> void:
+	velocity.x = dirction.x * move_speed

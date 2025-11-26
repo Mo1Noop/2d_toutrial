@@ -4,14 +4,7 @@ class_name PlayerState_jump extends Player_state
 
 
 func enter() -> void:
-	if player.jump_counter >= 2:
-		player.change_state(fall)
-		return
-	elif player.can_duble_jump == false:
-		player.velocity.y = (jump_velocity * 0.88)
-	else:
-		player.velocity.y = jump_velocity
-	player.jump_counter += 1
+	player.velocity.y = jump_velocity
 	player.player_anim.play("jump")
 	player.player_anim.pause()
 	#player.debug(Color.GREEN)

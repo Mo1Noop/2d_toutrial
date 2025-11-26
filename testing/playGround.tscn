@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bn5rop0e7wgj2"]
 
-[ext_resource type="PackedScene" uid="uid://cmxmtlesjrxxu" path="res://world.tscn" id="1_mib1j"]
-[ext_resource type="PackedScene" uid="uid://gwcdq2kv6ci2" path="res://player/player.tscn" id="1_ohfjk"]
+[ext_resource type="PackedScene" uid="uid://cmxmtlesjrxxu" path="res://testing/world.tscn" id="1_hp02u"]
+[ext_resource type="PackedScene" uid="uid://gwcdq2kv6ci2" path="res://player/player.tscn" id="2_47pms"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ohfjk"]
 
 [node name="playGround" type="Node2D"]
 
-[node name="world" parent="." instance=ExtResource("1_mib1j")]
+[node name="world" parent="." instance=ExtResource("1_hp02u")]
 
-[node name="Player" parent="." instance=ExtResource("1_ohfjk")]
+[node name="Player" parent="." instance=ExtResource("2_47pms")]
 position = Vector2(258, 235.99998)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

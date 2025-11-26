@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://gwcdq2kv6ci2"]
+[gd_scene load_steps=18 format=3 uid="uid://gwcdq2kv6ci2"]
 
 [ext_resource type="Script" uid="uid://50n3o2gooaje" path="res://player/scripts/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cnhuq5qx55rpb" path="res://player/states/idle.gd" id="2_g1dw6"]
@@ -107,7 +107,13 @@ _data = {
 &"run": SubResource("Animation_ebec5")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgyib"]
+size = Vector2(16, 3)
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+floor_constant_speed = true
 script = ExtResource("1_oul6g")
 
 [node name="states" type="Node" parent="."]
@@ -173,3 +179,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_wodsf")
 }
 autoplay = "idle"
+
+[node name="one_way_chapeCast" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -3)
+enabled = false
+shape = SubResource("RectangleShape2D_rgyib")
+target_position = Vector2(0, 6)
+max_results = 12
+collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -37)

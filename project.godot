@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="2d-toutrial"
-run/main_scene="uid://bn5rop0e7wgj2"
+config/name="2d_project"
+run/main_scene="uid://cb886t8m51hde"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="uid://d381lb0rxya7x"
 
@@ -95,6 +95,7 @@ action={
 
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="One way platform"
+2d_physics/layer_5="player"
 
 [rendering]
 

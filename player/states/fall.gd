@@ -1,8 +1,8 @@
 class_name PlayerState_fall extends Player_state
 
-@export var coyote_time : float = 0.1
-@export var jump_buffer_time : float = 0.1
 @export var fall_gravity_mulitplier : float = 1.165
+@export var coyote_time : float = 0.125
+@export var jump_buffer_time : float = 0.1
 
 var coyote_timer : float = 0.0
 var buffer_timer : float = 0.0
@@ -14,7 +14,7 @@ func enter() -> void:
 	player.debug( Color.RED )
 	player.velocity.y *= 0.4
 	player.gravity_mulitplier = fall_gravity_mulitplier
-	if player.previous_state in [jump, dash]:
+	if player.previous_state == jump:
 		coyote_timer = 0.0
 	else:
 		coyote_timer = coyote_time
@@ -23,13 +23,8 @@ func exit() -> void:
 	player.gravity_mulitplier = 1.0
 
 func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_action_pressed("dash") and player.previous_state != dash:
-		return dash
-	elif _event.is_action_pressed("jump") and player.jump_counter < 3:
-		if player.can_duble_jump:
-			player.can_duble_jump = false
-			return jump
-		elif coyote_timer > 0.0:
+	if _event.is_action_pressed("jump"):
+		if coyote_timer > 0.0:
 			return jump
 		else:
 			buffer_timer = jump_buffer_time
