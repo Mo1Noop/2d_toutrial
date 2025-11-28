@@ -15,6 +15,10 @@ run/main_scene="uid://cb886t8m51hde"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="uid://d381lb0rxya7x"
 
+[autoload]
+
+SceneManger="*res://00_global/scene_manger/scene_manger.tscn"
+
 [display]
 
 window/size/viewport_width=480
@@ -32,6 +36,10 @@ folder_colors={
 "res://player/sprites/": "yellow",
 "res://player/states/": "red"
 }
+
+[global_group]
+
+Player=""
 
 [input]
 

@@ -37,10 +37,11 @@ tile_map_data = PackedByteArray("AAD+//3/AAACAAIAAAD+//7/AAACAAMAAAD+////AAACAAI
 tile_set = ExtResource("1_fvrtv")
 
 [node name="Player" parent="." instance=ExtResource("2_pu3y4")]
+z_index = 3
 position = Vector2(948, 171)
-collision_layer = 4
 
 [node name="Level_Transtion" parent="." instance=ExtResource("4_vhcel")]
 position = Vector2(1120, 192)
 size = 12
+location = 1
 target_level = "uid://dbws3ync16n1s"

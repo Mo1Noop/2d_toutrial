@@ -11,7 +11,7 @@ var buffer_timer : float = 0.0
 func enter() -> void:
 	player.player_anim.play("jump")
 	player.player_anim.pause()
-	player.debug( Color.RED )
+	#player.debug( Color.RED )
 	player.velocity.y *= 0.4
 	player.gravity_mulitplier = fall_gravity_mulitplier
 	if player.previous_state == jump:
