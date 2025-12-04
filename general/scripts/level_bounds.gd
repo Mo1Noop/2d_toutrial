@@ -20,14 +20,14 @@ func _ready() -> void:
 	camera.limit_top = int( global_position.y )
 	camera.limit_right = int( global_position.x ) + width
 	camera.limit_bottom = int( global_position.y ) + hieght
-	pass
+
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
 		var r : Rect2 = Rect2( Vector2.ZERO, Vector2( width, hieght ) )
 		draw_rect( r, Color(0.0, 0.306, 1.0, 0.655), false, 3 )
 		draw_rect( r, Color(0.0, 0.218, 0.541, 1.0), false, 1 )
-	pass
+
 
 func _on_width_changed( new_width : int ) -> void:
 	width = new_width

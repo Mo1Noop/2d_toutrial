@@ -13,22 +13,18 @@ func _ready() -> void:
 	load_scene_finished.emit()
 
 
-func transtion_scene( new_scene : String, target_area : String, player_offset : Vector2, dir : String ) -> void:
+func transtion_scene(
+	new_scene : String, target_area : String, 
+	player_offset : Vector2, dir : String ) -> void:
+	
 	get_tree().paused = true
 	var fade_pos : Vector2 = get_fade_pos( dir )
-	
 	fade.visible = true
-	
 	load_scene_started.emit()
-	
 	await fade_screen( fade_pos, Vector2.ZERO )
-	
 	get_tree().change_scene_to_file( new_scene )
-	
 	await get_tree().scene_changed
-	
 	new_scene_ready.emit( target_area, player_offset )
-	
 	await fade_screen( Vector2.ZERO, -fade_pos )
 	get_tree().paused = false
 	fade.visible = false
@@ -44,7 +40,7 @@ func fade_screen( from : Vector2, to : Vector2 ) -> Signal:
 
 
 func get_fade_pos( dir : String ) -> Vector2:
-	var pos : Vector2 = Vector2( 480*2, 270*2 ) 
+	var pos : Vector2 = Vector2( 480*2, 270*2 )
 	
 	match dir:
 		"left":
