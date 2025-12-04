@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dbws3ync16n1s"]
+[gd_scene load_steps=13 format=4 uid="uid://dbws3ync16n1s"]
 
 [ext_resource type="Script" uid="uid://cbjs6k8batccp" path="res://general/scripts/level_bounds.gd" id="1_epyyu"]
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="2_s2tn3"]
@@ -16,6 +16,16 @@ colors = PackedColorArray(0.61960787, 0.81960785, 0.7764706, 1, 0.2784314, 0.450
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_152a0"]
 gradient = SubResource("Gradient_vhcel")
+width = 256
+height = 265
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_152a0"]
+colors = PackedColorArray(0.61960787, 0.81960785, 0.7764706, 1, 0.2784314, 0.4509804, 0.52156866, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yy75x"]
+gradient = SubResource("Gradient_152a0")
 width = 256
 height = 265
 fill_from = Vector2(0, 1)
@@ -273,3 +283,9 @@ modulate = Color(0.27306852, 0.75477403, 0.8892165, 0.7647059)
 position = Vector2(612, 225)
 scale = Vector2(4.7851563, 1)
 texture = SubResource("GradientTexture2D_152a0")
+
+[node name="fog2" type="Sprite2D" parent="world"]
+modulate = Color(0.62352943, 0.8666667, 1, 0.6627451)
+position = Vector2(612, 267)
+scale = Vector2(4.7851563, 1)
+texture = SubResource("GradientTexture2D_yy75x")

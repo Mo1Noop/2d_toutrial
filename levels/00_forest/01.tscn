@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cb886t8m51hde"]
+[gd_scene load_steps=20 format=4 uid="uid://cb886t8m51hde"]
 
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="1_fvrtv"]
 [ext_resource type="PackedScene" uid="uid://gwcdq2kv6ci2" path="res://player/player.tscn" id="2_pu3y4"]
@@ -12,11 +12,41 @@
 script/source = "extends Node2D
 "
 
-[sub_resource type="Gradient" id="Gradient_vhcel"]
+[sub_resource type="Gradient" id="Gradient_vdj2u"]
+offsets = PackedFloat32Array(0, 0.74509805)
+colors = PackedColorArray(0.70029575, 0.84869444, 0.90731955, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8sv46"]
+gradient = SubResource("Gradient_vdj2u")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8000001, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_8sv46"]
+offsets = PackedFloat32Array(0.008333334, 0.325, 1)
+colors = PackedColorArray(0.6509804, 0.91764706, 1, 0, 0.6375956, 0.7753546, 0.8168041, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_08onm"]
+gradient = SubResource("Gradient_8sv46")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_08onm"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(560, 150, 1)
+gravity = Vector3(5, -5, 0)
+damping_min = 1.0
+damping_max = 5.0
+scale_min = 0.39999998
+scale_max = 0.7
+color_ramp = SubResource("GradientTexture1D_08onm")
+hue_variation_min = 0.19999997
+hue_variation_max = 0.7
+
+[sub_resource type="Gradient" id="Gradient_72pnk"]
 colors = PackedColorArray(0.61960787, 0.81960785, 0.7764706, 1, 0.2784314, 0.4509804, 0.52156866, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qmxb0"]
-gradient = SubResource("Gradient_vhcel")
+gradient = SubResource("Gradient_72pnk")
 width = 256
 height = 265
 fill_from = Vector2(0, 1)
@@ -56,6 +86,18 @@ position = Vector2(1120, 192)
 size = 12
 location = 1
 target_level = "uid://dbws3ync16n1s"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.7019608)
+z_index = 4
+position = Vector2(550, 112)
+amount = 21
+texture = SubResource("GradientTexture2D_8sv46")
+lifetime = 3.0
+preprocess = 2.0
+randomness = 1.0
+visibility_rect = Rect2(-100, -100, 300, 200)
+process_material = SubResource("ParticleProcessMaterial_08onm")
 
 [node name="Player" parent="." instance=ExtResource("2_pu3y4")]
 position = Vector2(948, 171)
@@ -219,6 +261,7 @@ flip_h = true
 position = Vector2(1038, 198)
 
 [node name="parallaxLight" type="Node2D" parent="world"]
+modulate = Color(1, 1, 1, 0.5803922)
 position = Vector2(16, -34)
 metadata/_edit_group_ = true
 
