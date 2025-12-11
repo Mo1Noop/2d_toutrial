@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dmxv6s0l2ajl1" path="res://general/level_transtion/level_transtion.tscn" id="3_epyyu"]
 [ext_resource type="PackedScene" uid="uid://boawmw4ig1uer" path="res://levels/props/plant.tscn" id="4_o5ap7"]
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="5_tfgdr"]
-[ext_resource type="PackedScene" uid="uid://gwcdq2kv6ci2" path="res://player/player.tscn" id="6_tfgdr"]
 [ext_resource type="Texture2D" uid="uid://dq1mfjcam6to2" path="res://levels/tilesets/sprites/light_stream.jpg" id="7_152a0"]
+[ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="7_yy75x"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yy75x"]
 blend_mode = 1
@@ -50,9 +50,6 @@ position = Vector2(162, 341)
 size = 4
 location = 3
 target_level = "uid://cvp1dgtknfga3"
-
-[node name="Player" parent="." instance=ExtResource("6_tfgdr")]
-position = Vector2(79, 221)
 
 [node name="world" type="Node2D" parent="."]
 metadata/_edit_group_ = true
@@ -289,3 +286,6 @@ modulate = Color(0.62352943, 0.8666667, 1, 0.6627451)
 position = Vector2(612, 267)
 scale = Vector2(4.7851563, 1)
 texture = SubResource("GradientTexture2D_yy75x")
+
+[node name="player_spawn" parent="." instance=ExtResource("7_yy75x")]
+position = Vector2(20, 218)
