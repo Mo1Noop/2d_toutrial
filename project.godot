@@ -18,6 +18,7 @@ config/icon="uid://d381lb0rxya7x"
 [autoload]
 
 SceneManger="*res://00_global/scene_manger/scene_manger.tscn"
+SaveManager="*res://00_global/save_manager.gd"
 
 [display]
 
@@ -30,11 +31,16 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
+"res://00_global/": "yellow",
+"res://general/": "green",
+"res://levels/": "blue",
+"res://matrials_and_shaders/": "orange",
 "res://player/": "red",
 "res://player/audio/": "blue",
 "res://player/scripts/": "green",
 "res://player/sprites/": "yellow",
-"res://player/states/": "red"
+"res://player/states/": "red",
+"res://testing/": "gray"
 }
 
 [global_group]

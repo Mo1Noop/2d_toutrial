@@ -9,12 +9,12 @@ const DEBUG = preload("uid://c08vbptobbyb3")
 @onready var one_way_chape_cast: ShapeCast2D = %one_way_chapeCast
 
 
-#region export var
+#region /// export var
 @export var move_speed : float = 150
 @export var max_fall_velocity : float = 600.0
 #endregion
 
-#region get states
+#region /// get states
 var states : Array[Player_state]
 
 var current_state : Player_state :
@@ -23,7 +23,16 @@ var previous_state : Player_state:
 	get : return states[1]
 #endregion
 
-#region var
+#region /// palyer stats
+var hp : float = 20
+var max_hp : float = 20
+var dash : bool = false
+var double_jump : bool = false
+var ground_slam : bool = false
+var morph_roll : bool = false
+#endregion
+
+#region /// var
 var dirction : Vector2 = Vector2.ZERO
 var gravity : float = 980
 var gravity_mulitplier : float = 1.0

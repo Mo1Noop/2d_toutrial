@@ -5,10 +5,11 @@ class_name Level_Trensition extends Node2D
 enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
 #region var
-@export_range(2, 12, 1, "or greater" ) var size : int = 2 :
+@export_range(2, 12, 1, "or_greater" ) var size : int = 2 :
 	set( value ):
 		size = value
 		apply_area_settings()
+
 @export var location : SIDE = SIDE.LEFT :
 	set( value ):
 		location = value
@@ -29,12 +30,6 @@ func _ready() -> void:
 	SceneManger.load_scene_finished.connect( _on_load_scene_finished )
 
 
-func _on_new_scene_ready( target_name : String, offset : Vector2 ) -> void:
-	if target_name == name:
-		var player : Node = get_tree().get_first_node_in_group("Player")
-		player.global_position = global_position + offset
-
-
 func _on_load_scene_finished() -> void:
 	area_2d.monitoring = false
 	area_2d.body_entered.connect( _on_player_entered )
@@ -45,8 +40,13 @@ func _on_load_scene_finished() -> void:
 
 func _on_player_entered(_n : Node2D) -> void:
 	SceneManger.transtion_scene(
-		target_level, target_area_name, get_offset(_n), get_transition_dir()
-		)
+		target_level, target_area_name, get_offset(_n), get_transition_dir() )
+
+
+func _on_new_scene_ready( target_name : String, offset : Vector2 ) -> void:
+	if target_name == name:
+		var player : Node = get_tree().get_first_node_in_group("Player")
+		player.global_position = global_position + offset
 
 
 func apply_area_settings() -> void:
@@ -97,5 +97,5 @@ func get_transition_dir() -> String:
 			return "up"
 		_:
 			return "down"
-	
+
  

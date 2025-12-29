@@ -3,8 +3,11 @@ extends CanvasLayer
 signal load_scene_started
 signal new_scene_ready( target_name : String, offset : Vector2 )
 signal load_scene_finished
+signal scene_entered( uid : String )
 
 @onready var fade: Control = $Fade
+
+var current_scene_uid : String
 
 
 func _ready() -> void:
@@ -22,9 +25,15 @@ func transtion_scene(
 	fade.visible = true
 	load_scene_started.emit()
 	await fade_screen( fade_pos, Vector2.ZERO )
+	if not new_scene:
+		new_scene = ResourceUID.uid_to_path( "uid://cb886t8m51hde" )
 	get_tree().change_scene_to_file( new_scene )
+	current_scene_uid = ResourceUID.path_to_uid( new_scene )
+	scene_entered.emit( current_scene_uid )
+	
 	await get_tree().scene_changed
 	new_scene_ready.emit( target_area, player_offset )
+	await get_tree().process_frame
 	await fade_screen( Vector2.ZERO, -fade_pos )
 	get_tree().paused = false
 	fade.visible = false
@@ -36,11 +45,10 @@ func fade_screen( from : Vector2, to : Vector2 ) -> Signal:
 	var tween : Tween = create_tween()
 	tween.tween_property( fade, "position", to, 0.2 )
 	return tween.finished
-	
 
 
 func get_fade_pos( dir : String ) -> Vector2:
-	var pos : Vector2 = Vector2( 480*2, 270*2 )
+	var pos : Vector2 = Vector2( 960.0, 540.0 )
 	
 	match dir:
 		"left":
@@ -52,14 +60,3 @@ func get_fade_pos( dir : String ) -> Vector2:
 		"down":
 			pos *= Vector2( 0, 1 )
 	return pos
-
-
-
-
-
-
-
-
-
-
-##
