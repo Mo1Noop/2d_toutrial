@@ -19,6 +19,7 @@ config/icon="uid://d381lb0rxya7x"
 
 SceneManger="*res://00_global/scene_manger/scene_manger.tscn"
 SaveManager="*res://00_global/save_manager.gd"
+Messages="*res://00_global/messages.gd"
 
 [display]
 

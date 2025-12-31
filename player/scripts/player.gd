@@ -47,10 +47,12 @@ func _ready() -> void:
 		self.queue_free()
 	initialize_states()
 	self.call_deferred( "reparent", get_tree().root )
-	pass
+	Messages.player_healed.connect( _on_player_healed )
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("action"):
+		Messages.player_interacted.emit( self )
 	change_state( current_state.handle_input(event) )
 
 
@@ -129,3 +131,7 @@ func debug(color : Color) -> void:
 
 func move() -> void:
 	velocity.x = dirction.x * move_speed
+
+
+func _on_player_healed( amount : float ) -> void:
+	hp += amount
