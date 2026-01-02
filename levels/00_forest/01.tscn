@@ -338,4 +338,4 @@ position = Vector2(263, 214)
 texture = SubResource("NoiseTexture2D_vdj2u")
 
 [node name="player_spawn" parent="." instance=ExtResource("7_vdj2u")]
-position = Vector2(208, 186)
+position = Vector2(1008, 192)

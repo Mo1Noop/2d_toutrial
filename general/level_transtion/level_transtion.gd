@@ -10,7 +10,6 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 		size = value
 		apply_area_settings()
 
-
 @export var location : SIDE = SIDE.LEFT :
 	set( value ):
 		location = value
