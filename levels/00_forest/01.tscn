@@ -76,12 +76,6 @@ width = 1120
 hieght = 334
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
-[node name="Level_Transtion" parent="." instance=ExtResource("4_vhcel")]
-position = Vector2(1120, 192)
-size = 13
-location = 1
-target_level = "uid://dbws3ync16n1s"
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 4
 position = Vector2(550, 112)
@@ -339,3 +333,13 @@ texture = SubResource("NoiseTexture2D_vdj2u")
 
 [node name="player_spawn" parent="." instance=ExtResource("7_vdj2u")]
 position = Vector2(1008, 192)
+
+[node name="Level_Transtion0" parent="." instance=ExtResource("4_vhcel")]
+position = Vector2(48, 236)
+size = 15
+
+[node name="Level_Transtion" parent="." instance=ExtResource("4_vhcel")]
+position = Vector2(1120, 192)
+size = 13
+location = 1
+target_level = "uid://dbws3ync16n1s"

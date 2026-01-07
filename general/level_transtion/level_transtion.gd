@@ -39,6 +39,8 @@ func _on_load_scene_finished() -> void:
 
 
 func _on_player_entered(_n : Node2D) -> void:
+	if target_level == "":
+		return
 	SceneManger.transtion_scene(
 		target_level, target_area_name, get_offset(_n), get_transition_dir() )
 

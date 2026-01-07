@@ -14,7 +14,9 @@ func _ready() -> void:
 	fade.visible = false
 	await get_tree().process_frame
 	load_scene_finished.emit()
-
+	var current_scene : String = get_tree().current_scene.scene_file_path
+	current_scene_uid = ResourceUID.path_to_uid( current_scene )
+	scene_entered.emit( current_scene_uid )
 
 func transtion_scene(
 	new_scene : String, target_area : String, 
@@ -25,8 +27,6 @@ func transtion_scene(
 	fade.visible = true
 	load_scene_started.emit()
 	await fade_screen( fade_pos, Vector2.ZERO )
-	if not new_scene:
-		new_scene = ResourceUID.uid_to_path( "uid://cb886t8m51hde" )
 	get_tree().change_scene_to_file( new_scene )
 	current_scene_uid = ResourceUID.path_to_uid( new_scene )
 	scene_entered.emit( current_scene_uid )

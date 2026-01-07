@@ -8,6 +8,8 @@ var game_data : Dictionary
 var discovered_areas : Array = []
 var presistent_data : Dictionary = {}
 
+func _ready() -> void:
+	SceneManger.scene_entered.connect( on_scene_entered )
 
 # for debuging
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -20,6 +22,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func create_new_game_save( slot : int ) -> void:
 	current_slot = slot
+	discovered_areas.clear()
+	presistent_data.clear()
+	
 	discovered_areas.append( scene_01 )
 	game_data = {
 		"scene_path" : scene_01,
@@ -100,3 +105,20 @@ func get_file_name( slot : int ) -> String:
 
 func save_file_exists( slot : int ) -> bool:
 	return FileAccess.file_exists( get_file_name( slot ) )
+
+
+func is_area_discovered( scene_uid : String ) -> bool:
+	return discovered_areas.has( scene_uid )
+
+
+func on_scene_entered( scene_uid : String ) -> void:
+	if discovered_areas.has( scene_uid ):
+		return
+	else:
+		discovered_areas.append( scene_uid )
+
+
+
+
+
+#

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d381lb0rxya7x"
-path="res://.godot/imported/mug-hot-alt.png-564f85d4f161e8c968c7f4c08cb7edab.ctex"
+uid="uid://bq52dfj3hoyer"
+path="res://.godot/imported/health_bar_frame.png-f28d54bc64015d5149306f75a14d763f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testing/mug-hot-alt.png"
-dest_files=["res://.godot/imported/mug-hot-alt.png-564f85d4f161e8c968c7f4c08cb7edab.ctex"]
+source_file="res://00_global/player_hud/health_bar_frame.png"
+dest_files=["res://.godot/imported/health_bar_frame.png-f28d54bc64015d5149306f75a14d763f.ctex"]
 
 [params]
 

@@ -24,8 +24,16 @@ var previous_state : Player_state:
 #endregion
 
 #region /// palyer stats
-var hp : float = 20
-var max_hp : float = 20
+var hp : float = 20 :
+	set( value ):
+		hp = clampf( value, 0, max_hp )
+		Messages.player_helth_changed.emit( hp, max_hp )
+
+var max_hp : float = 20 :
+	set( value ):
+		max_hp = value
+		Messages.player_helth_changed.emit( hp, max_hp )
+
 var dash : bool = false
 var double_jump : bool = false
 var ground_slam : bool = false
@@ -48,11 +56,30 @@ func _ready() -> void:
 	initialize_states()
 	self.call_deferred( "reparent", get_tree().root )
 	Messages.player_healed.connect( _on_player_healed )
+	Messages.back_to_title_screen.connect( queue_free )
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("action"):
 		Messages.player_interacted.emit( self )
+	elif event.is_action_pressed("pause"):
+		get_tree().paused = true
+		var pause_menu : Pause_Menu = load("res://pause_menu/pause_menu.tscn").instantiate()
+		add_child( pause_menu )
+		return
+	
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_MINUS:
+			if Input.is_key_pressed( KEY_SHIFT ):
+				max_hp = max( max_hp-10, 0 )
+			else:
+				hp = max( hp-2, 0 )
+		elif event.keycode == KEY_EQUAL:
+			if Input.is_key_pressed( KEY_SHIFT ):
+				max_hp += 10
+			else:
+				hp = min( hp+2, max_hp )
+	
 	change_state( current_state.handle_input(event) )
 
 
@@ -66,7 +93,6 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta * gravity_mulitplier
 	velocity.y = clampf(velocity.y, -1000.0, max_fall_velocity)
 	change_state( current_state.physics_process(delta) )
-	pass
 
 
 func initialize_states() -> void:
@@ -86,7 +112,6 @@ func initialize_states() -> void:
 	current_state.enter()
 	$Label.text = current_state.name
 	
-	pass
 
 
 func change_state( new_state : Player_state ) -> void:
@@ -100,7 +125,6 @@ func change_state( new_state : Player_state ) -> void:
 	current_state.enter()
 	states.resize(3)
 	$Label.text = current_state.name
-	pass
 
 
 func update_dirction() -> void:
@@ -114,10 +138,6 @@ func update_dirction() -> void:
 			hero.flip_h = true
 		elif dirction.x > 0.0:
 			hero.flip_h = false
-
-
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-	get_tree().call_deferred("reload_current_scene")
 
 
 func debug(color : Color) -> void:
