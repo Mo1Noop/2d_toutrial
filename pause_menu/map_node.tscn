@@ -9,11 +9,6 @@ anchors_preset = 0
 offset_right = 12.0
 offset_bottom = 6.0
 script = ExtResource("1_j1ovi")
-linked_scene = null
-entranes_top = null
-entranes_right = null
-entranes_bottom = null
-entranes_left = null
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1, 1)

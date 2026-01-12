@@ -35,7 +35,7 @@ tile_map_data = PackedByteArray("AAAOAAUAAAAAAAgAAAAOAAYAAAAAAAkAAAAOAAcAAAAAAAo
 tile_set = ExtResource("2_r7adf")
 
 [node name="Level_Transtion" parent="." instance=ExtResource("3_vv2jw")]
-position = Vector2(160, 7)
+position = Vector2(160, 15)
 size = 4
 location = 2
 target_level = "uid://dbws3ync16n1s"

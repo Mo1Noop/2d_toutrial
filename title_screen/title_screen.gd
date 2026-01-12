@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name Titel_screen extends CanvasLayer
 
 #region /// on ready var
 @onready var main_menu: VBoxContainer = %main_menu
@@ -24,6 +24,7 @@ extends CanvasLayer
 
 
 func _ready() -> void:
+	PlayerHud.visible = false
 	new_game_button.pressed.connect( show_new_game_menu )
 	load_game_button.pressed.connect( show_load_game_menu )
 	
@@ -38,8 +39,8 @@ func _ready() -> void:
 	load_menu_back.pressed.connect( show_main_menu )
 	new_game_menu_back.pressed.connect( show_main_menu )
 	
-	show_main_menu()
 	animation_player.animation_finished.connect( _on_anim_finished )
+	show_main_menu()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -80,16 +81,17 @@ func show_load_game_menu() -> void:
 	load_slot_01.disabled = not SaveManager.save_file_exists( 0 )
 	load_slot_02.disabled = not SaveManager.save_file_exists( 1 )
 	load_slot_03.disabled = not SaveManager.save_file_exists( 2 )
-	
 
 
 func on_new_game_pressed( slot : int ) -> void:
 	SaveManager.create_new_game_save( slot )
+	SceneManger.transtion_scene(
+		"uid://cb886t8m51hde", "", Vector2.ZERO, "up"
+	)
 
 
 func on_load_game_pressed( slot : int ) -> void:
 	SaveManager.load_game( slot )
-	
 
 
 func _on_anim_finished( _anim_name : String ) -> void:

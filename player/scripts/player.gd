@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+#region /// var
 const DEBUG = preload("uid://c08vbptobbyb3")
 
 @onready var collision_stand: CollisionShape2D = %CollisionStand
@@ -8,10 +9,9 @@ const DEBUG = preload("uid://c08vbptobbyb3")
 @onready var player_anim: AnimationPlayer = %PlayerAnim
 @onready var one_way_chape_cast: ShapeCast2D = %one_way_chapeCast
 
-
-#region /// export var
 @export var move_speed : float = 150
 @export var max_fall_velocity : float = 600.0
+
 #endregion
 
 #region /// get states
@@ -111,7 +111,6 @@ func initialize_states() -> void:
 	change_state(current_state)
 	current_state.enter()
 	$Label.text = current_state.name
-	
 
 
 func change_state( new_state : Player_state ) -> void:

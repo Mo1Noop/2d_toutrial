@@ -2,6 +2,7 @@
 @tool
 class_name Map_Node extends Control
 
+#region /// var
 const SCALE_FACTOR : float = 40.0
 
 @export_file("*.tscn") var linked_scene : String : set = on_scene_set
@@ -12,10 +13,12 @@ const SCALE_FACTOR : float = 40.0
 @export var entranes_bottom : Array[ float ] = []
 @export var entranes_left : Array[ float ] = []
 
-var indicator_offset : Vector2 = Vector2.ZERO
-
 @onready var label: Label = $Label
 @onready var transtion_blocks: Control = %transtion_blocks
+
+var indicator_offset : Vector2 = Vector2.ZERO
+
+#endregion
 
 
 func _ready() -> void:
@@ -34,76 +37,73 @@ func _ready() -> void:
 func on_scene_set( val : String ) -> void:
 	if linked_scene != val:
 		linked_scene = val
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint(): # in editor only
 			update_node()
 
 
 func update_node() -> void:
 	var new_size : Vector2 = Vector2( 480, 270 )
 	var transtions : Array[ Level_Trensition ] = []
+	if not ResourceLoader.exists( linked_scene ):
+		return
+	var packed_scene : PackedScene
+	packed_scene = ResourceLoader.load( linked_scene ) as PackedScene
+	if not packed_scene:
+		return
+	var instance = packed_scene.instantiate()
+	if not instance:
+		return
 	
-	if ResourceLoader.exists( linked_scene ):
-		var packed_scene : PackedScene = ResourceLoader.load( linked_scene ) as PackedScene
-		if packed_scene:
-			var instance = packed_scene.instantiate()
-			if instance:
-				update_node_label( instance )
-				for c in instance.get_children():
-					if c is Level_bounds:
-						new_size = Vector2( c.width, c.hieght )
-						indicator_offset = c.position
-					elif c is Level_Trensition:
-							transtions.append( c )
-				instance.queue_free()
+	update_node_label( instance )
+	for c in instance.get_children():
+		if c is Level_bounds:
+			new_size = Vector2( c.width, c.hieght )
+			indicator_offset = c.position
+		elif c is Level_Trensition:
+				transtions.append( c )
+	instance.queue_free()
 	size = (new_size / SCALE_FACTOR).round()
 	create_entrance_data( transtions )
 	create_entrance_blocks()
 
-
-
+## to see the scene name.. in the editor only
 func update_node_label( scene : Node ) -> void:
 	if not label:
 		label = $Label
 	var t : String = scene.scene_file_path
-	t = t .replace( "res://levels/", "" )
+	t = t.replace( "res://levels/", "" )
 	t = t.replace( ".tscn", "" )
 	label.text = t
 
 
 func create_entrance_data( transtions : Array[ Level_Trensition ] ) -> void:
-	entranes_bottom.clear()
-	entranes_top.clear()
-	entranes_left.clear()
-	entranes_right.clear()
+	entranes_bottom.clear() ; entranes_top.clear()
+	entranes_left.clear() ; entranes_right.clear()
 	for t in transtions:
+		var pos : Vector2 = ( t.position - indicator_offset ) / SCALE_FACTOR
 		if t.location == Level_Trensition.SIDE.LEFT:
 			var offset : float = clampf(
-				self.size.y + ( -t.global_position.y / SCALE_FACTOR ),
-				2.0, self.size.y - 2 
+				pos.y - 3, 2.0, self.size.y - 5
 			)
 			entranes_left.append( offset )
 		
 		elif t.location == Level_Trensition.SIDE.RIGHT:
 			var offset : float = clampf(
-				self.size.y + ( -t.global_position.y / SCALE_FACTOR ),
-				2.0, self.size.y - 2 
+				pos.y - 3, 2.0, self.size.y - 5
 			)
 			entranes_right.append( offset )
 		
 		elif t.location == Level_Trensition.SIDE.TOP:
 			var offset : float = clampf(
-				t.global_position.x / SCALE_FACTOR,
-				2.0, self.size.x - 2 
+				pos.x, 2.0, self.size.x - 5 
 			)
 			entranes_top.append( offset )
 		
 		elif t.location == Level_Trensition.SIDE.BOTTOM:
 			var offset : float = clampf(
-				t.global_position.x / SCALE_FACTOR,
-				2.0, self.size.x - 2 
+				pos.x, 2.0, self.size.x - 5 
 			)
 			entranes_bottom.append( offset )
-	
 
 
 func create_entrance_blocks() ->void:
@@ -150,8 +150,9 @@ func disblay_player_location() -> void:
 	var i : Control = %player_indecator
 	var pos : Vector2 = position
 	pos += ( ( player.global_position - indicator_offset ) / SCALE_FACTOR )
-	var clamp : Vector2 = Vector2( 3, 3 )
-	pos = pos.clamp( position + clamp, position + size - clamp )
+	var _clamp : Vector2 = Vector2( 3, 3 )
+	pos = pos.clamp( position + _clamp, position + size - _clamp )
 	i.position = pos
+
 
 #

@@ -40,9 +40,8 @@ func create_new_game_save( slot : int ) -> void:
 		"presistent_data" : presistent_data,
 	}
 	var save_file = FileAccess.open( get_file_name( current_slot ), FileAccess.WRITE )
-	save_file.store_line( JSON.stringify( game_data ) )
+	save_file.store_line( JSON.stringify( game_data, "\t" ) )
 	save_file.close()
-	load_game( slot )
 
 
 func save_game() -> void:
@@ -61,16 +60,16 @@ func save_game() -> void:
 		"presistent_data" : presistent_data,
 	}
 	var save_file := FileAccess.open( get_file_name( current_slot ), FileAccess.WRITE )
-	save_file.store_line( JSON.stringify( game_data ) )
+	save_file.store_line( JSON.stringify( game_data, "\t" ) )
 
 
 func load_game( slot : int ) -> void:
 	current_slot = slot
 	if not FileAccess.file_exists( get_file_name( current_slot ) ):
 		return
-	var save_file := FileAccess.open( get_file_name( current_slot ), FileAccess.READ )
-	game_data = JSON.parse_string( save_file.get_line() )
-	
+	#var save_file := FileAccess.open( get_file_name( current_slot ), FileAccess.READ )
+	var save_file := FileAccess.get_file_as_string( get_file_name( current_slot ) )
+	game_data = JSON.parse_string( save_file )
 	presistent_data = game_data.get( "presistent_data", {} )
 	discovered_areas = game_data.get( "discovered_areas", [] )
 	var scene_path : String = game_data.get( "scene_path", scene_01 )
@@ -116,7 +115,6 @@ func on_scene_entered( scene_uid : String ) -> void:
 		return
 	else:
 		discovered_areas.append( scene_uid )
-
 
 
 

@@ -10,9 +10,9 @@ class_name Pause_Menu extends CanvasLayer
 @onready var sfx_slider: HSlider = %SFX_Slider
 @onready var ui_slider: HSlider = %UI_Slider
 
-#endregion
-
 var player : Player
+
+#endregion
 
 
 func _ready() -> void:
@@ -49,14 +49,10 @@ func setup_system_menu() -> void:
 
 func on_back_title_button_pressed() -> void:
 	SceneManger.transtion_scene(
-		"res://title_screen/title_screen.tscn", "", Vector2.ZERO, "up" )
+		"res://Z_testing/BG_menu.tscn", "", Vector2.ZERO, "up" )
 	get_tree().paused = false
 	Messages.back_to_title_screen.emit()
 	queue_free()
-
-
-
-
 
 
 #

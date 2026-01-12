@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhu4wmpu6vi7q"]
+[gd_scene load_steps=9 format=3 uid="uid://bhu4wmpu6vi7q"]
 
 [ext_resource type="Script" uid="uid://b8d2bm85cb2iv" path="res://title_screen/title_screen.gd" id="1_vbjqi"]
 [ext_resource type="Texture2D" uid="uid://da8n0jooae3fq" path="res://title_screen/metroidvania_logo.png" id="3_2dq6q"]
-[ext_resource type="PackedScene" uid="uid://cvi1svgb3cnok" path="res://Z_testing/BG_menu.tscn" id="3_vbjqi"]
 
 [sub_resource type="Animation" id="Animation_fk0fn"]
 length = 0.001
@@ -75,8 +74,6 @@ fill_to = Vector2(0.5, 0)
 layer = 5
 script = ExtResource("1_vbjqi")
 
-[node name="BG_Menu" parent="." instance=ExtResource("3_vbjqi")]
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -87,7 +84,6 @@ grow_vertical = 2
 
 [node name="main_menu" type="VBoxContainer" parent="Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -223,6 +219,7 @@ layout_mode = 2
 text = "Back"
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

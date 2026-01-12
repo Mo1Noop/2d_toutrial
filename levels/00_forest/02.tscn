@@ -294,7 +294,7 @@ location = 3
 target_level = "uid://cvp1dgtknfga3"
 
 [node name="Level_Transtion3" parent="." instance=ExtResource("3_epyyu")]
-position = Vector2(1152, 230)
+position = Vector2(1152, 214)
 size = 20
 location = 1
 target_level = "uid://cuyoqrryc3www"

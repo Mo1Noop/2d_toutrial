@@ -339,7 +339,7 @@ position = Vector2(48, 236)
 size = 15
 
 [node name="Level_Transtion" parent="." instance=ExtResource("4_vhcel")]
-position = Vector2(1120, 192)
+position = Vector2(1120, 208)
 size = 13
 location = 1
 target_level = "uid://dbws3ync16n1s"

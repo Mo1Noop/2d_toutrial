@@ -18,10 +18,12 @@ func _ready() -> void:
 	current_scene_uid = ResourceUID.path_to_uid( current_scene )
 	scene_entered.emit( current_scene_uid )
 
+
 func transtion_scene(
 	new_scene : String, target_area : String, 
 	player_offset : Vector2, dir : String ) -> void:
 	
+	check_new_scene( new_scene )
 	get_tree().paused = true
 	var fade_pos : Vector2 = get_fade_pos( dir )
 	fade.visible = true
@@ -60,3 +62,14 @@ func get_fade_pos( dir : String ) -> Vector2:
 		"down":
 			pos *= Vector2( 0, 1 )
 	return pos
+
+
+func check_new_scene( new_scene : String ) -> void:
+	if new_scene == "res://Z_testing/BG_menu.tscn":
+		PlayerHud.visible = false
+	else:
+		PlayerHud.show_hud()
+
+
+
+#
