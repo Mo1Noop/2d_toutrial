@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cuyoqrryc3www"]
+[gd_scene load_steps=10 format=4 uid="uid://cuyoqrryc3www"]
 
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="1_6ah66"]
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="2_kxrx0"]
@@ -8,11 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://cvma0iqwvxk06" path="res://general/save_point/save_point.tscn" id="6_xyudw"]
 [ext_resource type="PackedScene" uid="uid://c4uij8a7sypr6" path="res://general/door_and_switsh/Door.tscn" id="7_fuden"]
 [ext_resource type="PackedScene" uid="uid://etjmo3fl6y3p" path="res://general/door_and_switsh/switch.tscn" id="8_owy6c"]
+[ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="9_teb15"]
 
 [node name="02_Save_Scene" type="Node2D"]
 
 [node name="world" type="Node2D" parent="."]
 position = Vector2(-32, 0)
+metadata/_edit_group_ = true
 
 [node name="MapLayer_1" type="TileMapLayer" parent="world"]
 position = Vector2(-128, 0)
@@ -63,7 +65,13 @@ position = Vector2(332, 226)
 position = Vector2(237, 202)
 
 [node name="Door" parent="." instance=ExtResource("7_fuden")]
-position = Vector2(448, 217)
+position = Vector2(448, 193)
+door_size = Vector2(32, 143)
+floor_position = 45.0
 
 [node name="Switch" parent="Door" instance=ExtResource("8_owy6c")]
-position = Vector2(-99, 14)
+position = Vector2(-98, 39)
+
+[node name="Music_auto_trigger" type="Node" parent="."]
+script = ExtResource("9_teb15")
+metadata/_custom_type_script = "uid://b288j8ci26yr7"

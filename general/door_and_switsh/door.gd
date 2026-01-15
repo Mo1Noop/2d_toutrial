@@ -5,18 +5,39 @@ class_name Door extends Node2D
 const DOOR_CRASH_AUDIO = preload("uid://bd7b3rxms6u4p")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var door_size : Vector2 = Vector2( 32, 114 ) :
+	set( val ):
+		door_size = val
+		for c in get_children():
+			if c is NinePatchRect:
+				c.size.y = door_size.y
+
+@export var floor_position : float = 16 :
+	set( val ):
+		floor_position = val
+		for c in get_children():
+			if c is Sprite2D:
+				c.position.y = floor_position
+
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	for child in get_children():
-		if not child is Switch:
-			return
-		child.activated.connect( on_switch_activated )
-		if child.is_open:
-			on_switch_is_open()
+		if child is Switch:
+			child.activated.connect( on_switch_activated )
+			if child.is_open:
+				on_switch_is_open()
+	set_door_size_valu()
+
+
+func set_door_size_valu() -> void:
+	animation_player.get_animation("closed").track_set_key_value( 0, 0, door_size )
+	animation_player.get_animation("open").track_set_key_value( 0, 0, door_size )
 
 
 func on_switch_activated() -> void:
+	Audio.play_apatial_sound( DOOR_CRASH_AUDIO, global_position )
 	animation_player.play( "open" )
 
 

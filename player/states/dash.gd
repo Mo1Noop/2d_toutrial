@@ -4,10 +4,6 @@ var dash_dir : int = 0
 
 func enter() -> void:
 	player.velocity = Vector2.ZERO
-	if player.jump_counter < 3:
-		player.can_duble_jump = true
-	else:
-		player.can_duble_jump = false
 	await get_tree().create_timer(0.3).timeout
 	player.change_state(fall)
 

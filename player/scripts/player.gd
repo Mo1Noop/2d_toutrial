@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 #region /// var
-const DEBUG = preload("uid://c08vbptobbyb3")
+#const DEBUG = preload("uid://c08vbptobbyb3")
 
 @onready var collision_stand: CollisionShape2D = %CollisionStand
 @onready var collision_crouch: CollisionShape2D = %CollisionCrouch
@@ -44,8 +44,6 @@ var morph_roll : bool = false
 var dirction : Vector2 = Vector2.ZERO
 var gravity : float = 980
 var gravity_mulitplier : float = 1.0
-var can_duble_jump : bool = true
-var jump_counter : int = 0
 
 #endregion
 
@@ -139,13 +137,13 @@ func update_dirction() -> void:
 			hero.flip_h = false
 
 
-func debug(color : Color) -> void:
-	var d : Node2D = DEBUG.instantiate()
-	get_tree().root.add_child(d)
-	d.global_position = global_position
-	d.modulate = color
-	await get_tree().create_timer( 2.0 ).timeout
-	d.queue_free()
+#func debug(color : Color) -> void:
+	#var d : Node2D = DEBUG.instantiate()
+	#get_tree().root.add_child(d)
+	#d.global_position = global_position
+	#d.modulate = color
+	#await get_tree().create_timer( 2.0 ).timeout
+	#d.queue_free()
 
 
 func move() -> void:

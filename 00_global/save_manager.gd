@@ -1,5 +1,6 @@
 extends Node #save manager
 
+const CONFIG_FILE_PATH : String = "user://settings.cfg"
 const scene_01 : String = "uid://cb886t8m51hde" 
 const  SLOTS : Array[String] = [ "save_01", "save_02", "save_03" ]
 
@@ -8,7 +9,9 @@ var game_data : Dictionary
 var discovered_areas : Array = []
 var presistent_data : Dictionary = {}
 
+
 func _ready() -> void:
+	load_audio_conifg()
 	SceneManger.scene_entered.connect( on_scene_entered )
 
 # for debuging
@@ -115,6 +118,31 @@ func on_scene_entered( scene_uid : String ) -> void:
 		return
 	else:
 		discovered_areas.append( scene_uid )
+
+
+func save_audio_config() -> void:
+	var config := ConfigFile.new()
+	config.set_value( "audio", "music", AudioServer.get_bus_volume_linear( 2 ) )
+	config.set_value( "audio", "sfx", AudioServer.get_bus_volume_linear( 3 ) )
+	config.set_value( "audio", "ui", AudioServer.get_bus_volume_linear( 4 ) )
+	
+	config.save( CONFIG_FILE_PATH )
+
+
+func load_audio_conifg() -> void:
+	var config := ConfigFile.new()
+	var err := config.load( CONFIG_FILE_PATH )
+	if err != OK:
+		AudioServer.set_bus_volume_linear( 2, 0.7 )
+		AudioServer.set_bus_volume_linear( 3, 1.0 )
+		AudioServer.set_bus_volume_linear( 4, 1.0 )
+		return
+	
+	AudioServer.set_bus_volume_linear( 2, config.get_value( "audio", "music", 0.7 ) )
+	AudioServer.set_bus_volume_linear( 3, config.get_value( "audio", "sfx", 1.0 ) )
+	AudioServer.set_bus_volume_linear( 4, config.get_value( "audio", "ui", 1.0 ) )
+
+
 
 
 

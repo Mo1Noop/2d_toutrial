@@ -18,6 +18,7 @@ var player : Player
 func _ready() -> void:
 	show_pause_screen()
 	system_menu_button.pressed.connect( show_system_menu )
+	Audio.setup_button_audio( self )
 	setup_system_menu()
 
 
@@ -43,16 +44,44 @@ func show_system_menu() -> void:
 
 
 func setup_system_menu() -> void:
+	music_slider.value = AudioServer.get_bus_volume_linear( 2 )
+	sfx_slider.value = AudioServer.get_bus_volume_linear( 3 )
+	ui_slider.value = AudioServer.get_bus_volume_linear( 4 )
+	
+	music_slider.value_changed.connect( on_music_slider_changed )
+	sfx_slider.value_changed.connect( on_sfx_slider_changed )
+	ui_slider.value_changed.connect( on_ui_slider_changed )
+	
+	
 	back_title_button.pressed.connect( on_back_title_button_pressed )
 	back_map_button.pressed.connect( show_pause_screen )
 
 
 func on_back_title_button_pressed() -> void:
 	SceneManger.transtion_scene(
-		"res://Z_testing/BG_menu.tscn", "", Vector2.ZERO, "up" )
+		"uid://cvi1svgb3cnok", "", Vector2.ZERO, "up" )
 	get_tree().paused = false
 	Messages.back_to_title_screen.emit()
 	queue_free()
+
+
+func on_music_slider_changed( val : float ) -> void:
+	AudioServer.set_bus_volume_linear( 2, val )
+	SaveManager.save_audio_config()
+
+func on_sfx_slider_changed( val : float ) -> void:
+	AudioServer.set_bus_volume_linear( 3, val )
+	Audio.ui_focus_change()
+	SaveManager.save_audio_config()
+
+func on_ui_slider_changed( val : float ) -> void:
+	AudioServer.set_bus_volume_linear( 4, val )
+	Audio.ui_focus_change()
+	SaveManager.save_audio_config()
+
+
+
+
 
 
 #

@@ -177,6 +177,8 @@ size = Vector2(32, 101)
 [node name="Door" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_j84xg")
+door_size = 114.0
+floor_position = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 16)
@@ -206,5 +208,6 @@ autoplay = "closed"
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2(0, -42.5)
 shape = SubResource("RectangleShape2D_uw8x4")

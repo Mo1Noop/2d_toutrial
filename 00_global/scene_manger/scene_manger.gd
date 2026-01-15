@@ -65,10 +65,11 @@ func get_fade_pos( dir : String ) -> Vector2:
 
 
 func check_new_scene( new_scene : String ) -> void:
-	if new_scene == "res://Z_testing/BG_menu.tscn":
+	if new_scene == "uid://cvi1svgb3cnok":
 		PlayerHud.visible = false
 	else:
-		PlayerHud.show_hud()
+		await load_scene_finished
+		PlayerHud.visible = true
 
 
 

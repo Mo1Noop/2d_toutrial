@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dbws3ync16n1s"]
+[gd_scene load_steps=15 format=4 uid="uid://dbws3ync16n1s"]
 
 [ext_resource type="Script" uid="uid://cbjs6k8batccp" path="res://general/scripts/level_bounds.gd" id="1_epyyu"]
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="2_s2tn3"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="5_tfgdr"]
 [ext_resource type="Texture2D" uid="uid://dq1mfjcam6to2" path="res://levels/tilesets/sprites/light_stream.jpg" id="7_152a0"]
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="7_yy75x"]
+[ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="8_yy75x"]
+[ext_resource type="AudioStream" uid="uid://beoakjt1uw5ws" path="res://music/forest_01.ogg" id="9_lj4o7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yy75x"]
 blend_mode = 1
@@ -301,3 +303,8 @@ target_level = "uid://cuyoqrryc3www"
 
 [node name="player_spawn" parent="." instance=ExtResource("7_yy75x")]
 position = Vector2(1074, 220)
+
+[node name="Music_auto_trigger" type="Node" parent="."]
+script = ExtResource("8_yy75x")
+track = ExtResource("9_lj4o7")
+metadata/_custom_type_script = "uid://b288j8ci26yr7"

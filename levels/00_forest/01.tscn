@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cb886t8m51hde"]
+[gd_scene load_steps=21 format=4 uid="uid://cb886t8m51hde"]
 
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="1_fvrtv"]
 [ext_resource type="Script" uid="uid://cbjs6k8batccp" path="res://general/scripts/level_bounds.gd" id="3_1pu88"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dq1mfjcam6to2" path="res://levels/tilesets/sprites/light_stream.jpg" id="6_chwhs"]
 [ext_resource type="Material" uid="uid://cdyoa3xwr6f0a" path="res://matrials_and_shaders/fog_fade.tres" id="7_72pnk"]
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="7_vdj2u"]
+[ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="8_8sv46"]
+[ext_resource type="AudioStream" uid="uid://beoakjt1uw5ws" path="res://music/forest_01.ogg" id="9_08onm"]
 
 [sub_resource type="Gradient" id="Gradient_vdj2u"]
 offsets = PackedFloat32Array(0, 0.74509805)
@@ -343,3 +345,8 @@ position = Vector2(1120, 208)
 size = 13
 location = 1
 target_level = "uid://dbws3ync16n1s"
+
+[node name="Music_auto_trigger" type="Node" parent="."]
+script = ExtResource("8_8sv46")
+track = ExtResource("9_08onm")
+metadata/_custom_type_script = "uid://b288j8ci26yr7"

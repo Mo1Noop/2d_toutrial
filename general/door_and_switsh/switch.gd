@@ -28,6 +28,7 @@ func on_player_exited( _n : Node2D ) -> void:
 
 
 func on_player_interacted( _player : Player ) -> void:
+	Audio.play_apatial_sound( DOOR_SWITCH_AUDIO, global_position )
 	SaveManager.presistent_data[ unique_name() ] = "open"
 	activated.emit()
 	set_open()

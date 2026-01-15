@@ -39,6 +39,8 @@ func _ready() -> void:
 	load_menu_back.pressed.connect( show_main_menu )
 	new_game_menu_back.pressed.connect( show_main_menu )
 	
+	Audio.setup_button_audio( self )
+	
 	animation_player.animation_finished.connect( _on_anim_finished )
 	show_main_menu()
 
