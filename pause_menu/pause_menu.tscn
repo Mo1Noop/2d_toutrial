@@ -106,7 +106,6 @@ horizontal_alignment = 2
 
 [node name="pause_screen" type="Control" parent="Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,6 +122,15 @@ offset_right = 278.0
 offset_bottom = 100.5
 scale = Vector2(2, 2)
 
+[node name="ColorRect" type="ColorRect" parent="Control/pause_screen/map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.019607844, 0.84313726)
+
 [node name="map_node" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
 modulate = Color(0.38039216, 0.5686275, 0.3019608, 1)
 layout_mode = 0
@@ -130,6 +138,7 @@ offset_left = 13.0
 offset_top = 37.0
 offset_right = 41.0
 offset_bottom = 45.0
+scene_name = "00_forest/01"
 linked_scene = "uid://cb886t8m51hde"
 entranes_right = Array[float]([3.1])
 entranes_left = Array[float]([3.4])
@@ -141,8 +150,9 @@ offset_left = 42.0
 offset_top = 37.0
 offset_right = 71.0
 offset_bottom = 45.0
+scene_name = "00_forest/02"
 linked_scene = "uid://dbws3ync16n1s"
-entranes_right = Array[float]([2.75])
+entranes_right = Array[float]([2.35])
 entranes_bottom = Array[float]([4.05])
 entranes_left = Array[float]([2.6])
 
@@ -150,12 +160,13 @@ entranes_left = Array[float]([2.6])
 modulate = Color(1, 0.45490196, 0.6156863, 1)
 layout_mode = 0
 offset_left = 72.0
-offset_top = 37.5
+offset_top = 37.0
 offset_right = 84.0
-offset_bottom = 44.5
+offset_bottom = 44.0
+scene_name = "00_forest/02_save_scene"
 linked_scene = "uid://cuyoqrryc3www"
-entranes_right = Array[float]([2.1999998])
-entranes_left = Array[float]([2.1999998])
+entranes_right = Array[float]([2.0])
+entranes_left = Array[float]([2.0])
 
 [node name="map_node4" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
 modulate = Color(0.29803923, 0.47058824, 0.63529414, 1)
@@ -164,8 +175,22 @@ offset_left = 42.0
 offset_top = 46.0
 offset_right = 71.0
 offset_bottom = 53.0
+scene_name = "00_forest/03"
 linked_scene = "uid://cvp1dgtknfga3"
 entranes_top = Array[float]([4.0])
+entranes_right = Array[float]([2.0])
+
+[node name="map_node5" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+modulate = Color(0.29803923, 0.47058824, 0.63529414, 1)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 46.0
+offset_right = 86.0
+offset_bottom = 65.0
+scene_name = "00_forest/04"
+linked_scene = "uid://dki7fmf6mu0yv"
+entranes_right = Array[float]([2.0, 8.2, 14.0])
+entranes_left = Array[float]([2.0])
 
 [node name="player_indecator" type="Control" parent="Control/pause_screen/map"]
 unique_name_in_owner = true
@@ -193,17 +218,17 @@ autoplay = "default"
 [node name="Abilities" type="Label" parent="Control/pause_screen"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 8.0
+offset_top = 10.0
 offset_right = 67.0
-offset_bottom = 23.0
+offset_bottom = 25.0
 text = "Abilities"
 
-[node name="Label2" type="Label" parent="Control/pause_screen"]
+[node name="map_label" type="Label" parent="Control/pause_screen"]
 layout_mode = 0
-offset_left = 99.0
-offset_top = 8.0
-offset_right = 139.0
-offset_bottom = 23.0
+offset_left = 102.0
+offset_top = 10.0
+offset_right = 142.0
+offset_bottom = 25.0
 text = "Map"
 
 [node name="system_menu_Button" type="Button" parent="Control/pause_screen"]
@@ -224,6 +249,7 @@ text = "System"
 
 [node name="system" type="Control" parent="Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

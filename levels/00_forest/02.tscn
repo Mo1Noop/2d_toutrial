@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://dbws3ync16n1s"]
+[gd_scene load_steps=16 format=4 uid="uid://dbws3ync16n1s"]
 
 [ext_resource type="Script" uid="uid://cbjs6k8batccp" path="res://general/scripts/level_bounds.gd" id="1_epyyu"]
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="2_s2tn3"]
 [ext_resource type="PackedScene" uid="uid://dmxv6s0l2ajl1" path="res://general/level_transtion/level_transtion.tscn" id="3_epyyu"]
 [ext_resource type="PackedScene" uid="uid://boawmw4ig1uer" path="res://levels/props/plant.tscn" id="4_o5ap7"]
+[ext_resource type="Script" uid="uid://jmwu1h2wf0rm" path="res://general/scripts/level_tools.gd" id="5_ns032"]
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="5_tfgdr"]
 [ext_resource type="Texture2D" uid="uid://dq1mfjcam6to2" path="res://levels/tilesets/sprites/light_stream.jpg" id="7_152a0"]
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="7_yy75x"]
@@ -277,34 +278,38 @@ position = Vector2(612, 267)
 scale = Vector2(4.7851563, 1)
 texture = SubResource("GradientTexture2D_yy75x")
 
-[node name="Level_bounds" type="Node2D" parent="."]
+[node name="level_tools" type="Node2D" parent="."]
+script = ExtResource("5_ns032")
+
+[node name="Level_bounds" type="Node2D" parent="level_tools"]
 z_index = 256
 script = ExtResource("1_epyyu")
 width = 1152
 hieght = 334
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
-[node name="Level_Transtion" parent="." instance=ExtResource("3_epyyu")]
+[node name="Level_Transtion" parent="level_tools" instance=ExtResource("3_epyyu")]
 position = Vector2(0, 224)
 size = 12
+level_name = "00_forest/01"
 target_level = "uid://cb886t8m51hde"
 
-[node name="Level_Transtion2" parent="." instance=ExtResource("3_epyyu")]
+[node name="Level_Transtion2" parent="level_tools" instance=ExtResource("3_epyyu")]
 position = Vector2(162, 317)
 size = 4
 location = 3
 target_level = "uid://cvp1dgtknfga3"
 
-[node name="Level_Transtion3" parent="." instance=ExtResource("3_epyyu")]
+[node name="Level_Transtion3" parent="level_tools" instance=ExtResource("3_epyyu")]
 position = Vector2(1152, 214)
 size = 20
 location = 1
 target_level = "uid://cuyoqrryc3www"
 
-[node name="player_spawn" parent="." instance=ExtResource("7_yy75x")]
+[node name="player_spawn" parent="level_tools" instance=ExtResource("7_yy75x")]
 position = Vector2(1074, 220)
 
-[node name="Music_auto_trigger" type="Node" parent="."]
+[node name="Music_auto_trigger" type="Node" parent="level_tools"]
 script = ExtResource("8_yy75x")
 track = ExtResource("9_lj4o7")
 metadata/_custom_type_script = "uid://b288j8ci26yr7"

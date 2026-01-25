@@ -28,10 +28,10 @@ func _ready() -> void:
 			child.activated.connect( on_switch_activated )
 			if child.is_open:
 				on_switch_is_open()
-	set_door_size_valu()
+	set_door_size_value()
 
 
-func set_door_size_valu() -> void:
+func set_door_size_value() -> void:
 	animation_player.get_animation("closed").track_set_key_value( 0, 0, door_size )
 	animation_player.get_animation("open").track_set_key_value( 0, 0, door_size )
 

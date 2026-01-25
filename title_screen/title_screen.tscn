@@ -117,6 +117,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "load Game"
 
+[node name="exit_game_button" type="Button" parent="Control/main_menu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EXIT GAME"
+
 [node name="new_game_menu" type="VBoxContainer" parent="Control"]
 unique_name_in_owner = true
 visible = false

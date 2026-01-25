@@ -20,12 +20,14 @@ func _ready() -> void:
 	system_menu_button.pressed.connect( show_system_menu )
 	Audio.setup_button_audio( self )
 	setup_system_menu()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		get_viewport().set_input_as_handled()
 		get_tree().paused = false
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 		queue_free()
 	if pause_screen.visible:
 		if event.is_action_pressed("right") or event.is_action_pressed("down"):
@@ -78,10 +80,3 @@ func on_ui_slider_changed( val : float ) -> void:
 	AudioServer.set_bus_volume_linear( 4, val )
 	Audio.ui_focus_change()
 	SaveManager.save_audio_config()
-
-
-
-
-
-
-#

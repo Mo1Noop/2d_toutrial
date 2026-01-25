@@ -133,7 +133,7 @@ func load_audio_conifg() -> void:
 	var config := ConfigFile.new()
 	var err := config.load( CONFIG_FILE_PATH )
 	if err != OK:
-		AudioServer.set_bus_volume_linear( 2, 0.7 )
+		AudioServer.set_bus_volume_linear( 2, 0.1 )
 		AudioServer.set_bus_volume_linear( 3, 1.0 )
 		AudioServer.set_bus_volume_linear( 4, 1.0 )
 		return
@@ -141,10 +141,3 @@ func load_audio_conifg() -> void:
 	AudioServer.set_bus_volume_linear( 2, config.get_value( "audio", "music", 0.7 ) )
 	AudioServer.set_bus_volume_linear( 3, config.get_value( "audio", "sfx", 1.0 ) )
 	AudioServer.set_bus_volume_linear( 4, config.get_value( "audio", "ui", 1.0 ) )
-
-
-
-
-
-
-#

@@ -8,7 +8,10 @@ signal scene_entered( uid : String )
 @onready var fade: Control = $Fade
 
 var current_scene_uid : String
-
+var levels_scenes : Array = [
+	"uid://cb886t8m51hde", "uid://dbws3ync16n1s",
+	"uid://cuyoqrryc3www", "uid://cvp1dgtknfga3"
+	]
 
 func _ready() -> void:
 	fade.visible = false
@@ -70,7 +73,8 @@ func check_new_scene( new_scene : String ) -> void:
 	else:
 		await load_scene_finished
 		PlayerHud.visible = true
-
+	if new_scene in levels_scenes:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 #

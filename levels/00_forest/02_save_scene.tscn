@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://cuyoqrryc3www"]
+[gd_scene load_steps=11 format=4 uid="uid://cuyoqrryc3www"]
 
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="1_6ah66"]
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="2_kxrx0"]
 [ext_resource type="Script" uid="uid://cbjs6k8batccp" path="res://general/scripts/level_bounds.gd" id="3_jc34t"]
 [ext_resource type="PackedScene" uid="uid://dmxv6s0l2ajl1" path="res://general/level_transtion/level_transtion.tscn" id="4_knfet"]
+[ext_resource type="Script" uid="uid://jmwu1h2wf0rm" path="res://general/scripts/level_tools.gd" id="5_hkrbs"]
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="5_knfet"]
 [ext_resource type="PackedScene" uid="uid://cvma0iqwvxk06" path="res://general/save_point/save_point.tscn" id="6_xyudw"]
 [ext_resource type="PackedScene" uid="uid://c4uij8a7sypr6" path="res://general/door_and_switsh/Door.tscn" id="7_fuden"]
@@ -40,30 +41,6 @@ position = Vector2(94.65, 230)
 [node name="Torch2" parent="world" instance=ExtResource("2_kxrx0")]
 position = Vector2(412.765, 230)
 
-[node name="Level_bounds" type="Node2D" parent="."]
-z_index = 256
-script = ExtResource("3_jc34t")
-metadata/_custom_type_script = "uid://cbjs6k8batccp"
-
-[node name="Level_Transtion" parent="." instance=ExtResource("4_knfet")]
-position = Vector2(0, 224)
-size = 4
-target_level = "uid://dbws3ync16n1s"
-target_area_name = "Level_Transtion3"
-
-[node name="Level_Transtion2" parent="." instance=ExtResource("4_knfet")]
-position = Vector2(480, 224)
-size = 4
-location = 1
-target_level = "uid://cb886t8m51hde"
-target_area_name = "Level_Transtion0"
-
-[node name="player_spawn" parent="." instance=ExtResource("5_knfet")]
-position = Vector2(332, 226)
-
-[node name="save_point" parent="." instance=ExtResource("6_xyudw")]
-position = Vector2(237, 202)
-
 [node name="Door" parent="." instance=ExtResource("7_fuden")]
 position = Vector2(448, 193)
 door_size = Vector2(32, 143)
@@ -72,6 +49,33 @@ floor_position = 45.0
 [node name="Switch" parent="Door" instance=ExtResource("8_owy6c")]
 position = Vector2(-98, 39)
 
-[node name="Music_auto_trigger" type="Node" parent="."]
+[node name="level_tools" type="Node2D" parent="."]
+script = ExtResource("5_hkrbs")
+
+[node name="Level_bounds" type="Node2D" parent="level_tools"]
+z_index = 256
+script = ExtResource("3_jc34t")
+metadata/_custom_type_script = "uid://cbjs6k8batccp"
+
+[node name="Level_Transtion" parent="level_tools" instance=ExtResource("4_knfet")]
+position = Vector2(0, 224)
+size = 4
+target_level = "uid://dbws3ync16n1s"
+target_area_name = "Level_Transtion3"
+
+[node name="Level_Transtion2" parent="level_tools" instance=ExtResource("4_knfet")]
+position = Vector2(480, 224)
+size = 4
+location = 1
+target_level = "uid://cb886t8m51hde"
+target_area_name = "Level_Transtion0"
+
+[node name="player_spawn" parent="level_tools" instance=ExtResource("5_knfet")]
+position = Vector2(332, 226)
+
+[node name="save_point" parent="level_tools" instance=ExtResource("6_xyudw")]
+position = Vector2(237, 202)
+
+[node name="Music_auto_trigger" type="Node" parent="level_tools"]
 script = ExtResource("9_teb15")
 metadata/_custom_type_script = "uid://b288j8ci26yr7"

@@ -15,8 +15,15 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 		location = value
 		apply_area_settings()
 
+## this dose not effect the code it display the level name only
+@export var level_name : String = ""
+@export_tool_button("get name") var get_name = get_level_name
+#@export_tool_button("Get Level Name") var get_level_button := get_level_name
+
+
 @export_file( "*.tscn" ) var target_level : String = ""
 @export var target_area_name : String = "Level_Transtion"
+
 
 @onready var area_2d: Area2D = $Area2D
 #endregion
@@ -100,4 +107,14 @@ func get_transition_dir() -> String:
 		_:
 			return "down"
 
- 
+ ## this dose not effect the code it display the level name only
+
+
+func get_level_name() -> void:
+	if target_level == "":
+		return
+	var _name : String
+	_name = ResourceUID.ensure_path( target_level )
+	_name = _name.replace("res://levels/", "")
+	_name = _name.replace(".tscn", "")
+	level_name = _name

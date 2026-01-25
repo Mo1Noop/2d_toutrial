@@ -7,6 +7,7 @@ class_name Titel_screen extends CanvasLayer
 
 @onready var new_game_button: Button = %new_game_button
 @onready var load_game_button: Button = %load_game_button
+@onready var exit_game_button: Button = %exit_game_button
 
 @onready var new_slot_01: Button = %new_slot_01
 @onready var new_slot_02: Button = %new_slot_02
@@ -24,10 +25,11 @@ class_name Titel_screen extends CanvasLayer
 
 
 func _ready() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	PlayerHud.visible = false
 	new_game_button.pressed.connect( show_new_game_menu )
 	load_game_button.pressed.connect( show_load_game_menu )
-	
+	exit_game_button.pressed.connect( exit_game )
 	new_slot_01.pressed.connect( on_new_game_pressed.bind( 0 ) )
 	new_slot_02.pressed.connect( on_new_game_pressed.bind( 1 ) )
 	new_slot_03.pressed.connect( on_new_game_pressed.bind( 2 ) )
@@ -43,6 +45,12 @@ func _ready() -> void:
 	
 	animation_player.animation_finished.connect( _on_anim_finished )
 	show_main_menu()
+
+
+func exit_game() -> void:
+	Audio.fade_track_out( Audio.get_music_player( Audio.current_track ) )
+	await get_tree().create_timer( 1.0 ).timeout
+	get_tree().quit()
 
 
 func _unhandled_input(event: InputEvent) -> void:

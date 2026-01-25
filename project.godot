@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="2d_project"
-run/main_scene="uid://cb886t8m51hde"
+run/main_scene="uid://cvi1svgb3cnok"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="uid://d381lb0rxya7x"
+config/icon="uid://cmgbe68cxhxmi"
 
 [autoload]
 

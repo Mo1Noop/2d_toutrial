@@ -4,6 +4,8 @@ class_name Map_Node extends Control
 
 #region /// var
 const SCALE_FACTOR : float = 40.0
+## this dose not effect the code it display the level name only
+@export var scene_name : String = ""
 
 @export_file("*.tscn") var linked_scene : String : set = on_scene_set
 @export_tool_button( "Update" ) var update_node_action = update_node
@@ -23,7 +25,7 @@ var indicator_offset : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		pass
+		return
 	else:
 		label.queue_free()
 		create_entrance_blocks()
@@ -55,7 +57,7 @@ func update_node() -> void:
 		return
 	
 	update_node_label( instance )
-	for c in instance.get_children():
+	for c in instance.get_node("level_tools").get_children():
 		if c is Level_bounds:
 			new_size = Vector2( c.width, c.hieght )
 			indicator_offset = c.position
@@ -66,7 +68,7 @@ func update_node() -> void:
 	create_entrance_data( transtions )
 	create_entrance_blocks()
 
-## to see the scene name.. in the editor only
+## to see the scene name in the editor only
 func update_node_label( scene : Node ) -> void:
 	if not label:
 		label = $Label
@@ -74,6 +76,7 @@ func update_node_label( scene : Node ) -> void:
 	t = t.replace( "res://levels/", "" )
 	t = t.replace( ".tscn", "" )
 	label.text = t
+	scene_name = t
 
 
 func create_entrance_data( transtions : Array[ Level_Trensition ] ) -> void:
@@ -153,6 +156,3 @@ func disblay_player_location() -> void:
 	var _clamp : Vector2 = Vector2( 3, 3 )
 	pos = pos.clamp( position + _clamp, position + size - _clamp )
 	i.position = pos
-
-
-#
