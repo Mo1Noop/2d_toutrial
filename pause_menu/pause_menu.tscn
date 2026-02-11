@@ -131,7 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0.019607844, 0.84313726)
 
-[node name="map_node" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+[node name="map_node01" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
 modulate = Color(0.38039216, 0.5686275, 0.3019608, 1)
 layout_mode = 0
 offset_left = 13.0
@@ -143,7 +143,7 @@ linked_scene = "uid://cb886t8m51hde"
 entranes_right = Array[float]([3.1])
 entranes_left = Array[float]([3.4])
 
-[node name="map_node2" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+[node name="map_node02" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
 modulate = Color(0.38039216, 0.5686275, 0.3019608, 1)
 layout_mode = 0
 offset_left = 42.0
@@ -152,23 +152,23 @@ offset_right = 71.0
 offset_bottom = 45.0
 scene_name = "00_forest/02"
 linked_scene = "uid://dbws3ync16n1s"
-entranes_right = Array[float]([2.35])
+entranes_right = Array[float]([2.875])
 entranes_bottom = Array[float]([4.05])
 entranes_left = Array[float]([2.6])
 
-[node name="map_node3" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+[node name="map_node02_SP" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
 modulate = Color(1, 0.45490196, 0.6156863, 1)
 layout_mode = 0
-offset_left = 72.0
-offset_top = 37.0
-offset_right = 84.0
-offset_bottom = 44.0
+offset_left = 71.5
+offset_top = 38.0
+offset_right = 85.5
+offset_bottom = 45.0
 scene_name = "00_forest/02_save_scene"
 linked_scene = "uid://cuyoqrryc3www"
 entranes_right = Array[float]([2.0])
 entranes_left = Array[float]([2.0])
 
-[node name="map_node4" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+[node name="map_node03" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
 modulate = Color(0.29803923, 0.47058824, 0.63529414, 1)
 layout_mode = 0
 offset_left = 42.0
@@ -180,7 +180,7 @@ linked_scene = "uid://cvp1dgtknfga3"
 entranes_top = Array[float]([4.0])
 entranes_right = Array[float]([2.0])
 
-[node name="map_node5" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+[node name="map_node04" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
 modulate = Color(0.29803923, 0.47058824, 0.63529414, 1)
 layout_mode = 0
 offset_left = 72.0
@@ -190,6 +190,30 @@ offset_bottom = 65.0
 scene_name = "00_forest/04"
 linked_scene = "uid://dki7fmf6mu0yv"
 entranes_right = Array[float]([2.0, 8.2, 14.0])
+entranes_left = Array[float]([2.0])
+
+[node name="map_node05" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+modulate = Color(0.29803923, 0.47058824, 0.63529414, 1)
+layout_mode = 0
+offset_left = 87.0
+offset_top = 46.0
+offset_right = 105.0
+offset_bottom = 53.0
+scene_name = "00_forest/05"
+linked_scene = "uid://det631gywu8r1"
+entranes_top = Array[float]([3.975])
+entranes_left = Array[float]([2.0])
+
+[node name="map_node06" parent="Control/pause_screen/map" instance=ExtResource("2_rd7dy")]
+modulate = Color(0.29803923, 0.47058824, 0.63529414, 1)
+layout_mode = 0
+offset_left = 87.0
+offset_top = 38.0
+offset_right = 110.0
+offset_bottom = 45.0
+scene_name = "00_forest/06"
+linked_scene = "uid://dyaekoamjjrcb"
+entranes_bottom = Array[float]([4.0])
 entranes_left = Array[float]([2.0])
 
 [node name="player_indecator" type="Control" parent="Control/pause_screen/map"]

@@ -8,12 +8,20 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="2d_project"
 run/main_scene="uid://cvi1svgb3cnok"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="uid://cmgbe68cxhxmi"
+
+[audio]
+
+buses/default_bus_layout="uid://hf1j515puqej"
 
 [autoload]
 
@@ -22,6 +30,7 @@ SaveManager="*res://00_global/save_manager.gd"
 Messages="*res://00_global/messages.gd"
 PlayerHud="*res://00_global/player_hud/player_hud.tscn"
 Audio="*res://00_global/audio/audio.tscn"
+VisualEffects="*uid://ev7gb7gow0ia"
 
 [display]
 
@@ -143,3 +152,4 @@ pause={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+rendering_device/fallback_to_d3d12=false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://gwcdq2kv6ci2"]
+[gd_scene format=3 uid="uid://gwcdq2kv6ci2"]
 
 [ext_resource type="Script" uid="uid://50n3o2gooaje" path="res://player/scripts/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cnhuq5qx55rpb" path="res://player/states/idle.gd" id="2_g1dw6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://4wu8tyw6splt" path="res://player/states/fall.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://dk22wddc5fg6m" path="res://player/states/crouch.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://b71yenyt1rp" path="res://player/states/dash.gd" id="8_rgyib"]
+[ext_resource type="Script" uid="uid://chu5tlbypp327" path="res://player/scripts/player_camera.gd" id="9_2ieo8"]
 [ext_resource type="Script" uid="uid://twlmlhvfedmk" path="res://player/scripts/input_hints.gd" id="9_8t03j"]
 [ext_resource type="Texture2D" uid="uid://cgf3dee61roym" path="res://player/sprites/hero.png" id="9_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://bbdsnjwtodwj3" path="res://player/sprites/input_icons.png" id="10_2ieo8"]
@@ -123,40 +124,40 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=810490416 groups=["Player"]]
 z_index = 3
 collision_layer = 16
 collision_mask = 3
 floor_constant_speed = true
 script = ExtResource("1_oul6g")
 
-[node name="states" type="Node" parent="."]
+[node name="states" type="Node" parent="." unique_id=676836413]
 
-[node name="idle" type="Node" parent="states"]
+[node name="idle" type="Node" parent="states" unique_id=473988990]
 unique_name_in_owner = true
 script = ExtResource("2_g1dw6")
 
-[node name="run" type="Node" parent="states"]
+[node name="run" type="Node" parent="states" unique_id=1749694106]
 unique_name_in_owner = true
 script = ExtResource("3_yw30f")
 
-[node name="jump" type="Node" parent="states"]
+[node name="jump" type="Node" parent="states" unique_id=1497850395]
 unique_name_in_owner = true
 script = ExtResource("4_yw30f")
 
-[node name="fall" type="Node" parent="states"]
+[node name="fall" type="Node" parent="states" unique_id=655938625]
 unique_name_in_owner = true
 script = ExtResource("5_qjkh3")
 
-[node name="crouch" type="Node" parent="states"]
+[node name="crouch" type="Node" parent="states" unique_id=1248836844]
 unique_name_in_owner = true
 script = ExtResource("6_g6k8r")
 
-[node name="dash" type="Node" parent="states"]
+[node name="dash" type="Node" parent="states" unique_id=1961648563]
 unique_name_in_owner = true
 script = ExtResource("8_rgyib")
 
-[node name="Hero" type="Sprite2D" parent="."]
+[node name="Hero" type="Sprite2D" parent="." unique_id=728996781]
 unique_name_in_owner = true
 position = Vector2(0, -39)
 scale = Vector2(1.0000001, 1.0000001)
@@ -164,14 +165,14 @@ texture = ExtResource("9_hg6s5")
 hframes = 16
 vframes = 4
 
-[node name="CollisionStand" type="CollisionShape2D" parent="."]
+[node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=609811687]
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, -20.18)
 shape = SubResource("CapsuleShape2D_hg6s5")
 debug_color = Color(0, 0.6, 0.69803923, 0.15686275)
 
-[node name="CollisionCrouch" type="CollisionShape2D" parent="."]
+[node name="CollisionCrouch" type="CollisionShape2D" parent="." unique_id=624254358]
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, -15.206)
@@ -180,7 +181,7 @@ shape = SubResource("CapsuleShape2D_8t03j")
 disabled = true
 debug_color = Color(0, 0.6, 0.69803923, 0.15686275)
 
-[node name="one_way_chapeCast" type="ShapeCast2D" parent="."]
+[node name="one_way_chapeCast" type="ShapeCast2D" parent="." unique_id=471170796]
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, -3)
@@ -190,7 +191,7 @@ target_position = Vector2(0, 6)
 max_results = 12
 collision_mask = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=125055306]
 visible = false
 offset_left = -36.0
 offset_top = -72.0
@@ -200,27 +201,26 @@ theme_override_font_sizes/font_size = 12
 text = "state"
 horizontal_alignment = 1
 
-[node name="PlayerAnim" type="AnimationPlayer" parent="."]
+[node name="PlayerAnim" type="AnimationPlayer" parent="." unique_id=564653217]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_wodsf")
-}
-autoplay = "idle"
+libraries/ = SubResource("AnimationLibrary_wodsf")
+autoplay = &"idle"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=763848952]
 process_mode = 3
 position = Vector2(0, -37)
+script = ExtResource("9_2ieo8")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=950997235]
 position = Vector2(0, -29)
 color = Color(1, 0.8029762, 0.50438434, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_hg6s5")
 
-[node name="input_hints" type="Node2D" parent="."]
+[node name="input_hints" type="Node2D" parent="." unique_id=853307203]
 position = Vector2(0, -64)
 script = ExtResource("9_8t03j")
 
-[node name="Sprite2D" type="Sprite2D" parent="input_hints"]
+[node name="Sprite2D" type="Sprite2D" parent="input_hints" unique_id=1761059160]
 texture = ExtResource("10_2ieo8")
 hframes = 16

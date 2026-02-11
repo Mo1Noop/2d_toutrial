@@ -4,6 +4,7 @@ class_name PlayerState_jump extends Player_state
 
 
 func enter() -> void:
+	VisualEffects.jump_dust( player.global_position )
 	player.velocity.y = jump_velocity
 	player.player_anim.play("jump")
 	player.player_anim.pause()

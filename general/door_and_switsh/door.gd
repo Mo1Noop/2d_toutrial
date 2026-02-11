@@ -5,6 +5,13 @@ class_name Door extends Node2D
 const DOOR_CRASH_AUDIO = preload("uid://bd7b3rxms6u4p")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var collision_pos : Vector2 = Vector2( 0.0, -40 ) :
+	set( val ):
+		collision_pos = val
+		for c in get_children():
+			if c is StaticBody2D:
+				c.get_child( 0 ).position = collision_pos
+
 @export var door_size : Vector2 = Vector2( 32, 114 ) :
 	set( val ):
 		door_size = val
@@ -33,7 +40,9 @@ func _ready() -> void:
 
 func set_door_size_value() -> void:
 	animation_player.get_animation("closed").track_set_key_value( 0, 0, door_size )
+	animation_player.get_animation("closed").track_set_key_value( 2, 0, collision_pos )
 	animation_player.get_animation("open").track_set_key_value( 0, 0, door_size )
+	animation_player.get_animation("open").track_set_key_value( 2, 0, collision_pos )
 
 
 func on_switch_activated() -> void:

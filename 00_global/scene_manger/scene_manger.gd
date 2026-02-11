@@ -76,5 +76,4 @@ func check_new_scene( new_scene : String ) -> void:
 	if new_scene in levels_scenes:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
-
 #

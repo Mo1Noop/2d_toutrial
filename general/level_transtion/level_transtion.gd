@@ -17,7 +17,7 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
 ## this dose not effect the code it display the level name only
 @export var level_name : String = ""
-@export_tool_button("get name") var get_name = get_level_name
+@export_tool_button("get name") var get_L_name = get_level_name
 #@export_tool_button("Get Level Name") var get_level_button := get_level_name
 
 

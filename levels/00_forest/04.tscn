@@ -83,19 +83,18 @@ target_area_name = "Level_Transtion2"
 position = Vector2(544, 192)
 size = 3
 location = 1
-level_name = null
+level_name = "00_forest/05"
+target_level = "uid://det631gywu8r1"
 
 [node name="Level_Transtion3" parent="level_tools" instance=ExtResource("3_c3nrs")]
 position = Vector2(544, 448)
 size = 3
 location = 1
-level_name = null
 
 [node name="Level_Transtion4" parent="level_tools" instance=ExtResource("3_c3nrs")]
 position = Vector2(544, 696)
 size = 3
 location = 1
-level_name = null
 
 [node name="player_spawn" parent="level_tools" instance=ExtResource("4_hejkf")]
 position = Vector2(31, 187)
