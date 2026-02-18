@@ -23,6 +23,9 @@ func exit() -> void:
 	player.gravity_mulitplier = 1.0
 
 func handle_input(_event : InputEvent) -> Player_state:
+	if _event.is_action_pressed("attack"):
+		return attack
+	
 	if _event.is_action_pressed("jump"):
 		if coyote_timer > 0.0:
 			return jump

@@ -6,11 +6,14 @@ class_name Player extends CharacterBody2D
 @onready var collision_stand: CollisionShape2D = %CollisionStand
 @onready var collision_crouch: CollisionShape2D = %CollisionCrouch
 @onready var hero: Sprite2D = %Hero
+@onready var attack_sprite: Sprite2D = %attack_sprite
+
 @onready var player_anim: AnimationPlayer = %PlayerAnim
 @onready var one_way_chape_cast: ShapeCast2D = %one_way_chapeCast
 
 @export var move_speed : float = 150
 @export var max_fall_velocity : float = 600.0
+@onready var attack_area: Attack_Area = %Attack_Area
 
 #endregion
 
@@ -58,6 +61,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action_released("jump"):
+		#velocity.y *= 0.5
 	if event.is_action_pressed("action"):
 		Messages.player_interacted.emit( self )
 	elif event.is_action_pressed("pause"):
@@ -129,13 +134,19 @@ func update_dirction() -> void:
 	var x_axis : float = Input.get_axis("left", "right")
 	var y_axis : float = Input.get_axis("up", "down")
 	dirction = Vector2(x_axis, y_axis)
-	
-	if prev_dirction.x != dirction.x:
-		if dirction.x < 0.0:
-			hero.flip_h = true
-		elif dirction.x > 0.0:
-			hero.flip_h = false
-
+	attack_area.flip( dirction.x )
+	if prev_dirction.x == dirction.x:
+		return
+	if dirction.x < 0.0:
+		#LEFT
+		hero.flip_h = true
+		attack_sprite.flip_h = true
+		attack_sprite.position.x = -24
+	elif dirction.x > 0.0:
+		#RIGHT
+		hero.flip_h = false
+		attack_sprite.flip_h = false
+		attack_sprite.position.x = 24.0
 
 #func debug(color : Color) -> void:
 	#var d : Node2D = DEBUG.instantiate()
