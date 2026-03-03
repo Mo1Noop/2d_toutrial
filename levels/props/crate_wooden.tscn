@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cwwxddhmeedt7"]
+
+[ext_resource type="Script" uid="uid://dn4rejocwoqh2" path="res://general/scripts/breakable.gd" id="1_hv72q"]
+[ext_resource type="Script" uid="uid://bfn6kk1670xxq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_1ehrw"]
+[ext_resource type="Resource" uid="uid://uhbpmjdbj466" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_meduim.tres" id="3_o6jdc"]
+[ext_resource type="Resource" uid="uid://cmkwibqb2tcg3" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_small.tres" id="4_u2c5s"]
+[ext_resource type="Resource" uid="uid://bhqt5d2enq3p7" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_large.tres" id="5_w4ltd"]
+[ext_resource type="Texture2D" uid="uid://uk6reiqsy2fi" path="res://general/sprits/props_destructible.png" id="6_od1e1"]
+[ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="7_j8n0q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tkbf"]
+atlas = ExtResource("6_od1e1")
+region = Rect2(53, 28, 39, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tkbf"]
+size = Vector2(40, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ng2w"]
+size = Vector2(36, 30)
+
+[node name="crate" type="Node2D" unique_id=487498522]
+script = ExtResource("1_hv72q")
+hit_particles = Array[ExtResource("2_1ehrw")]([ExtResource("3_o6jdc")])
+destroy_particles = Array[ExtResource("2_1ehrw")]([ExtResource("4_u2c5s"), ExtResource("3_o6jdc"), ExtResource("5_w4ltd")])
+metadata/_custom_type_script = "uid://dn4rejocwoqh2"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=330140731]
+texture = SubResource("AtlasTexture_8tkbf")
+
+[node name="Damege_area" type="Area2D" parent="." unique_id=2049179542]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+script = ExtResource("7_j8n0q")
+metadata/_custom_type_script = "uid://x1to7vuav48n"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damege_area" unique_id=1100868063]
+shape = SubResource("RectangleShape2D_8tkbf")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1872791774]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1109486651]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_6ng2w")

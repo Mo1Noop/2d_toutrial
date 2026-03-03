@@ -10,4 +10,5 @@ func _ready() -> void:
 	var player : Player = load("uid://gwcdq2kv6ci2").instantiate()
 	get_tree().root.add_child(player)
 	player.global_position = self.global_position
+	player.damege_area.monitorable = true
 	

@@ -54,7 +54,10 @@ func end_attack() -> void:
 		combo = wrapi( combo + 1, 0, 2 )
 		do_attack()
 	else:
-		next_state = idle
+		if player.is_on_floor():
+			next_state = idle
+		else:
+			next_state = fall
 
 func on_anim_finished( _anim_name : String ) -> void:
 	end_attack()

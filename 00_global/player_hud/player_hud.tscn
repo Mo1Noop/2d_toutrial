@@ -21,16 +21,29 @@ gradient = SubResource("Gradient_tdgrf")
 script/source = "extends Button
 
 @export var particles_settings : Hit_Particle_Settings
-
+const SPIKE_DOMMY = preload(\"uid://pm005prnlt1u\")
 func _ready() -> void:
 	pressed.connect( _on_pressed )
 	
 
 func _on_pressed() -> void:
 	var player_pos : Vector2 = get_tree().get_first_node_in_group( \"Player\" ).global_position
-	VisualEffects.hit_particles( player_pos, Vector2(0,-1), particles_settings )
+	var g := SPIKE_DOMMY.instantiate()
+	owner.add_child(g)
+	g.global_position = player_pos
+	
+	#VisualEffects.hit_particles( player_pos, Vector2(0,-1), particles_settings )
 	#VisualEffects.camera_chake( 50.0 )
+	
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_26715"]
+font_size = 32
+font_color = Color(0.49342346, 0.027132971, 0.027132971, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.42352942)
+shadow_offset = Vector2(-2, 2)
 
 [node name="PlayerHud" type="CanvasLayer" unique_id=1718713028]
 process_mode = 3
@@ -90,6 +103,68 @@ offset_top = 8.0
 offset_right = -8.0
 offset_bottom = 31.0
 grow_horizontal = 0
-text = " test particles "
+text = " test"
 script = SubResource("GDScript_vb1bs")
 particles_settings = ExtResource("3_26715")
+
+[node name="game_over" type="Control" parent="Control" unique_id=1884820450]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/game_over" unique_id=1710278681]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="Label" type="Label" parent="Control/game_over" unique_id=966136168]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -55.0
+offset_right = 76.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_26715")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/game_over" unique_id=2016874982]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = 14.0
+offset_right = 152.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Load_Button" type="Button" parent="Control/game_over/HBoxContainer" unique_id=1167905715]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Load Last Save"
+
+[node name="Quit_Button" type="Button" parent="Control/game_over/HBoxContainer" unique_id=1746461891]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Quit to title"

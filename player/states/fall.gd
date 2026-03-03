@@ -14,7 +14,7 @@ func enter() -> void:
 	#player.debug( Color.RED )
 	player.velocity.y *= 0.4
 	player.gravity_mulitplier = fall_gravity_mulitplier
-	if player.previous_state == jump:
+	if player.previous_state in [ jump, attack ]:
 		coyote_timer = 0.0
 	else:
 		coyote_timer = coyote_time

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://buoiuca8qnyq1"]
+
+[ext_resource type="Script" uid="uid://uicfpdttnent" path="res://levels/props/test_dommy/test_dommy.gd" id="1_l1nux"]
+[ext_resource type="Script" uid="uid://bfn6kk1670xxq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_5vj00"]
+[ext_resource type="Texture2D" uid="uid://uk6reiqsy2fi" path="res://general/sprits/props_destructible.png" id="2_ewjr1"]
+[ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="3_5vj00"]
+[ext_resource type="Resource" uid="uid://cmkwibqb2tcg3" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_small.tres" id="3_7662d"]
+[ext_resource type="Resource" uid="uid://uhbpmjdbj466" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_meduim.tres" id="4_7662d"]
+[ext_resource type="AudioStream" uid="uid://bb407knta2dss" path="res://general/audio/hit.wav" id="7_dp6iv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7662d"]
+atlas = ExtResource("2_ewjr1")
+region = Rect2(17, 10, 14, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2aqwc"]
+size = Vector2(14, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp6iv"]
+atlas = ExtResource("2_ewjr1")
+region = Rect2(16, 51, 16, 12)
+
+[node name="TestDommy" type="Node2D" unique_id=1705439841]
+script = ExtResource("1_l1nux")
+particles = Array[ExtResource("2_5vj00")]([ExtResource("3_7662d"), ExtResource("4_7662d")])
+
+[node name="body_sprite" type="Sprite2D" parent="." unique_id=691696627]
+position = Vector2(0, -9)
+texture = SubResource("AtlasTexture_7662d")
+offset = Vector2(0, -19)
+
+[node name="Damege_area" type="Area2D" parent="body_sprite" unique_id=1868173229]
+unique_name_in_owner = true
+position = Vector2(0, 9)
+collision_layer = 96
+collision_mask = 0
+script = ExtResource("3_5vj00")
+audio = ExtResource("7_dp6iv")
+metadata/_custom_type_script = "uid://x1to7vuav48n"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body_sprite/Damege_area" unique_id=959655784]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_2aqwc")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="base_sprite" type="Sprite2D" parent="." unique_id=520136865]
+position = Vector2(0, -6)
+texture = SubResource("AtlasTexture_dp6iv")

@@ -1,10 +1,15 @@
 class_name Player extends CharacterBody2D
 
+
+signal damge_taken
 #region /// var
 #const DEBUG = preload("uid://c08vbptobbyb3")
+@onready var states_node: Node = $states
 
 @onready var collision_stand: CollisionShape2D = %CollisionStand
 @onready var collision_crouch: CollisionShape2D = %CollisionCrouch
+@onready var da_stand: CollisionShape2D = %DA_Stand
+@onready var da_crouch: CollisionShape2D = %DA_Crouch
 @onready var hero: Sprite2D = %Hero
 @onready var attack_sprite: Sprite2D = %attack_sprite
 
@@ -14,6 +19,7 @@ class_name Player extends CharacterBody2D
 @export var move_speed : float = 150
 @export var max_fall_velocity : float = 600.0
 @onready var attack_area: Attack_Area = %Attack_Area
+@onready var damege_area: Damege_area = $Damege_area
 
 #endregion
 
@@ -56,13 +62,15 @@ func _ready() -> void:
 		self.queue_free()
 	initialize_states()
 	self.call_deferred( "reparent", get_tree().root )
+	hp = max_hp
 	Messages.player_healed.connect( _on_player_healed )
 	Messages.back_to_title_screen.connect( queue_free )
+	damege_area.damge_taken.connect( _on_damge_taken )
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	#if event.is_action_released("jump"):
-		#velocity.y *= 0.5
+	if event.is_action_released("jump") and velocity.y < 0.0:
+		velocity.y *= 0.5
 	if event.is_action_pressed("action"):
 		Messages.player_interacted.emit( self )
 	elif event.is_action_pressed("pause"):
@@ -100,7 +108,7 @@ func _physics_process(delta: float) -> void:
 
 func initialize_states() -> void:
 	states = []
-	for c in $states.get_children():
+	for c in states_node.get_children():
 		if c is Player_state:
 			states.append(c)
 			c.player = self
@@ -163,3 +171,10 @@ func move() -> void:
 
 func _on_player_healed( amount : float ) -> void:
 	hp += amount
+
+
+func _on_damge_taken( _attack_area : Attack_Area) -> void:
+	if current_state == PlayerState_death:
+		return
+	hp -= _attack_area.damge
+	damge_taken.emit()

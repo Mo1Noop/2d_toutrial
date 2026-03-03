@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://jmwu1h2wf0rm" path="res://general/scripts/level_tools.gd" id="5_hkrbs"]
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="5_knfet"]
 [ext_resource type="PackedScene" uid="uid://cvma0iqwvxk06" path="res://general/save_point/save_point.tscn" id="6_xyudw"]
+[ext_resource type="PackedScene" uid="uid://pm005prnlt1u" path="res://levels/props/test_dommy/Spike_dommy.tscn" id="9_hkrbs"]
 [ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="9_teb15"]
 
 [node name="02_Save_Scene" type="Node2D" unique_id=197469766]
@@ -71,3 +72,6 @@ position = Vector2(237, 202)
 [node name="Music_auto_trigger" type="Node" parent="level_tools" unique_id=1207581570]
 script = ExtResource("9_teb15")
 metadata/_custom_type_script = "uid://b288j8ci26yr7"
+
+[node name="SpikeDommy" parent="." unique_id=1705439841 instance=ExtResource("9_hkrbs")]
+position = Vector2(156, 230)

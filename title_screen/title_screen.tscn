@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhu4wmpu6vi7q"]
+[gd_scene format=3 uid="uid://bhu4wmpu6vi7q"]
 
 [ext_resource type="Script" uid="uid://b8d2bm85cb2iv" path="res://title_screen/title_screen.gd" id="1_vbjqi"]
 [ext_resource type="Texture2D" uid="uid://da8n0jooae3fq" path="res://title_screen/metroidvania_logo.png" id="3_2dq6q"]
@@ -61,11 +61,18 @@ _data = {
 &"start": SubResource("Animation_vbjqi")
 }
 
-[node name="title_screen" type="CanvasLayer"]
+[node name="title_screen" type="CanvasLayer" unique_id=955876276]
 layer = 5
 script = ExtResource("1_vbjqi")
 
-[node name="Control" type="Control" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=193908546]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="." unique_id=733212947]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,7 +80,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="main_menu" type="VBoxContainer" parent="Control"]
+[node name="main_menu" type="VBoxContainer" parent="Control" unique_id=1896130959]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -89,40 +96,38 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="logo" type="Control" parent="Control/main_menu"]
+[node name="logo" type="Control" parent="Control/main_menu" unique_id=269059752]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/main_menu/logo"]
+[node name="Sprite2D" type="Sprite2D" parent="Control/main_menu/logo" unique_id=721560881]
 position = Vector2(0, 61)
 texture = ExtResource("3_2dq6q")
 hframes = 8
 vframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/main_menu/logo"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/main_menu/logo" unique_id=1653308278]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_oqrgu")
-}
-autoplay = "start"
+libraries/ = SubResource("AnimationLibrary_oqrgu")
+autoplay = &"start"
 
-[node name="new_game_button" type="Button" parent="Control/main_menu"]
+[node name="new_game_button" type="Button" parent="Control/main_menu" unique_id=537188129]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
 
-[node name="load_game_button" type="Button" parent="Control/main_menu"]
+[node name="load_game_button" type="Button" parent="Control/main_menu" unique_id=1370033194]
 unique_name_in_owner = true
 layout_mode = 2
 text = "load Game"
 
-[node name="exit_game_button" type="Button" parent="Control/main_menu"]
+[node name="exit_game_button" type="Button" parent="Control/main_menu" unique_id=721224656]
 unique_name_in_owner = true
 layout_mode = 2
 text = "EXIT GAME"
 
-[node name="new_game_menu" type="VBoxContainer" parent="Control"]
+[node name="new_game_menu" type="VBoxContainer" parent="Control" unique_id=1135656618]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -139,36 +144,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Control/new_game_menu"]
+[node name="Label" type="Label" parent="Control/new_game_menu" unique_id=720519221]
 modulate = Color(0.6745098, 0.19607843, 0.19607843, 1)
 layout_mode = 2
 text = "start new game..."
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="Control/new_game_menu"]
+[node name="Control" type="Control" parent="Control/new_game_menu" unique_id=135108525]
 layout_mode = 2
 
-[node name="new_slot_01" type="Button" parent="Control/new_game_menu"]
+[node name="new_slot_01" type="Button" parent="Control/new_game_menu" unique_id=750734920]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Begin slot 01"
 
-[node name="new_slot_02" type="Button" parent="Control/new_game_menu"]
+[node name="new_slot_02" type="Button" parent="Control/new_game_menu" unique_id=126691268]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Begin slot 01"
 
-[node name="new_slot_03" type="Button" parent="Control/new_game_menu"]
+[node name="new_slot_03" type="Button" parent="Control/new_game_menu" unique_id=1475402859]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Begin slot 01"
 
-[node name="new_game_menu_back" type="Button" parent="Control/new_game_menu"]
+[node name="new_game_menu_back" type="Button" parent="Control/new_game_menu" unique_id=837017517]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Back"
 
-[node name="load_game_menu" type="VBoxContainer" parent="Control"]
+[node name="load_game_menu" type="VBoxContainer" parent="Control" unique_id=465239489]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -185,36 +190,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Control/load_game_menu"]
+[node name="Label" type="Label" parent="Control/load_game_menu" unique_id=1758603352]
 modulate = Color(0.6745098, 0.19607843, 0.19607843, 1)
 layout_mode = 2
 text = "load a saved game..."
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="Control/load_game_menu"]
+[node name="Control" type="Control" parent="Control/load_game_menu" unique_id=1551684465]
 layout_mode = 2
 
-[node name="load_slot_01" type="Button" parent="Control/load_game_menu"]
+[node name="load_slot_01" type="Button" parent="Control/load_game_menu" unique_id=1211552999]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Load Slot 01"
 
-[node name="load_slot_02" type="Button" parent="Control/load_game_menu"]
+[node name="load_slot_02" type="Button" parent="Control/load_game_menu" unique_id=1779434582]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Load Slot 02"
 
-[node name="load_slot_03" type="Button" parent="Control/load_game_menu"]
+[node name="load_slot_03" type="Button" parent="Control/load_game_menu" unique_id=1238470609]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Load Slot 03"
 
-[node name="load_menu_back" type="Button" parent="Control/load_game_menu"]
+[node name="load_menu_back" type="Button" parent="Control/load_game_menu" unique_id=1397973783]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Back"
 
-[node name="Music_auto_trigger" type="Node" parent="."]
+[node name="Music_auto_trigger" type="Node" parent="." unique_id=1059404608]
 script = ExtResource("3_vbjqi")
 track = ExtResource("4_vbjqi")
 metadata/_custom_type_script = "uid://b288j8ci26yr7"

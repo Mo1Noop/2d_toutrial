@@ -8,6 +8,7 @@ signal damge_taken( attake_area : Attack_Area )
 func take_damge( attake_area : Attack_Area ) -> void:
 	damge_taken.emit( attake_area )
 	if audio:
+		Audio.set_reverb( Audio.REVERB_TYPE.NONE )
 		Audio.play_apatial_sound( audio, global_position )
 
 

@@ -25,8 +25,7 @@ class_name Titel_screen extends CanvasLayer
 
 
 func _ready() -> void:
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	PlayerHud.visible = false
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	new_game_button.pressed.connect( show_new_game_menu )
 	load_game_button.pressed.connect( show_load_game_menu )
 	exit_game_button.pressed.connect( exit_game )

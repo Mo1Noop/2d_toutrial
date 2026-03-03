@@ -3,15 +3,10 @@
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="1_hsgd5"]
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="2_ffawd"]
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="4_ffawd"]
-[ext_resource type="AudioStream" uid="uid://bb407knta2dss" path="res://general/audio/hit.wav" id="6_jv0uq"]
 [ext_resource type="Script" uid="uid://cbjs6k8batccp" path="res://general/scripts/level_bounds.gd" id="6_qvyl8"]
-[ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="6_wqnh4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqnh4"]
-size = Vector2(50, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffawd"]
-size = Vector2(50, 50)
+[ext_resource type="PackedScene" uid="uid://cwwxddhmeedt7" path="res://levels/props/crate_wooden.tscn" id="6_wqnh4"]
+[ext_resource type="PackedScene" uid="uid://pm005prnlt1u" path="res://levels/props/test_dommy/Spike_dommy.tscn" id="7_jv0uq"]
+[ext_resource type="PackedScene" uid="uid://buoiuca8qnyq1" path="res://levels/props/test_dommy/test_dommy.tscn" id="7_wqnh4"]
 
 [node name="playGround" type="Node2D" unique_id=282026291]
 
@@ -50,24 +45,13 @@ hieght = 302
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
 [node name="player_spawn" parent="." unique_id=140463160 instance=ExtResource("4_ffawd")]
-position = Vector2(625, 177)
+position = Vector2(856, 191)
 
-[node name="Damege_area" type="Area2D" parent="." unique_id=443609986]
-position = Vector2(719, 195)
-collision_layer = 32
-collision_mask = 0
-script = ExtResource("6_wqnh4")
-audio = ExtResource("6_jv0uq")
-metadata/_custom_type_script = "uid://x1to7vuav48n"
+[node name="TestDommy" parent="." unique_id=1705439841 instance=ExtResource("7_wqnh4")]
+position = Vector2(907, 229)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damege_area" unique_id=1491225142]
-shape = SubResource("RectangleShape2D_wqnh4")
+[node name="crate" parent="." unique_id=487498522 instance=ExtResource("6_wqnh4")]
+position = Vector2(787, 207)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=734231183]
-position = Vector2(533, 196)
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=603680931]
-shape = SubResource("RectangleShape2D_ffawd")
-debug_color = Color(0, 0.70196074, 0.04813656, 0.41960785)
+[node name="SpikeDommy" parent="." unique_id=102335626 instance=ExtResource("7_jv0uq")]
+position = Vector2(947, 229)

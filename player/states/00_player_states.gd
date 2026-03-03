@@ -12,6 +12,8 @@ var next_state : Player_state
 @onready var crouch: PlayerState_crouch = %crouch
 @onready var dash: playerState_dash = %dash
 @onready var attack: PlayerState_attack = %attack
+@onready var take_damge: PlayerState_Take_Damge = %Take_Damge
+@onready var death: PlayerState_death = %death
 
 #endregion
 
