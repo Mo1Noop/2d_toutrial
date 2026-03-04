@@ -4,6 +4,7 @@ class_name PlayerState_Idle extends Player_state
 func enter() -> void:
 	player.player_anim.play("idle")
 	player.velocity = Vector2.ZERO
+	player.jump_count = 0
 
 
 func handle_input(_event : InputEvent) -> Player_state:

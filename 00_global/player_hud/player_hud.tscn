@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bq52dfj3hoyer" path="res://00_global/player_hud/health_bar_frame.png" id="1_hv14i"]
 [ext_resource type="Script" uid="uid://b1fqlupre1du6" path="res://00_global/player_hud/player_hud.gd" id="1_vb1bs"]
-[ext_resource type="Resource" uid="uid://dxp5oh0q6ikq0" path="res://00_global/visual_effects/hit_partecle_settings/hit_magic_blue.tres" id="3_26715"]
 
 [sub_resource type="Gradient" id="Gradient_vb1bs"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -20,17 +19,19 @@ gradient = SubResource("Gradient_tdgrf")
 [sub_resource type="GDScript" id="GDScript_vb1bs"]
 script/source = "extends Button
 
-@export var particles_settings : Hit_Particle_Settings
-const SPIKE_DOMMY = preload(\"uid://pm005prnlt1u\")
+#@export var particles_settings : Hit_Particle_Settings
+#const SPIKE_DOMMY = preload(\"uid://pm005prnlt1u\")
 func _ready() -> void:
 	pressed.connect( _on_pressed )
 	
 
 func _on_pressed() -> void:
-	var player_pos : Vector2 = get_tree().get_first_node_in_group( \"Player\" ).global_position
-	var g := SPIKE_DOMMY.instantiate()
-	owner.add_child(g)
-	g.global_position = player_pos
+	var player : Player = get_tree().get_first_node_in_group( \"Player\" )
+	player.double_jump = !player.double_jump
+	focus_mode = Control.FOCUS_NONE
+	#var g := SPIKE_DOMMY.instantiate()
+	#owner.add_child(g)
+	#g.global_position = player_pos
 	
 	#VisualEffects.hit_particles( player_pos, Vector2(0,-1), particles_settings )
 	#VisualEffects.camera_chake( 50.0 )
@@ -103,9 +104,8 @@ offset_top = 8.0
 offset_right = -8.0
 offset_bottom = 31.0
 grow_horizontal = 0
-text = " test"
+text = " toggole duble jump"
 script = SubResource("GDScript_vb1bs")
-particles_settings = ExtResource("3_26715")
 
 [node name="game_over" type="Control" parent="Control" unique_id=1884820450]
 unique_name_in_owner = true

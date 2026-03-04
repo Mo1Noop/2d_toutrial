@@ -1,14 +1,18 @@
 class_name PlayerState_jump extends Player_state
 
 @export var jump_velocity : float = -425
+@onready var jump_audio: AudioStreamPlayer2D = %jump_audio
 
 
 func enter() -> void:
-	VisualEffects.jump_dust( player.global_position )
-	player.velocity.y = jump_velocity
 	player.player_anim.play("jump")
 	player.player_anim.pause()
-	#player.debug(Color.GREEN)
+	if player.is_on_floor():
+		VisualEffects.jump_dust( player.global_position )
+	else:
+		VisualEffects.land_dust( player.global_position )
+	do_jump()
+	
 
 
 func handle_input(_event : InputEvent) -> Player_state:
@@ -31,6 +35,17 @@ func physics_process(_delta: float) -> Player_state:
 	elif player.is_on_floor():
 		return idle
 	return next_state
+
+
+func do_jump() -> void:
+	if player.jump_count > 0:
+		if not player.double_jump:
+			return
+		elif player.jump_count > 1:
+			return
+	player.jump_count += 1
+	player.velocity.y = jump_velocity
+	jump_audio.play()
 
 
 func set_jump_frame() -> void:
