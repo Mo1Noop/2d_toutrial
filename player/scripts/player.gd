@@ -10,7 +10,7 @@ signal damge_taken
 @onready var collision_crouch: CollisionShape2D = %CollisionCrouch
 @onready var da_stand: CollisionShape2D = %DA_Stand
 @onready var da_crouch: CollisionShape2D = %DA_Crouch
-@onready var hero: Sprite2D = %Hero
+@onready var hero: Player_Sprite = %Hero
 @onready var attack_sprite: Sprite2D = %attack_sprite
 
 @onready var player_anim: AnimationPlayer = %PlayerAnim
@@ -43,8 +43,9 @@ var max_hp : float = 20 :
 		max_hp = value
 		Messages.player_helth_changed.emit( hp, max_hp )
 
-var dash : bool = false
-var double_jump : bool = false
+var dash : bool = true
+var dash_count : int = 0
+var double_jump : bool = true
 var jump_count : int = 0
 var ground_slam : bool = false
 var morph_roll : bool = false
@@ -179,3 +180,9 @@ func _on_damge_taken( _attack_area : Attack_Area) -> void:
 		return
 	hp -= _attack_area.damge
 	damge_taken.emit()
+
+
+func can_dash() -> bool:
+	if not dash or dash_count > 0:
+		return false
+	return true

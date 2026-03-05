@@ -18,7 +18,7 @@ func enter() -> void:
 	if player.jump_count == 0:
 		player.jump_count = 1
 	
-	if player.previous_state in [ jump, attack ]:
+	if player.previous_state in [ jump, attack, dash ]:
 		coyote_timer = 0.0
 	elif player.previous_state == crouch:
 		coyote_timer = 0.0
@@ -32,6 +32,8 @@ func exit() -> void:
 
 
 func handle_input(_event : InputEvent) -> Player_state:
+	if _event.is_action_pressed("dash") and player.can_dash():
+		return dash
 	if _event.is_action_pressed("attack"):
 		return attack
 	

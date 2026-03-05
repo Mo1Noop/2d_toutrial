@@ -1,17 +1,68 @@
 class_name playerState_dash extends Player_state
 
-var dash_dir : int = 0
+const DASH_AUDIO = preload("uid://bohje3v0cuf8m")
+
+@export var duration : float = 0.25
+@export var speed : float = 300.0
+@export var effect_delay : float = 0.05
+
+var dash_dir : float = 1.0
+var time : float = 0.0
+var effect_time : float = 0.0
+
 
 func enter() -> void:
-	player.velocity = Vector2.ZERO
-	await get_tree().create_timer(0.3).timeout
-	player.change_state(fall)
+	#tween_dash()
+	player.player_anim.play("dash")
+	time = duration
+	effect_time = 0.0
+	get_dash_dir()
+	player.damege_area.make_invurable( duration )
+	Audio.play_apatial_sound( DASH_AUDIO, player.global_position )
+	player.gravity_mulitplier = 0.0
+	player.velocity.y = 0.0
+	player.dash_count += 1
+	player.hero.tween_color()
+
+
+func exit() -> void:
+	player.gravity_mulitplier = 1.0
+
+
+func process( delta: float ) -> Player_state:
+	time -= delta
+	if time <= 0.0:
+		if player.is_on_floor():
+			return idle
+		else:
+			return fall
+	
+	effect_time -= delta
+	if effect_time < 0.0:
+		effect_time = effect_delay
+		player.hero.ghost()
+	
+	return null
 
 
 func physics_process(_delta: float) -> Player_state:
-	if player.hero.flip_h == false:
-		dash_dir = 1
-	else:
-		dash_dir = -1
-	player.velocity = Vector2(dash_dir * 500, 0)
+	#player.velocity.x = lerp( player.velocity.x, speed * dash_dir, 0.9 )
+	#player.velocity.x = lerp( player.velocity.x, 0.0, 0.1 )
+	
+	player.velocity.x = ( speed * ( time / duration ) + speed ) * dash_dir
 	return null
+
+
+func tween_dash() -> void:
+	var tween : Tween = create_tween()
+	get_dash_dir()
+	tween.tween_property(player,"velocity:x",speed*dash_dir,duration)
+	tween.tween_property( player, "velocity:x", 0.0, 0.0 )
+	await tween.finished
+	tween.kill()
+
+
+func get_dash_dir() -> void:
+	dash_dir = 1.0
+	if player.hero.flip_h:
+		dash_dir = -1.0

@@ -38,7 +38,7 @@ position = Vector2(980, 223)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="world" unique_id=622600430]
 color = Color(0.14334755, 0.16509277, 0.15422016, 1)
-energy = 0.4
+energy = 0.2
 blend_mode = 2
 
 [node name="Level_bounds" type="Node2D" parent="." unique_id=1274864306]

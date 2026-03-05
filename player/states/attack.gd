@@ -27,7 +27,8 @@ func exit() -> void:
 func handle_input(_event : InputEvent) -> Player_state:
 	if _event.is_action_pressed("attack"):
 		timer = combo_time_window
-	
+	if _event.is_action_pressed("dash") and player.can_dash():
+		return dash
 	return next_state
 
 
