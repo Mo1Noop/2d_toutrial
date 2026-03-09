@@ -14,6 +14,7 @@ func tween_color( duration : float = 0.5, color : Color = Color(0.0, 1.0, 0.949,
 
 func ghost() -> void:
 	var effect : Node2D = Node2D.new()
+	effect.name = "ggg"
 	var p : Node2D = get_parent()
 	p.add_sibling( effect )
 	effect.get_parent().move_child( effect, 0 )

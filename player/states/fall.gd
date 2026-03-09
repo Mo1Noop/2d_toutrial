@@ -35,6 +35,8 @@ func handle_input(_event : InputEvent) -> Player_state:
 	if _event.is_action_pressed("dash") and player.can_dash():
 		return dash
 	if _event.is_action_pressed("attack"):
+		if player.ground_slam and Input.is_action_pressed("down"):
+			return ground_slam
 		return attack
 	
 	if _event.is_action_pressed("jump"):

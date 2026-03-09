@@ -6,6 +6,7 @@ func enter() -> void:
 	player.velocity = Vector2.ZERO
 	player.jump_count = 0
 	player.dash_count = 0
+	player.attack_sprite.visible = false
 
 
 func handle_input(_event : InputEvent) -> Player_state:

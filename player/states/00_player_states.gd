@@ -14,6 +14,7 @@ var next_state : Player_state
 @onready var take_damge: PlayerState_Take_Damge = %Take_Damge
 @onready var death: PlayerState_death = %death
 @onready var dash: playerState_dash = %dash
+@onready var ground_slam: PlayerState_ground_slam = %ground_slam
 
 #endregion
 

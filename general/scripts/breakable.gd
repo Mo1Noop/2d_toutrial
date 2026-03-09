@@ -36,7 +36,6 @@ func on_damge_taken( attack_area : Attack_Area ) -> void:
 	var dir : Vector2 = Vector2( 1, -1 )
 	if attack_area.global_position.x > global_position.x:
 		dir.x *= -1
-	print(hp)
 	if hp > 0:
 		Audio.play_apatial_sound( hit_audio, pos )
 		for p in hit_particles:

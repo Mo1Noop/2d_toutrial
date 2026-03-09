@@ -4,6 +4,7 @@ class_name Damege_area extends Area2D
 signal damge_taken( attake_area : Attack_Area )
 
 @export var audio : AudioStream
+@export var breakable : bool = false
 
 func take_damge( attake_area : Attack_Area ) -> void:
 	damge_taken.emit( attake_area )
@@ -15,4 +16,12 @@ func take_damge( attake_area : Attack_Area ) -> void:
 func make_invurable( duration : float = 1.0 ) -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().create_timer( duration ).timeout
+	process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func start_invurable() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func end_invurable() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT

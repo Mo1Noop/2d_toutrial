@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 
 
-func on_body_entered( body : Node2D ) -> void:
+func on_body_entered( body ) -> void:
 	if body is Damege_area:
 		var pos: Vector2 = global_position
 		pos.x = body.global_position.x
