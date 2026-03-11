@@ -23,12 +23,15 @@ func exit() -> void:
 	combo = 0
 	player.player_anim.animation_finished.disconnect( on_anim_finished )
 	next_state = null
+	player.attack_sprite.visible = false
 
 func handle_input(_event : InputEvent) -> Player_state:
 	if _event.is_action_pressed("attack"):
 		timer = combo_time_window
 	if _event.is_action_pressed("dash") and player.can_dash():
 		return dash
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
 	return next_state
 
 

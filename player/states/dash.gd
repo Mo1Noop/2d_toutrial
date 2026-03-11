@@ -25,6 +25,11 @@ func enter() -> void:
 	player.hero.tween_color()
 
 
+func handle_input(_event : InputEvent) -> Player_state:
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
+	return null
+
 func exit() -> void:
 	player.gravity_mulitplier = 1.0
 

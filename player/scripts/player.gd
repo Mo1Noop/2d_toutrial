@@ -48,7 +48,8 @@ var dash_count : int = 0
 var double_jump : bool = true
 var jump_count : int = 0
 var ground_slam : bool = true
-var morph_roll : bool = false
+var morph_roll : bool = true
+var can_interact : bool = false
 #endregion
 
 #region /// var
@@ -67,6 +68,7 @@ func _ready() -> void:
 	hp = max_hp
 	Messages.player_healed.connect( _on_player_healed )
 	Messages.back_to_title_screen.connect( queue_free )
+	Messages.input_hint_changed.connect( on_input_hint_changed )
 	damege_area.damge_taken.connect( _on_damge_taken )
 
 
@@ -122,8 +124,8 @@ func initialize_states() -> void:
 		state.init()
 	
 	change_state(current_state)
-	current_state.enter()
-	$Label.text = current_state.name
+	#current_state.enter()
+	#$Label.text = current_state.name
 
 
 func change_state( new_state : Player_state ) -> void:
@@ -136,7 +138,7 @@ func change_state( new_state : Player_state ) -> void:
 	states.push_front( new_state )
 	current_state.enter()
 	states.resize(3)
-	$Label.text = current_state.name
+	#$Label.text = current_state.name
 
 
 func update_dirction() -> void:
@@ -186,3 +188,16 @@ func can_dash() -> bool:
 	if not dash or dash_count > 0:
 		return false
 	return true
+
+
+func can_morph() -> bool:
+	if not morph_roll or can_interact:
+		return false
+	return true
+
+
+func on_input_hint_changed( prompt_name : String ) -> void:
+	if prompt_name == "interact":
+		can_interact = true
+	else:
+		can_interact = false

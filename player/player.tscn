@@ -16,13 +16,14 @@
 [ext_resource type="Script" uid="uid://dajijnylxa7uj" path="res://player/states/death.gd" id="10_tqiix"]
 [ext_resource type="Texture2D" uid="uid://dglevdlnofqmi" path="res://player/sprites/weapon_smears.png" id="10_wodsf"]
 [ext_resource type="Script" uid="uid://dgkajch1s1vkm" path="res://player/states/ground_slam.gd" id="11_c35mf"]
+[ext_resource type="Script" uid="uid://bmwcht4pabh35" path="res://player/states/ball.gd" id="12_65viv"]
 [ext_resource type="Script" uid="uid://c5lvwkhvi2w4e" path="res://player/scripts/player_sprite.gd" id="12_e7oew"]
 [ext_resource type="Script" uid="uid://cns0lapeysi1i" path="res://general/scripts/attack_area.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="15_wodsf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
 radius = 8.0
-height = 40.0
+height = 46.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8t03j"]
 radius = 8.0
@@ -190,6 +191,24 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_bjvpn"]
+resource_name = "ball"
+length = 0.225
+loop_mode = 1
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hero:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07692308, 0.15384616),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [44, 45, 46]
+}
+
 [sub_resource type="Animation" id="Animation_kb6p2"]
 resource_name = "crouch"
 length = 0.2
@@ -339,6 +358,7 @@ _data = {
 &"RESET": SubResource("Animation_2ieo8"),
 &"attack": SubResource("Animation_32hag"),
 &"attack_2": SubResource("Animation_tqiix"),
+&"ball": SubResource("Animation_bjvpn"),
 &"crouch": SubResource("Animation_kb6p2"),
 &"dash": SubResource("Animation_65viv"),
 &"death": SubResource("Animation_c35mf"),
@@ -439,6 +459,11 @@ script = ExtResource("10_tqiix")
 [node name="ground_slam" type="Node" parent="states" unique_id=1204904950]
 unique_name_in_owner = true
 script = ExtResource("11_c35mf")
+velocity = 500.0
+
+[node name="ball" type="Node" parent="states" unique_id=2095943756]
+unique_name_in_owner = true
+script = ExtResource("12_65viv")
 
 [node name="Hero" type="Sprite2D" parent="." unique_id=728996781]
 unique_name_in_owner = true
@@ -458,8 +483,7 @@ hframes = 8
 
 [node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=609811687]
 unique_name_in_owner = true
-visible = false
-position = Vector2(0, -20.18)
+position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_hg6s5")
 debug_color = Color(0, 0.6, 0.69803923, 0.15686275)
 
@@ -484,6 +508,7 @@ collision_mask = 2
 
 [node name="ground_slam_chapeCast" type="ShapeCast2D" parent="." unique_id=1499182515]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -3)
 enabled = false
 shape = SubResource("RectangleShape2D_c35mf")
@@ -528,6 +553,7 @@ hframes = 16
 
 [node name="Attack_Area" type="Area2D" parent="." unique_id=1536389812]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -23)
 rotation = 1.5707964
 collision_layer = 0
@@ -544,6 +570,7 @@ debug_color = Color(0.70196074, 0, 0.06355715, 0.41960785)
 
 [node name="ground_slam_Attack_Area" type="Area2D" parent="." unique_id=2043710616]
 unique_name_in_owner = true
+visible = false
 rotation = 1.5707964
 collision_layer = 0
 collision_mask = 96
@@ -553,6 +580,7 @@ damge = 1.0
 metadata/_custom_type_script = "uid://cns0lapeysi1i"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground_slam_Attack_Area" unique_id=1691228661]
+visible = false
 position = Vector2(-17.5, 0)
 shape = SubResource("RectangleShape2D_65viv")
 debug_color = Color(0.70196074, 0, 0.06355715, 0.41960785)
@@ -567,7 +595,7 @@ metadata/_custom_type_script = "uid://x1to7vuav48n"
 
 [node name="DA_Stand" type="CollisionShape2D" parent="Damege_area" unique_id=1722417314]
 unique_name_in_owner = true
-position = Vector2(0, -20.18)
+position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_hg6s5")
 debug_color = Color(0, 0.6, 0.69803923, 0.15686275)
 
@@ -600,3 +628,23 @@ unique_name_in_owner = true
 position = Vector2(0, 24)
 stream = SubResource("AudioStreamWAV_e7oew")
 bus = &"SFX"
+
+[node name="ball_rays" type="Node2D" parent="." unique_id=2005200994]
+
+[node name="ball_rayUP" type="RayCast2D" parent="ball_rays" unique_id=1304813908]
+unique_name_in_owner = true
+position = Vector2(0, -4)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, -43)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="ball_rayDOWN" type="RayCast2D" parent="ball_rays" unique_id=1364134242]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, 6)
+collision_mask = 3
+hit_from_inside = true

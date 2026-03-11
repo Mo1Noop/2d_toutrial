@@ -40,6 +40,7 @@ position = Vector2(0, -25)
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("8_flimr")
+damge = 5.0
 metadata/_custom_type_script = "uid://vc1ci0xnys6y"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body_sprite/Hazard_Area" unique_id=216204656]
@@ -51,7 +52,7 @@ position = Vector2(0, -6)
 texture = SubResource("AtlasTexture_dp6iv")
 
 [node name="Damege_area" type="Area2D" parent="." unique_id=1868173229]
-collision_layer = 96
+collision_layer = 32
 collision_mask = 0
 script = ExtResource("6_425fe")
 audio = ExtResource("7_bpy0c")

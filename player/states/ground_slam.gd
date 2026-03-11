@@ -39,7 +39,9 @@ func process(delta: float) -> Player_state:
 	effect_timer -= delta
 	if effect_timer < 0:
 		effect_timer = effect_delay
+		print("gost..")
 		player.hero.ghost()
+	print(effect_timer)
 	return null
 
 
@@ -76,10 +78,5 @@ func check_collision( delta : float ) -> bool:
 			VisualEffects.hit_particles( pos, Vector2.UP, HIT_WOOD_SMALL )
 			Audio.play_apatial_sound( BREAK_WOOD_AUDIO, pos )
 			print( "2- body name: ", c.name, ". owner name: ", c.owner.name, ". parent name: ", c.get_parent().name)
-			if c is Damege_area:
-				if c.breakable == true:
-					c.owner.queue_free()
-			else:
-				c.queue_free()
-
+			c.queue_free()
 	return true

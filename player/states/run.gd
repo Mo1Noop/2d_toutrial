@@ -10,9 +10,10 @@ func handle_input(_event : InputEvent) -> Player_state:
 		return dash
 	if _event.is_action_pressed("attack"):
 		return attack
-	
 	if _event.is_action_pressed("jump") and player.is_on_floor():
 		return jump
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
 	return next_state
 
 

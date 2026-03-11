@@ -30,6 +30,8 @@ func handle_input(_event : InputEvent) -> Player_state:
 			return fall
 	elif _event.is_action_pressed("jump") and not player.is_one_way_chape_cast():
 		return jump
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
 	return next_state
 
 func process(_delta: float) -> Player_state:
