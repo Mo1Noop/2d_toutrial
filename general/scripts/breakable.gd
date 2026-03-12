@@ -2,8 +2,8 @@
 @icon("res://general/icons/breakable.svg")
 class_name Breakable extends Node2D
 
-@warning_ignore("unused_signal")
 signal destroyed
+signal damge_taken
 
 @export var hp : float = 3.0
 @export var fixed_hit_count : bool = false
@@ -37,10 +37,12 @@ func on_damge_taken( attack_area : Attack_Area ) -> void:
 	if attack_area.global_position.x > global_position.x:
 		dir.x *= -1
 	if hp > 0:
+		damge_taken.emit()
 		Audio.play_apatial_sound( hit_audio, pos )
 		for p in hit_particles:
 			VisualEffects.hit_particles( pos, dir, p )
 	else:
+		destroyed.emit()
 		Audio.play_apatial_sound( destroy_audio, pos )
 		for p in destroy_particles:
 			VisualEffects.hit_particles( pos, dir, p )

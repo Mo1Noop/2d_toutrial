@@ -39,9 +39,7 @@ func process(delta: float) -> Player_state:
 	effect_timer -= delta
 	if effect_timer < 0:
 		effect_timer = effect_delay
-		print("gost..")
 		player.hero.ghost()
-	print(effect_timer)
 	return null
 
 
@@ -69,14 +67,19 @@ func check_collision( delta : float ) -> bool:
 			Audio.play_apatial_sound( b.destroy_audio, pos )
 			for p in b.destroy_particles:
 				VisualEffects.hit_particles( pos, Vector2.DOWN, p )
-			print( "1- body name: ", b.name, ". owner name: ", b.owner.name, ". parent name: ", b.get_parent().name)
-			
 			b.queue_free()
 		else:
 			VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_LARGE )
 			VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_MEDUIM )
 			VisualEffects.hit_particles( pos, Vector2.UP, HIT_WOOD_SMALL )
 			Audio.play_apatial_sound( BREAK_WOOD_AUDIO, pos )
-			print( "2- body name: ", c.name, ". owner name: ", c.owner.name, ". parent name: ", c.get_parent().name)
+			add_to_presistent_data( c )
 			c.queue_free()
 	return true
+
+
+func add_to_presistent_data( b : Node ) -> void:
+	if b.has_method( "unique_name" ):
+		SaveManager.presistent_data[ b.unique_name() ] = "destroyed"
+	#if b is _slam_breakable:
+		#SaveManager.presistent_data[ b.unique_name() ] = "destroyed"

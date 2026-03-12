@@ -1,0 +1,280 @@
+[gd_scene format=3 uid="uid://dyfx1i54kbcaw"]
+
+[ext_resource type="Texture2D" uid="uid://bdlldaobdgmn3" path="res://player/sprites/abilities.png" id="1_7iomx"]
+[ext_resource type="Script" uid="uid://mqbs5qsah362" path="res://general/abillty_pickup/abillty_pickup.gd" id="1_v6etw"]
+[ext_resource type="Script" uid="uid://dn4rejocwoqh2" path="res://general/scripts/breakable.gd" id="2_nx8q5"]
+[ext_resource type="Script" uid="uid://bfn6kk1670xxq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="3_i71kc"]
+[ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="3_ryja7"]
+[ext_resource type="AudioStream" uid="uid://b10ejp6ajquc8" path="res://general/audio/ability_crack.wav" id="4_v6etw"]
+[ext_resource type="AudioStream" uid="uid://dwhc6vkldkc0d" path="res://general/audio/ability_acquire.wav" id="5_g6fsp"]
+
+[sub_resource type="Animation" id="Animation_g6fsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("abillty_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b58yu"]
+resource_name = "dash"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("abillty_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_rthjt"]
+resource_name = "double_jump"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("abillty_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_kx4lr"]
+resource_name = "ground_slam"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("abillty_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_0fl8h"]
+resource_name = "morph_roll"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("abillty_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5f0o"]
+_data = {
+&"RESET": SubResource("Animation_g6fsp"),
+&"dash": SubResource("Animation_b58yu"),
+&"double_jump": SubResource("Animation_rthjt"),
+&"ground_slam": SubResource("Animation_kx4lr"),
+&"morph_roll": SubResource("Animation_0fl8h")
+}
+
+[sub_resource type="Animation" id="Animation_0406w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%abillty_sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4hjub"]
+resource_name = "defult"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_q15o1"]
+resource_name = "destroy"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [23, 24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%abillty_sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hn366"]
+_data = {
+&"RESET": SubResource("Animation_0406w"),
+&"defult": SubResource("Animation_4hjub"),
+&"destroy": SubResource("Animation_q15o1")
+}
+
+[sub_resource type="Resource" id="Resource_b58yu"]
+script = ExtResource("3_i71kc")
+metadata/_custom_type_script = "uid://bfn6kk1670xxq"
+
+[sub_resource type="Resource" id="Resource_rthjt"]
+script = ExtResource("3_i71kc")
+count = 5
+color = Color(0, 1, 0.7058824, 1)
+metadata/_custom_type_script = "uid://bfn6kk1670xxq"
+
+[sub_resource type="Resource" id="Resource_kx4lr"]
+script = ExtResource("3_i71kc")
+metadata/_custom_type_script = "uid://bfn6kk1670xxq"
+
+[sub_resource type="Resource" id="Resource_0fl8h"]
+script = ExtResource("3_i71kc")
+count = 5
+color = Color(0, 1, 0.7058824, 1)
+metadata/_custom_type_script = "uid://bfn6kk1670xxq"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i71kc"]
+radius = 20.0
+
+[node name="AbilltyPickup" type="Node2D" unique_id=291328138]
+z_index = 1
+script = ExtResource("1_v6etw")
+type = null
+
+[node name="abillty_sprite" type="Sprite2D" parent="." unique_id=698254683]
+unique_name_in_owner = true
+texture = ExtResource("1_7iomx")
+hframes = 5
+vframes = 5
+
+[node name="abillty_anim" type="AnimationPlayer" parent="abillty_sprite" unique_id=1566080284]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_g5f0o")
+
+[node name="orb_sprite" type="Sprite2D" parent="." unique_id=1893482591]
+unique_name_in_owner = true
+texture = ExtResource("1_7iomx")
+hframes = 5
+vframes = 5
+frame = 20
+
+[node name="orb_anim" type="AnimationPlayer" parent="orb_sprite" unique_id=1742718060]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_hn366")
+autoplay = &"defult"
+
+[node name="Breakable" type="Node2D" parent="." unique_id=1955542437]
+unique_name_in_owner = true
+script = ExtResource("2_nx8q5")
+fixed_hit_count = true
+hit_particles = Array[ExtResource("3_i71kc")]([SubResource("Resource_b58yu"), SubResource("Resource_rthjt")])
+destroy_particles = Array[ExtResource("3_i71kc")]([SubResource("Resource_kx4lr"), SubResource("Resource_0fl8h")])
+hit_audio = ExtResource("4_v6etw")
+destroy_audio = ExtResource("5_g6fsp")
+metadata/_custom_type_script = "uid://dn4rejocwoqh2"
+
+[node name="Damege_area" type="Area2D" parent="Breakable" unique_id=1402654089]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_ryja7")
+metadata/_custom_type_script = "uid://x1to7vuav48n"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable/Damege_area" unique_id=1852919337]
+visible = false
+shape = SubResource("CircleShape2D_i71kc")

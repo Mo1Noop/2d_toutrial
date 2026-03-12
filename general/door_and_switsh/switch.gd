@@ -44,7 +44,7 @@ func set_open() -> void:
 
 func unique_name() -> String:
 	var u_name : String = ResourceUID.path_to_uid( owner.scene_file_path )
-	u_name += "/" + get_parent().name + "/" + name
+	u_name += "/" + owner.name + "/" + get_parent().name + "/" + name
 	return u_name
 
 
