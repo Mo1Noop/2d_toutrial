@@ -45,6 +45,7 @@ window/stretch/mode="canvas_items"
 folder_colors={
 "res://00_global/": "yellow",
 "res://Z_testing/": "gray",
+"res://enemies/": "red",
 "res://general/": "green",
 "res://levels/": "blue",
 "res://matrials_and_shaders/": "orange",

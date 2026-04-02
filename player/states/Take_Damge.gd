@@ -3,7 +3,7 @@ class_name PlayerState_Take_Damge extends Player_state
 @onready var damege_area: Damege_area = %Damege_area
 @onready var damge_audio: AudioStreamPlayer2D = %damge_audio
 
-@export var move_speed : float = 100
+@export var move_speed : float = 70.0 # knokback
 @export var damge_cooldown_duration : float = 0.5
 
 var time : float = 0.0

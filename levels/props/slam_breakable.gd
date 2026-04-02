@@ -1,10 +1,9 @@
-class_name _slam_breakable extends StaticBody2D
+extends StaticBody2D
 
 
 func _ready() -> void:
 	if SaveManager.presistent_data.get_or_add( unique_name(), "" ) == "destroyed":
 		queue_free()
-	SaveManager.presistent_data[ unique_name() ] = ""
 
 
 func unique_name() -> String:

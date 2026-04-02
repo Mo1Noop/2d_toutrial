@@ -49,12 +49,13 @@ func process( delta: float ) -> Player_state:
 	
 	return null
 
-
+# this change only for fun
 func physics_process(_delta: float) -> Player_state:
-	#player.velocity.x = lerp( player.velocity.x, speed * dash_dir, 0.9 )
-	#player.velocity.x = lerp( player.velocity.x, 0.0, 0.1 )
-	
-	player.velocity.x = ( speed * ( time / duration ) + speed ) * dash_dir
+	var vel : float = ( speed * ( time / duration ) + speed )
+	if player.dirction == Vector2.ZERO:
+		player.velocity.x = vel * dash_dir
+	else:
+		player.velocity = vel * player.dirction
 	return null
 
 

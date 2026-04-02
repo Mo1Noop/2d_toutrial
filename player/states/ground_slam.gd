@@ -73,13 +73,6 @@ func check_collision( delta : float ) -> bool:
 			VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_MEDUIM )
 			VisualEffects.hit_particles( pos, Vector2.UP, HIT_WOOD_SMALL )
 			Audio.play_apatial_sound( BREAK_WOOD_AUDIO, pos )
-			add_to_presistent_data( c )
+			SceneManger.add_to_presistent_data( c )
 			c.queue_free()
 	return true
-
-
-func add_to_presistent_data( b : Node ) -> void:
-	if b.has_method( "unique_name" ):
-		SaveManager.presistent_data[ b.unique_name() ] = "destroyed"
-	#if b is _slam_breakable:
-		#SaveManager.presistent_data[ b.unique_name() ] = "destroyed"

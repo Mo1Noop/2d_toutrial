@@ -10,23 +10,24 @@
 [ext_resource type="PackedScene" uid="uid://buoiuca8qnyq1" path="res://levels/props/test_dommy/test_dommy.tscn" id="7_wqnh4"]
 [ext_resource type="PackedScene" uid="uid://caultvlhbhe8a" path="res://levels/props/slam_breakable.tscn" id="8_jv0uq"]
 [ext_resource type="PackedScene" uid="uid://cvma0iqwvxk06" path="res://general/save_point/save_point.tscn" id="9_8tkbf"]
+[ext_resource type="PackedScene" uid="uid://c7fq2naxvvvo1" path="res://enemies/slime/slime.tscn" id="11_l483o"]
 
 [node name="playGround" type="Node2D" unique_id=282026291]
 
 [node name="AbilltyPickup" parent="." unique_id=291328138 instance=ExtResource("1_hp2oo")]
-position = Vector2(480, 191)
+position = Vector2(341, -92)
 type = 0
 
 [node name="AbilltyPickup2" parent="." unique_id=62743442 instance=ExtResource("1_hp2oo")]
-position = Vector2(512, 191)
+position = Vector2(373, -92)
 type = 1
 
 [node name="AbilltyPickup3" parent="." unique_id=1262226313 instance=ExtResource("1_hp2oo")]
-position = Vector2(544, 191)
+position = Vector2(405, -92)
 type = 2
 
 [node name="AbilltyPickup4" parent="." unique_id=1037227942 instance=ExtResource("1_hp2oo")]
-position = Vector2(576, 191)
+position = Vector2(437, -92)
 type = 3
 
 [node name="world" type="Node2D" parent="." unique_id=1812117284]
@@ -51,7 +52,7 @@ position = Vector2(224, 315)
 scale = Vector2(1.6, 1)
 
 [node name="MapLayer_4" type="TileMapLayer" parent="world" unique_id=2041006993]
-tile_map_data = PackedByteArray("AAASAAIAAAAQAAYAAAATAAIAAAARAAYAAAAUAAIAAAASAAYAAAAVAAIAAAATAAYAAAAKAAEAAAAQAAYAAAALAAEAAAARAAYAAAAMAAEAAAASAAYAAAANAAEAAAATAAYAAAAVAP7/AAAQAAYAAAAWAP7/AAARAAYAAAAXAP7/AAASAAYAAAAYAP7/AAATAAYAAAA=")
+tile_map_data = PackedByteArray("AAAKAAEAAAAQAAYAAAALAAEAAAARAAYAAAAMAAEAAAASAAYAAAANAAEAAAATAAYAAAAVAP7/AAAQAAYAAAAWAP7/AAARAAYAAAAXAP7/AAASAAYAAAAYAP7/AAATAAYAAAAPAAQAAAAQAAYAAAAQAAQAAAARAAYAAAARAAQAAAASAAYAAAASAAQAAAATAAYAAAA=")
 tile_set = ExtResource("1_hsgd5")
 
 [node name="props" type="Node2D" parent="world" unique_id=1403912803]
@@ -77,10 +78,10 @@ hieght = 942
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
 [node name="player_spawn" parent="." unique_id=140463160 instance=ExtResource("4_ffawd")]
-position = Vector2(442, 191)
+position = Vector2(536, 203)
 
 [node name="TestDommy" parent="." unique_id=1705439841 instance=ExtResource("7_wqnh4")]
-position = Vector2(643, 227)
+position = Vector2(1047, 227)
 
 [node name="SpikeDommy" parent="." unique_id=102335626 instance=ExtResource("7_jv0uq")]
 position = Vector2(947, 229)
@@ -88,10 +89,10 @@ position = Vector2(947, 229)
 [node name="crates" type="Node" parent="." unique_id=2136142298]
 
 [node name="crate" parent="crates" unique_id=487498522 instance=ExtResource("6_wqnh4")]
-position = Vector2(787, 207)
+position = Vector2(715, 211)
 
 [node name="crate2" parent="crates" unique_id=1217381404 instance=ExtResource("6_wqnh4")]
-position = Vector2(608, 628)
+position = Vector2(389, 211)
 
 [node name="crate3" parent="crates" unique_id=1920182487 instance=ExtResource("6_wqnh4")]
 position = Vector2(652, 628)
@@ -106,4 +107,7 @@ position = Vector2(652, 593)
 position = Vector2(696, 594)
 
 [node name="save_point" parent="." unique_id=629329896 instance=ExtResource("9_8tkbf")]
-position = Vector2(710, 202)
+position = Vector2(1116, 202)
+
+[node name="Slime" parent="." unique_id=963342991 instance=ExtResource("11_l483o")]
+position = Vector2(543, 132)

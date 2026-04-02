@@ -23,6 +23,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			load_game( current_slot )
 
 
+func add_to_presistent_data( b : Node ) -> void:
+	if b.has_method( "unique_name" ):
+		presistent_data[ b.unique_name() ] = "destroyed"
+
+
+
 func create_new_game_save( slot : int ) -> void:
 	current_slot = slot
 	discovered_areas.clear()
@@ -31,6 +37,7 @@ func create_new_game_save( slot : int ) -> void:
 	discovered_areas.append( scene_01 )
 	game_data = {
 		"scene_path" : scene_01,
+		"scene_name" : ResourceUID.uid_to_path( scene_01 ),
 		"x" : 100,
 		"y" : 230,
 		"hp" : 20,
@@ -51,6 +58,7 @@ func save_game() -> void:
 	var player : Player = get_tree().get_first_node_in_group("Player")
 	game_data = {
 		"scene_path" : SceneManger.current_scene_uid,
+		"scene_name" : ResourceUID.uid_to_path( SceneManger.current_scene_uid ),
 		"x" : player.global_position.x,
 		"y" : player.global_position.y,
 		"hp" : player.hp,

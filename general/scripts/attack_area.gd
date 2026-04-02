@@ -1,7 +1,7 @@
 @icon("res://general/icons/attack_area.svg")
 class_name Attack_Area extends Area2D
 
-@export var damge : float = 10.0
+@export var damge : float = 2.0
 
 func _ready() -> void:
 	area_entered.connect( on_body_entered )

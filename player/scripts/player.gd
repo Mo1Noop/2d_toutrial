@@ -45,7 +45,7 @@ var max_hp : float = 20 :
 
 var dash : bool = false
 var dash_count : int = 0
-var double_jump : bool = false
+var double_jump : bool = true
 var jump_count : int = 0
 var ground_slam : bool = false
 var morph_roll : bool = false
