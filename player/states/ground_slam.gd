@@ -30,10 +30,6 @@ func exit() -> void:
 	ground_slam_attack_area.set_active( false )
 
 
-func handle_input(_event : InputEvent) -> Player_state:
-	return null
-
-
 func process(delta: float) -> Player_state:
 	check_collision( delta )
 	effect_timer -= delta
@@ -73,6 +69,6 @@ func check_collision( delta : float ) -> bool:
 			VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_MEDUIM )
 			VisualEffects.hit_particles( pos, Vector2.UP, HIT_WOOD_SMALL )
 			Audio.play_apatial_sound( BREAK_WOOD_AUDIO, pos )
-			SceneManger.add_to_presistent_data( c )
+			SaveManager.add_to_presistent_data( c )
 			c.queue_free()
 	return true

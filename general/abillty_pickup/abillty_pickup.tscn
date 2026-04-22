@@ -233,7 +233,6 @@ radius = 20.0
 [node name="AbilltyPickup" type="Node2D" unique_id=291328138]
 z_index = 1
 script = ExtResource("1_v6etw")
-type = null
 
 [node name="abillty_sprite" type="Sprite2D" parent="." unique_id=698254683]
 unique_name_in_owner = true

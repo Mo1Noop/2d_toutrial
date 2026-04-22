@@ -1,7 +1,7 @@
 extends Node #save manager
 
 const CONFIG_FILE_PATH : String = "user://settings.cfg"
-const scene_01 : String = "uid://cb886t8m51hde" 
+const level_01 : String = "uid://cb886t8m51hde" 
 const  SLOTS : Array[String] = [ "save_01", "save_02", "save_03" ]
 
 var current_slot : int = 0
@@ -28,16 +28,15 @@ func add_to_presistent_data( b : Node ) -> void:
 		presistent_data[ b.unique_name() ] = "destroyed"
 
 
-
 func create_new_game_save( slot : int ) -> void:
 	current_slot = slot
 	discovered_areas.clear()
 	presistent_data.clear()
 	
-	discovered_areas.append( scene_01 )
+	discovered_areas.append( level_01 )
 	game_data = {
-		"scene_path" : scene_01,
-		"scene_name" : ResourceUID.uid_to_path( scene_01 ),
+		"scene_path" : level_01,
+		"scene_name" : ResourceUID.uid_to_path( level_01 ),
 		"x" : 100,
 		"y" : 230,
 		"hp" : 20,
@@ -83,7 +82,7 @@ func load_game( slot : int ) -> void:
 	game_data = JSON.parse_string( save_file )
 	presistent_data = game_data.get( "presistent_data", {} )
 	discovered_areas = game_data.get( "discovered_areas", [] )
-	var scene_path : String = game_data.get( "scene_path", scene_01 )
+	var scene_path : String = game_data.get( "scene_path", level_01 )
 	SceneManger.transtion_scene( scene_path, "", Vector2.ZERO, "up" )
 	await SceneManger.new_scene_ready
 	setup_player()

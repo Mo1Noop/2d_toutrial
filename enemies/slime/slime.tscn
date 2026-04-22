@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://c7fq2naxvvvo1"]
 
 [ext_resource type="Script" uid="uid://mjicebnmv5x7" path="res://enemies/slime/slime.gd" id="1_sv735"]
-[ext_resource type="Texture2D" uid="uid://crgjldkej0l6p" path="res://enemies/slime/slime.png" id="2_57eei"]
 [ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="3_u2l51"]
 [ext_resource type="Script" uid="uid://vc1ci0xnys6y" path="res://general/scripts/hazard_area.gd" id="4_2ui2u"]
 [ext_resource type="Script" uid="uid://dc86xcgwatr2e" path="res://enemies/scripts/edge_detector.gd" id="5_u2l51"]
@@ -13,6 +12,9 @@ format = 3
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bkm6f"]
 radius = 8.0
 height = 26.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_57eei"]
+load_path = "res://.godot/imported/slime.png-61a012fcb437414c3cf946a313ec58c3.ctex"
 
 [sub_resource type="Animation" id="Animation_57eei"]
 length = 0.001
@@ -40,10 +42,10 @@ tracks/0/path = NodePath("Slime_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [6, 7, 8, 9, 10, 17]
+"values": [7, 8, 9, 10, 11, 12, 13]
 }
 
 [sub_resource type="Animation" id="Animation_bkm6f"]
@@ -60,7 +62,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [12, 13, 14, 15, 16]
+"values": [14, 15, 16, 17, 18]
 }
 
 [sub_resource type="Animation" id="Animation_u2l51"]
@@ -113,9 +115,9 @@ shape = SubResource("CapsuleShape2D_bkm6f")
 
 [node name="Slime_Sprite" type="Sprite2D" parent="." unique_id=1018730726]
 position = Vector2(0, -8)
-texture = ExtResource("2_57eei")
+texture = SubResource("CompressedTexture2D_57eei")
 offset = Vector2(0, -7)
-hframes = 6
+hframes = 7
 vframes = 3
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=46742971]
@@ -123,6 +125,7 @@ libraries/ = SubResource("AnimationLibrary_2ui2u")
 autoplay = &"walk"
 
 [node name="Damege_area" type="Area2D" parent="." unique_id=309137663]
+visible = false
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_u2l51")
@@ -136,6 +139,7 @@ shape = SubResource("RectangleShape2D_57eei")
 debug_color = Color(0.02040116, 0.70196074, 0, 0.41960785)
 
 [node name="Hazard_Area" type="Area2D" parent="." unique_id=1389468910]
+visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("4_2ui2u")
@@ -148,6 +152,7 @@ shape = SubResource("RectangleShape2D_u2l51")
 debug_color = Color(0.70196074, 0, 0.026313419, 0.41960785)
 
 [node name="Edge_Detector" type="RayCast2D" parent="." unique_id=559540936]
+visible = false
 position = Vector2(7, 0)
 target_position = Vector2(0, 8)
 script = ExtResource("5_u2l51")

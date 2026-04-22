@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://he3jeovjo2u6"]
+[gd_scene format=3 uid="uid://he3jeovjo2u6"]
 
 [ext_resource type="Texture2D" uid="uid://m4c6ws7b551w" path="res://levels/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_7yq1y"]
 [ext_resource type="Script" uid="uid://ce1myph5psdtu" path="res://general/scripts/light_flicker.gd" id="2_dok03"]
@@ -83,19 +83,28 @@ turbulence_influence_max = 0.3
 turbulence_initial_displacement_min = -19.999998
 turbulence_initial_displacement_max = 20.000002
 
-[node name="Torch" type="AnimatedSprite2D"]
+[node name="Torch" type="AnimatedSprite2D" unique_id=1856810358]
 sprite_frames = SubResource("SpriteFrames_6gf8q")
 autoplay = "default"
 offset = Vector2(0, -32)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(8, -34)
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1633910731]
+position = Vector2(0, -34)
 color = Color(1, 0.8029762, 0.50438434, 1)
 energy = 0.8
 texture = SubResource("GradientTexture2D_7yq1y")
 script = ExtResource("2_dok03")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="Timer" type="Timer" parent="PointLight2D" unique_id=1150959103]
+process_callback = 0
+wait_time = 0.5
+autostart = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="PointLight2D" unique_id=1928105085]
+position = Vector2(0, 34)
+rect = Rect2(-97, -87, 194, 105)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=691845495]
 material = SubResource("CanvasItemMaterial_dok03")
 position = Vector2(0, -34)
 amount = 3

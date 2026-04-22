@@ -24,11 +24,18 @@ script/source = "extends Button
 func _ready() -> void:
 	pressed.connect( _on_pressed )
 	
+#const slim = preload(\"res://enemies/slime/slime.tscn\")
+const slim = preload(\"uid://bxqpfuddfroja\")
 
 func _on_pressed() -> void:
 	var player : Player = get_tree().get_first_node_in_group( \"Player\" )
-	player.dash = !player.dash
-	focus_mode = Control.FOCUS_NONE
+	#player.dash = !player.dash
+	#focus_mode = Control.FOCUS_NONE
+	var g:Node2D = slim.instantiate()
+	player.get_parent().add_child( g )
+	g.global_position = player.global_position + Vector2( 60, -60 )
+	g.z_index = 10
+	g.visible = true
 	#var g := SPIKE_DOMMY.instantiate()
 	#owner.add_child(g)
 	#g.global_position = player_pos
@@ -104,7 +111,8 @@ offset_top = 8.0
 offset_right = -8.0
 offset_bottom = 31.0
 grow_horizontal = 0
-text = " toggole duble jump"
+focus_mode = 0
+text = "test"
 script = SubResource("GDScript_vb1bs")
 
 [node name="game_over" type="Control" parent="Control" unique_id=1884820450]

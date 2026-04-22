@@ -516,7 +516,6 @@ collision_mask = 2
 
 [node name="ground_slam_chapeCast" type="ShapeCast2D" parent="." unique_id=1499182515]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, -3)
 enabled = false
 shape = SubResource("RectangleShape2D_c35mf")
@@ -561,7 +560,6 @@ hframes = 16
 
 [node name="Attack_Area" type="Area2D" parent="." unique_id=1536389812]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, -23)
 rotation = 1.5707964
 collision_layer = 0
@@ -584,7 +582,6 @@ collision_layer = 0
 collision_mask = 96
 monitorable = false
 script = ExtResource("12_ebec5")
-damge = 1.0
 metadata/_custom_type_script = "uid://cns0lapeysi1i"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground_slam_Attack_Area" unique_id=1691228661]

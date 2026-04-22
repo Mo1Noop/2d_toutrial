@@ -49,13 +49,15 @@ func process( delta: float ) -> Player_state:
 	
 	return null
 
-# this change only for fun
 func physics_process(_delta: float) -> Player_state:
 	var vel : float = ( speed * ( time / duration ) + speed )
-	if player.dirction == Vector2.ZERO:
-		player.velocity.x = vel * dash_dir
-	else:
-		player.velocity = vel * player.dirction
+	player.velocity.x = vel * dash_dir
+
+# this change only for fun
+	#if player.dirction == Vector2.ZERO:
+		#player.velocity.x = vel * dash_dir
+	#else:
+		#player.velocity = vel * player.dirction
 	return null
 
 

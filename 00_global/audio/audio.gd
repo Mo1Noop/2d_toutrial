@@ -13,6 +13,9 @@ enum REVERB_TYPE { NONE, SMALL, MEDIUM, LARGE }
 @onready var music_2: AudioStreamPlayer = $Music2
 @onready var ui: AudioStreamPlayer = $UI
 
+var audio_pool : Array[ AudioStreamPlayer2D ]
+var audio_index : int = 0
+
 var current_track : int = 0
 var music_tweens : Array[ Tween ]
 var ui_audio_player : AudioStreamPlaybackPolyphonic
@@ -23,6 +26,11 @@ var ui_audio_player : AudioStreamPlaybackPolyphonic
 func _ready() -> void:
 	ui.play()
 	ui_audio_player = ui.get_stream_playback()
+	for i in 32:
+		var audio_player : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		add_child( audio_player )
+		audio_player.bus = "SFX"
+		audio_pool.append( audio_player )
 
 
 func play_music( audio : AudioStream ) -> void:
@@ -82,14 +90,21 @@ func set_reverb( type : REVERB_TYPE ) -> void:
 			reverb_fx.room_size = 0.8
 
 
-func play_apatial_sound( audio : AudioStream, pos : Vector2 ) -> void:
-	var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-	add_child( ap )
-	ap.bus = "SFX"
-	ap.global_position = pos
-	ap.stream = audio
-	ap.finished.connect( ap.queue_free )
-	ap.play()
+func play_apatial_sound( audio : AudioStream, pos : Vector2, ignore_pool : bool = false ) -> void:
+	if ignore_pool:
+		var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		add_child( ap )
+		ap.bus = "SFX"
+		ap.global_position = pos
+		ap.stream = audio
+		ap.finished.connect( ap.queue_free )
+		ap.play()
+	else:
+		var ap : AudioStreamPlayer2D = audio_pool[ audio_index ]
+		ap.global_position = pos
+		ap.stream = audio
+		ap.play()
+		audio_index = wrapi( audio_index +1 , 0, 32)
 
 
 func play_ui_audio( audio : AudioStream ) -> void:
