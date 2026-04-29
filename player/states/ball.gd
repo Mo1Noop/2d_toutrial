@@ -7,14 +7,12 @@ const MORPH_OUT_AUDIO = preload("uid://dls8gc1jdc8yr")
 var on_floor : bool = true
 @onready var ball_ray_up: RayCast2D = %ball_rayUP
 @onready var ball_ray_down: RayCast2D = %ball_rayDOWN
-@onready var jump_audio: AudioStreamPlayer2D = %jump_audio
-@onready var land_audio: AudioStreamPlayer2D = %land_audio
 
 
 
 func enter() -> void:
 	player.player_anim.play("ball")
-	Audio.play_apatial_sound( MORPH_AUDIO, player.global_position )
+	Audio.play_apatial_sound( MORPH_AUDIO, player.global_position, false, true, 0.5 )
 	var shape : CapsuleShape2D = player.collision_stand.get_shape() as CapsuleShape2D
 	shape.radius = 11.0
 	shape.height = 22.0
@@ -27,7 +25,7 @@ func enter() -> void:
 func exit() -> void:
 	player.velocity.y -= 100.0
 	player.player_anim.speed_scale = 1
-	Audio.play_apatial_sound( MORPH_OUT_AUDIO, player.global_position )
+	Audio.play_apatial_sound( MORPH_OUT_AUDIO, player.global_position, false, true, 0.5 )
 	var shape : CapsuleShape2D = player.collision_stand.get_shape() as CapsuleShape2D
 	shape.radius = 8.0
 	shape.height = 46.0
@@ -49,7 +47,7 @@ func handle_input(_event : InputEvent) -> Player_state:
 				player.position.y += 4
 				return null
 		player.velocity.y = jump_velocity
-		jump_audio.play()
+		Audio.play_apatial_sound( jump.JUMP, player.global_position, false, true, 0.25 )
 		VisualEffects.jump_dust( player.global_position )
 	return next_state
 
@@ -71,7 +69,7 @@ func physics_process(_delta: float) -> Player_state:
 		if player.is_on_floor():
 			on_floor = true
 			VisualEffects.land_dust( player.global_position )
-			land_audio.play()
+			Audio.play_apatial_sound( fall.LAND, player.global_position, false, true, 0.5 )
 	return null
 
 

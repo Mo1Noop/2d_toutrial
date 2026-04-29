@@ -1,7 +1,7 @@
 class_name PlayerState_jump extends Player_state
 
 @export var jump_velocity : float = -425
-@onready var jump_audio: AudioStreamPlayer2D = %jump_audio
+const JUMP = preload("uid://bs5n3io25f31i")
 
 
 func enter() -> void:
@@ -51,7 +51,8 @@ func do_jump() -> void:
 			return
 	player.jump_count += 1
 	player.velocity.y = jump_velocity
-	jump_audio.play()
+	Audio.play_apatial_sound( JUMP, player.global_position, false, true, 0.25 )
+
 
 
 func set_jump_frame() -> void:

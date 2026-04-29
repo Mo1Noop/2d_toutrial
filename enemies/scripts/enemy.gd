@@ -8,7 +8,10 @@ signal was_killed()
 
 @export var health : float = 3.0
 @export var affected_by_gravity : bool = true
-@export var face_left_on_start : bool = false
+@export var face_left_on_start : bool = false :
+	set( val ):
+		face_left_on_start = val
+		_update_face_left()
 
 var sprite : Sprite2D
 var animation : AnimationPlayer
@@ -107,3 +110,12 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append( "Requires an Decision_Engine!" )
 	
 	return warnings
+
+
+
+func _update_face_left() -> void:
+	if not Engine.is_editor_hint():
+		return
+	for c in get_children():
+		if c is Sprite2D:
+			c.flip_h = face_left_on_start

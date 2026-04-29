@@ -36,7 +36,6 @@ func change_state( new_state : Enemy_State ) -> void:
 	current_state.enter()
 	if enemy:
 		enemy.decision_engine.current_state = new_state
-	print(current_state.name)
 	states.resize( 2 )
 
 

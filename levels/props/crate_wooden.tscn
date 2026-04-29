@@ -7,6 +7,8 @@
 [ext_resource type="Resource" uid="uid://bhqt5d2enq3p7" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_large.tres" id="5_w4ltd"]
 [ext_resource type="Texture2D" uid="uid://uk6reiqsy2fi" path="res://general/sprits/props_destructible.png" id="6_od1e1"]
 [ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="7_j8n0q"]
+[ext_resource type="Script" uid="uid://btax3igpa2swt" path="res://general/scripts/loot_dropper.gd" id="8_jy6sd"]
+[ext_resource type="Script" uid="uid://ciky3g73lvmw" path="res://general/scripts/loot_data.gd" id="9_pfiku"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8tkbf"]
 atlas = ExtResource("6_od1e1")
@@ -17,6 +19,12 @@ size = Vector2(40, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ng2w"]
 size = Vector2(36, 30)
+
+[sub_resource type="Resource" id="Resource_1ga2j"]
+script = ExtResource("9_pfiku")
+item = "uid://t0n57e3cw4k2"
+maximum = 2
+metadata/_custom_type_script = "uid://ciky3g73lvmw"
 
 [node name="crate" type="Node2D" unique_id=487498522]
 script = ExtResource("1_hv72q")
@@ -45,3 +53,8 @@ collision_mask = 0
 visible = false
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_6ng2w")
+
+[node name="Loot_Dropper" type="Marker2D" parent="." unique_id=325778377]
+script = ExtResource("8_jy6sd")
+items = Array[ExtResource("9_pfiku")]([SubResource("Resource_1ga2j")])
+metadata/_custom_type_script = "uid://btax3igpa2swt"

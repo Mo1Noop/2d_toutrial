@@ -18,7 +18,7 @@ func enter() -> void:
 	effect_time = 0.0
 	get_dash_dir()
 	player.damege_area.make_invurable( duration )
-	Audio.play_apatial_sound( DASH_AUDIO, player.global_position )
+	Audio.play_apatial_sound( DASH_AUDIO, player.global_position, false, true, 0.75 )
 	player.gravity_mulitplier = 0.0
 	player.velocity.y = 0.0
 	player.dash_count += 1

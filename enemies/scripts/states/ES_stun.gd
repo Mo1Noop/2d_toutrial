@@ -51,7 +51,8 @@ func calc_vel( a : Attack_Area ) -> void:
 func blink() -> void:
 	if twen: twen.kill()
 	twen = create_tween()
-	twen.tween_property( enemy.sprite, "modulate:a", 0.2, 0.1 )
-	twen.tween_property( enemy.sprite, "modulate:a", 1.0, 0.1 )
-	twen.tween_property( enemy.sprite, "modulate:a", 0.2, 0.1 )
-	twen.tween_property( enemy.sprite, "modulate:a", 1.0, 0.1 )
+	twen.set_loops( 2 )
+	twen.tween_property( enemy.sprite, "modulate:a", 0.4, 0.15 )
+	twen.tween_property( enemy.sprite, "modulate:a", 1.0, 0.05 )
+	twen.tween_property( enemy.sprite, "modulate:a", 0.4, 0.13 )
+	twen.tween_property( enemy.sprite, "modulate:a", 1.0, 0.05 )

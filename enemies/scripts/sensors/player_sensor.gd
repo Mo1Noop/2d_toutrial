@@ -6,9 +6,14 @@ signal player_exited
 signal started_searching
 
 @export var search_duration : float = 2.0
+@export var use_audio_sensor : bool = false
+@export var audio_detect_dist : float = 450.0
+@export var min_audio_sense : float = 0.25
 
 var enemy : Enemy
 var timer : float
+var player_in_range : bool = false
+
 
 
 func _ready() -> void:
@@ -17,19 +22,30 @@ func _ready() -> void:
 	if owner is Enemy:
 		enemy = owner
 		set_collision_mask_value( 5, true )
+		if use_audio_sensor:
+			Audio.player_made_sound.connect( _on_player_sound )
 		body_entered.connect( _on_body_entered )
 		body_exited.connect( _on_body_exited )
 		enemy.direction_changed.connect( _on_dir_changed )
-	
+
+
+func _physics_process(delta: float) -> void:
+	if timer > 0.0 and not player_in_range:
+		timer -= delta
+		if timer <= 0.0:
+			player_exited.emit()
+			enemy.blackboard.target = null
 
 
 func _on_body_entered( body : Node2D ) -> void:
-	#timer = search_duration
+	player_in_range = true
 	player_enterd.emit()
 	enemy.blackboard.target = body
+	
 
 
 func _on_body_exited( _body : Node2D ) -> void:
+	player_in_range = false
 	started_searching.emit()
 	timer = search_duration
 
@@ -38,11 +54,24 @@ func _on_dir_changed( dir : float ) -> void:
 	if dir < 0.0: scale.x = -1
 	elif dir > 0.0: scale.x = 1
 
+# Michael
+#func _on_player_sound( pos : Vector2 , volume : float ) -> void:
+	#prints("player made sound ", pos, " | ", volume)
+	#var sound_dist : float = global_position.distance_to( pos )
+	#var d : float = clampf( 1 - sound_dist / audio_detect_dist, 0.0, 1.0 ) * 2
+	#var vol : float = volume * d
+	#print( d, " | ", vol )
+	#if vol >= min_audio_sense:
+		#timer = search_duration
+		#enemy.blackboard.target = get_tree().get_first_node_in_group("Player")
 
-func _physics_process(delta: float) -> void:
-	if timer > 0.0:
-		timer -= delta
-		print( "timer: " + str( snapped( timer, 0.01 ) ) )
-		if timer <= 0.0:
-			player_exited.emit()
-			enemy.blackboard.target = null
+# AI 
+func _on_player_sound(pos: Vector2, volume: float) -> void:
+	var sound_dist: float = global_position.distance_to(pos)
+	var effective_dist : float = audio_detect_dist * volume
+	if effective_dist <= 0.0:
+		return
+	var d: float = clampf(1.0 - sound_dist / effective_dist, 0.0, 1.0)
+	if d >= min_audio_sense:
+		timer = search_duration
+		enemy.blackboard.target = get_tree().get_first_node_in_group("Player")

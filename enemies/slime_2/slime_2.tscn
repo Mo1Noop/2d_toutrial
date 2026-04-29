@@ -12,6 +12,10 @@
 [ext_resource type="Script" uid="uid://caml68be5mkmx" path="res://enemies/scripts/states/ES_idle.gd" id="9_ovel5"]
 [ext_resource type="Script" uid="uid://cgaos837st1cw" path="res://enemies/scripts/sensors/edge_sensor.gd" id="10_nu28u"]
 [ext_resource type="Script" uid="uid://b1h7raekiavog" path="res://enemies/scripts/sensors/player_sensor.gd" id="12_ovel5"]
+[ext_resource type="Script" uid="uid://dro2gkp4ceyx6" path="res://enemies/scripts/enemy_hit_particles.gd" id="13_3jlja"]
+[ext_resource type="Script" uid="uid://bfn6kk1670xxq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="14_0nqm1"]
+[ext_resource type="Script" uid="uid://btax3igpa2swt" path="res://general/scripts/loot_dropper.gd" id="15_uucha"]
+[ext_resource type="Script" uid="uid://ciky3g73lvmw" path="res://general/scripts/loot_data.gd" id="16_qpicr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cba3"]
 radius = 8.0
@@ -109,19 +113,80 @@ format = 3
 [sub_resource type="GDScript" id="GDScript_ovel5"]
 script/source = "extends Label
 
-@onready var player_sensor: Player_Sensor = $\"../Player_Sensor\"
-@onready var slime_2: Enemy = $\"..\"
-
-
-func _physics_process(_delta: float) -> void:
-	if not slime_2.blackboard.target:
-		text = \"NON\"
-		return
-	text = \"\"
-	text = \"target = \" + slime_2.blackboard.target.name
-	text += \"\\n  dist = \"
-	text += str( snapped( slime_2.blackboard.distance_to_target, 0.01 ) )
+#@onready var player_sensor: Player_Sensor = $\"../Player_Sensor\"
+#@onready var slime_2: Enemy = $\"..\"
+#
+#
+#func _physics_process(_delta: float) -> void:
+	#if not slime_2.blackboard.target:
+		#text = \"NON\"
+		#return
+	#text = \"target = \" + slime_2.blackboard.target.name
+	#text += \"\\n  dist = \"
+	#text += str( snapped( slime_2.blackboard.distance_to_target, 0.01 ) )
 "
+
+[sub_resource type="Gradient" id="Gradient_dq0sk"]
+offsets = PackedFloat32Array(0.45948276, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uucha"]
+gradient = SubResource("Gradient_dq0sk")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Resource" id="Resource_qpicr"]
+script = ExtResource("14_0nqm1")
+count = 12
+color = Color(0, 0.2893099, 0.9844699, 1)
+texture = SubResource("GradientTexture2D_uucha")
+metadata/_custom_type_script = "uid://bfn6kk1670xxq"
+
+[sub_resource type="Gradient" id="Gradient_0nqm1"]
+offsets = PackedFloat32Array(0.45948276, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dq0sk"]
+gradient = SubResource("Gradient_0nqm1")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Resource" id="Resource_uucha"]
+script = ExtResource("14_0nqm1")
+count = 24
+color = Color(0, 0.2893099, 0.9844699, 1)
+texture = SubResource("GradientTexture2D_dq0sk")
+metadata/_custom_type_script = "uid://bfn6kk1670xxq"
+
+[sub_resource type="Gradient" id="Gradient_qpicr"]
+offsets = PackedFloat32Array(0.45948276, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpnvx"]
+gradient = SubResource("Gradient_qpicr")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Resource" id="Resource_7lkcl"]
+script = ExtResource("14_0nqm1")
+color = Color(0.32987884, 1.353256, 0, 1)
+texture = SubResource("GradientTexture2D_vpnvx")
+metadata/_custom_type_script = "uid://bfn6kk1670xxq"
+
+[sub_resource type="Resource" id="Resource_vpnvx"]
+script = ExtResource("16_qpicr")
+item = "uid://t0n57e3cw4k2"
+maximum = 3
+metadata/_custom_type_script = "uid://ciky3g73lvmw"
 
 [node name="Slime2" type="CharacterBody2D" unique_id=624553533]
 collision_layer = 0
@@ -210,14 +275,29 @@ metadata/_custom_type_script = "uid://cgaos837st1cw"
 [node name="Player_Sensor" type="Area2D" parent="." unique_id=2032033152]
 position = Vector2(0, -8)
 script = ExtResource("12_ovel5")
+use_audio_sensor = true
 metadata/_custom_type_script = "uid://b1h7raekiavog"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player_Sensor" unique_id=1893725791]
 polygon = PackedVector2Array(0, 0, 256, -128, 256, 128)
 
 [node name="Label" type="Label" parent="." unique_id=2033489887]
+visible = false
 offset_left = -20.0
 offset_top = -37.0
 offset_right = 20.0
 offset_bottom = -22.0
+text = "gg"
 script = SubResource("GDScript_ovel5")
+
+[node name="Enemy_Hit_Particles" type="Marker2D" parent="." unique_id=1605707190]
+position = Vector2(0, -8)
+script = ExtResource("13_3jlja")
+hit_particles = Array[ExtResource("14_0nqm1")]([SubResource("Resource_qpicr")])
+death_particles = Array[ExtResource("14_0nqm1")]([SubResource("Resource_uucha"), SubResource("Resource_7lkcl")])
+metadata/_custom_type_script = "uid://dro2gkp4ceyx6"
+
+[node name="Loot_Dropper" type="Marker2D" parent="." unique_id=627129050]
+script = ExtResource("15_uucha")
+items = Array[ExtResource("16_qpicr")]([SubResource("Resource_vpnvx")])
+metadata/_custom_type_script = "uid://btax3igpa2swt"

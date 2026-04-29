@@ -16,7 +16,7 @@ var effect_timer : float = 0.0
 func enter() -> void:
 	player.player_anim.play("ground_slam")
 	player.hero.tween_color()
-	Audio.play_apatial_sound( dash.DASH_AUDIO, player.global_position )
+	Audio.play_apatial_sound( dash.DASH_AUDIO, player.global_position, false, true, 0.75 )
 	player.damege_area.start_invurable()
 	ground_slam_attack_area.set_active()
 
@@ -25,7 +25,7 @@ func exit() -> void:
 	VisualEffects.camera_chake( 10.0 )
 	VisualEffects.land_dust( player.global_position )
 	VisualEffects.hit_dust( player.global_position )
-	Audio.play_apatial_sound( BOOM_AUDIO, player.global_position )
+	Audio.play_apatial_sound( BOOM_AUDIO, player.global_position, false, true, 1.0 )
 	player.damege_area.end_invurable()
 	ground_slam_attack_area.set_active( false )
 
@@ -60,7 +60,7 @@ func check_collision( delta : float ) -> bool:
 		
 		if c.get_parent() is Breakable:
 			var b : Breakable = c.get_parent()
-			Audio.play_apatial_sound( b.destroy_audio, pos )
+			Audio.play_apatial_sound( b.destroy_audio, pos, false, true, 0.75 )
 			for p in b.destroy_particles:
 				VisualEffects.hit_particles( pos, Vector2.DOWN, p )
 			b.queue_free()
@@ -68,7 +68,7 @@ func check_collision( delta : float ) -> bool:
 			VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_LARGE )
 			VisualEffects.hit_particles( pos, Vector2.DOWN, HIT_WOOD_MEDUIM )
 			VisualEffects.hit_particles( pos, Vector2.UP, HIT_WOOD_SMALL )
-			Audio.play_apatial_sound( BREAK_WOOD_AUDIO, pos )
+			Audio.play_apatial_sound( BREAK_WOOD_AUDIO, pos, false, true, 0.75 )
 			SaveManager.add_to_presistent_data( c )
 			c.queue_free()
 	return true

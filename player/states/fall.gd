@@ -1,9 +1,10 @@
 class_name PlayerState_fall extends Player_state
 
+const LAND = preload("uid://cne8vlikqcpty")
+
 @export var fall_gravity_mulitplier : float = 1.165
 @export var coyote_time : float = 0.125
 @export var jump_buffer_time : float = 0.1
-@onready var land_audio: AudioStreamPlayer2D = %land_audio
 
 var coyote_timer : float = 0.0
 var buffer_timer : float = 0.0
@@ -62,7 +63,7 @@ func process(delta: float) -> Player_state:
 func physics_process(_delta: float) -> Player_state:
 	player.move()
 	if player.is_on_floor():
-		land_audio.play()
+		Audio.play_apatial_sound( LAND, player.global_position, false, true, 0.5 )
 		VisualEffects.land_dust( player.global_position )
 		if buffer_timer > 0.0:
 			player.jump_count = 0

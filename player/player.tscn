@@ -21,6 +21,26 @@
 [ext_resource type="Script" uid="uid://cns0lapeysi1i" path="res://general/scripts/attack_area.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="15_wodsf"]
 
+[sub_resource type="Gradient" id="Gradient_bakj3"]
+offsets = PackedFloat32Array(0.4116242, 0.6280048)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_65viv"]
+gradient = SubResource("Gradient_bakj3")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_x7c3f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 0.5), -2.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Gradient" id="Gradient_bjvpn"]
+offsets = PackedFloat32Array(0, 0.19329268, 0.36890244, 0.59817076, 0.8371951, 1)
+colors = PackedColorArray(0, 1, 0.034876585, 0, 0.08368451, 0.94062644, 0.07646846, 1, 0.06252176, 0.4018496, 0.5372669, 1, 0.08235294, 0.9411765, 0.07450981, 1, 0.1656894, 0.74771535, 0.6300647, 1, 1, 1, 1, 0)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
 radius = 8.0
 height = 46.0
@@ -489,8 +509,30 @@ position = Vector2(24, 24)
 texture = ExtResource("10_wodsf")
 hframes = 8
 
+[node name="Heal_Particles" type="CPUParticles2D" parent="Hero" unique_id=96868843]
+z_index = 1
+position = Vector2(0, 39.999996)
+emitting = false
+amount = 30
+texture = SubResource("GradientTexture2D_65viv")
+lifetime = 1.2
+one_shot = true
+preprocess = 0.5
+randomness = 0.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(12, 0)
+direction = Vector2(0, -1)
+gravity = Vector2(0, -70)
+initial_velocity_max = 25.0
+orbit_velocity_min = -0.15
+orbit_velocity_max = 0.15
+scale_amount_curve = SubResource("Curve_x7c3f")
+color_ramp = SubResource("Gradient_bjvpn")
+
 [node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=609811687]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_hg6s5")
 debug_color = Color(0, 0.6, 0.69803923, 0.15686275)
@@ -516,6 +558,7 @@ collision_mask = 2
 
 [node name="ground_slam_chapeCast" type="ShapeCast2D" parent="." unique_id=1499182515]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -3)
 enabled = false
 shape = SubResource("RectangleShape2D_c35mf")
@@ -551,6 +594,7 @@ energy = 0.5
 texture = SubResource("GradientTexture2D_hg6s5")
 
 [node name="input_hints" type="Node2D" parent="." unique_id=853307203]
+visible = false
 position = Vector2(0, -64)
 script = ExtResource("9_8t03j")
 
@@ -560,6 +604,7 @@ hframes = 16
 
 [node name="Attack_Area" type="Area2D" parent="." unique_id=1536389812]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -23)
 rotation = 1.5707964
 collision_layer = 0

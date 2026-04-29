@@ -51,7 +51,7 @@ func do_attack() -> void:
 		anim_name = "attack_2"
 	player.player_anim.play( anim_name )
 	player.attack_area.activate()
-	Audio.play_apatial_sound( AUDIO_ATTACK, player.global_position )
+	Audio.play_apatial_sound( AUDIO_ATTACK, player.global_position, false, true, 0.25 )
 
 func end_attack() -> void:
 	if timer > 0.0:

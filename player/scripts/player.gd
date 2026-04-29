@@ -94,6 +94,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				max_hp += 10
 			else:
 				hp = min( hp+2, max_hp )
+				heal_particles.emitting = true
 	
 	change_state( current_state.handle_input(event) )
 
@@ -172,9 +173,11 @@ func update_dirction() -> void:
 func move() -> void:
 	velocity.x = dirction.x * move_speed
 
+@onready var heal_particles: CPUParticles2D = $Hero/Heal_Particles
 
 func _on_player_healed( amount : float ) -> void:
 	hp += amount
+	heal_particles.emitting = true
 
 
 func _on_damge_taken( _attack_area : Attack_Area) -> void:

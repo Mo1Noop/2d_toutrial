@@ -3,6 +3,8 @@ extends Node # Audio
 #region /// var
 enum REVERB_TYPE { NONE, SMALL, MEDIUM, LARGE }
 
+signal player_made_sound( pos : Vector2, volume : float )
+
 @export var ui_focus_audio : AudioStream
 @export var ui_select_audio : AudioStream
 @export var ui_cancel_audio : AudioStream
@@ -90,7 +92,12 @@ func set_reverb( type : REVERB_TYPE ) -> void:
 			reverb_fx.room_size = 0.8
 
 
-func play_apatial_sound( audio : AudioStream, pos : Vector2, ignore_pool : bool = false ) -> void:
+func play_apatial_sound(
+	audio : AudioStream, pos : Vector2,
+	ignore_pool : bool = false,
+	was_player : bool = false,
+	volume : float = 0.5
+	) -> void:
 	if ignore_pool:
 		var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 		add_child( ap )
@@ -105,7 +112,9 @@ func play_apatial_sound( audio : AudioStream, pos : Vector2, ignore_pool : bool 
 		ap.stream = audio
 		ap.play()
 		audio_index = wrapi( audio_index +1 , 0, 32)
-
+	
+	if was_player:
+		player_made_sound.emit( pos, volume )
 
 func play_ui_audio( audio : AudioStream ) -> void:
 	if ui_audio_player:
