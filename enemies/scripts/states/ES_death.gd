@@ -2,7 +2,7 @@ class_name ES_Death extends Enemy_State
 
 
 @export var death_sound : AudioStream
-@export var knockback_strength : float = 100.0
+@export var knockback_strength : float = 20.0
 var vel_x : float = 0.0
 var duration : float = 0.0
 var timer : float = 0.0

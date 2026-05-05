@@ -1,9 +1,12 @@
-class_name Decision_Engine_Basic extends Decision_Engine
+class_name Decision_Engine_Basic_Attack extends Decision_Engine
 
 @onready var es_walk: ES_Walk = %ES_Walk
 @onready var es_stun: ES_Stun = %ES_Stun
 @onready var es_death: ES_Death = %ES_Death
 @onready var es_idle: ES_idle = %ES_idle
+
+@export var es_attack: ES_Attack
+@export var es_chase: ES_Chase
 
 func _ready() -> void:
 	await super()
@@ -23,6 +26,7 @@ func decide() -> Enemy_State:
 		enemy.change_dir( -blackboard.dir )
 	
 	if blackboard.target:
-		pass
-	
+		if es_attack.can_attack():
+			return es_attack
+		return es_chase
 	return es_walk

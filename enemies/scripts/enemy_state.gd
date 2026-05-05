@@ -1,7 +1,6 @@
 @icon( "res://general/icons/state.svg" )
 class_name Enemy_State extends Node
 
-
 @export var anim_name : String
 
 var state_machine : Enemy_State_Machine

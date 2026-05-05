@@ -15,7 +15,6 @@ var timer : float
 var player_in_range : bool = false
 
 
-
 func _ready() -> void:
 	set_collision_mask_value( 1, false )
 	set_collision_layer_value( 1, false )
@@ -65,9 +64,9 @@ func _on_dir_changed( dir : float ) -> void:
 		#timer = search_duration
 		#enemy.blackboard.target = get_tree().get_first_node_in_group("Player")
 
-# AI 
+# AI Because I am really bad at math
 func _on_player_sound(pos: Vector2, volume: float) -> void:
-	var sound_dist: float = global_position.distance_to(pos)
+	var sound_dist : float = global_position.distance_to(pos)
 	var effective_dist : float = audio_detect_dist * volume
 	if effective_dist <= 0.0:
 		return

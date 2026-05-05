@@ -1,7 +1,7 @@
 class_name ES_Stun extends Enemy_State
 
 
-@export var knockback_strength : float = 100.0
+@export var knockback_strength : float = 30.0
 var vel_x : float = 0.0
 var duration : float = 0.0
 var timer : float = 0.0

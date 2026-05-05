@@ -19,7 +19,12 @@
 [ext_resource type="Script" uid="uid://bmwcht4pabh35" path="res://player/states/ball.gd" id="12_65viv"]
 [ext_resource type="Script" uid="uid://c5lvwkhvi2w4e" path="res://player/scripts/player_sprite.gd" id="12_e7oew"]
 [ext_resource type="Script" uid="uid://cns0lapeysi1i" path="res://general/scripts/attack_area.gd" id="12_ebec5"]
+[ext_resource type="Texture2D" uid="uid://mpt8ms7qd45c" path="res://player/sprites/hero_n.png" id="14_x7c3f"]
 [ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="15_wodsf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bjvpn"]
+diffuse_texture = ExtResource("9_hg6s5")
+normal_texture = ExtResource("14_x7c3f")
 
 [sub_resource type="Gradient" id="Gradient_bakj3"]
 offsets = PackedFloat32Array(0.4116242, 0.6280048)
@@ -497,7 +502,7 @@ script = ExtResource("12_65viv")
 unique_name_in_owner = true
 position = Vector2(0, -39)
 scale = Vector2(1.0000001, 1.0000001)
-texture = ExtResource("9_hg6s5")
+texture = SubResource("CanvasTexture_bjvpn")
 hframes = 16
 vframes = 4
 script = ExtResource("12_e7oew")

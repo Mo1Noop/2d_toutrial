@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://buoiuca8qnyq1" path="res://levels/props/test_dommy/test_dommy.tscn" id="7_wqnh4"]
 [ext_resource type="PackedScene" uid="uid://caultvlhbhe8a" path="res://levels/props/slam_breakable/slam_breakable.tscn" id="8_jv0uq"]
 [ext_resource type="PackedScene" uid="uid://cvma0iqwvxk06" path="res://general/save_point/save_point.tscn" id="9_8tkbf"]
-[ext_resource type="PackedScene" uid="uid://bxqpfuddfroja" path="res://enemies/slime_2/slime_2.tscn" id="11_l483o"]
 [ext_resource type="Texture2D" uid="uid://crgjldkej0l6p" path="res://enemies/slime/slime.png" id="12_mxoxg"]
 [ext_resource type="Script" uid="uid://dro2gkp4ceyx6" path="res://enemies/scripts/enemy_hit_particles.gd" id="13_f5hqa"]
 [ext_resource type="Script" uid="uid://bfn6kk1670xxq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="14_7hbc2"]
 [ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="15_mo3kf"]
+[ext_resource type="PackedScene" uid="uid://o8b10ebqoby2" path="res://enemies/living_armor/living_armor.tscn" id="15_mxoxg"]
 
 [sub_resource type="Gradient" id="Gradient_dq0sk"]
 offsets = PackedFloat32Array(0.45948276, 1)
@@ -171,28 +171,6 @@ position = Vector2(696, 594)
 [node name="save_point" parent="." unique_id=629329896 instance=ExtResource("9_8tkbf")]
 position = Vector2(1116, 202)
 
-[node name="Slime2" parent="." unique_id=624553533 instance=ExtResource("11_l483o")]
-position = Vector2(757, -71)
-health = 1.0
-
-[node name="Slime3" parent="." unique_id=995633761 instance=ExtResource("11_l483o")]
-position = Vector2(313, 223)
-health = 1.0
-face_left_on_start = true
-
-[node name="Slime4" parent="." unique_id=548545374 instance=ExtResource("11_l483o")]
-position = Vector2(467, 224)
-health = 1.0
-face_left_on_start = true
-
-[node name="Slime5" parent="." unique_id=268344391 instance=ExtResource("11_l483o")]
-position = Vector2(550, 223)
-health = 1.0
-
-[node name="Slime6" parent="." unique_id=453774201 instance=ExtResource("11_l483o")]
-position = Vector2(664, 226)
-health = 1.0
-
 [node name="Slime_Sprite" type="Sprite2D" parent="." unique_id=1436227964]
 modulate = Color(0.44218254, 0.33819872, 0.7827901, 1)
 position = Vector2(545, 109)
@@ -221,3 +199,7 @@ position = Vector2(1.6391769e-07, -11.75)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_co2sg")
 debug_color = Color(0.02040116, 0.70196074, 0, 0.41960785)
+
+[node name="living_armor" parent="." unique_id=624553533 instance=ExtResource("15_mxoxg")]
+position = Vector2(618, 224)
+face_left_on_start = true

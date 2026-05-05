@@ -6,6 +6,7 @@ var enemy : Enemy
 var current_state : Enemy_State
 var blackboard : Blackboard
 
+
 func _ready() -> void:
 	while not enemy:
 		await get_tree().process_frame

@@ -5,8 +5,7 @@ class_name ES_Walk extends Enemy_State
 
 
 func enter() -> void:
-	var anim : String = anim_name if anim_name else "walk"
-	enemy.play_animation( anim )
+	enemy.play_animation( anim_name if anim_name else "walk" )
 
 
 func physics_update( _detla : float ) -> void:

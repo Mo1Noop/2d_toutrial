@@ -35,6 +35,6 @@ func set_active( val : bool = true ) -> void:
 
 func flip( dir_x : float ) -> void:
 	if dir_x > 0.0:
-		scale = Vector2(1,1)
+		scale.x = 1
 	elif dir_x < 0.0:
-		scale = Vector2(-1,-1)
+		scale.x = -1
