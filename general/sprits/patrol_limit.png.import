@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d381lb0rxya7x"
-path="res://.godot/imported/mug-hot-alt.png-8d2548d49488f53aaffcae71afb0ebf3.ctex"
+uid="uid://0idaynkgiax7"
+path="res://.godot/imported/patrol_limit.png-f39bee8d47a2d8786c3cea47a866fd3f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Z_testing/mug-hot-alt.png"
-dest_files=["res://.godot/imported/mug-hot-alt.png-8d2548d49488f53aaffcae71afb0ebf3.ctex"]
+source_file="res://general/sprits/patrol_limit.png"
+dest_files=["res://.godot/imported/patrol_limit.png-f39bee8d47a2d8786c3cea47a866fd3f.ctex"]
 
 [params]
 

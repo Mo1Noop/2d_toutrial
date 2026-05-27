@@ -337,19 +337,22 @@ width = 1120
 hieght = 334
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
-[node name="Level_Transtion0" parent="level_tools" unique_id=605095959 instance=ExtResource("4_vhcel")]
-position = Vector2(48, 236)
+[node name="00" parent="level_tools" unique_id=605095959 instance=ExtResource("4_vhcel")]
+position = Vector2(48, 232)
 size = 15
+level_name = "playGround"
+target_level = "uid://bn5rop0e7wgj2"
+target_area_name = "00"
 
 [node name="Level_Transtion" parent="level_tools" unique_id=902388490 instance=ExtResource("4_vhcel")]
 position = Vector2(1120, 208)
 size = 13
 location = 1
-level_name = "00_forest/02"
+level_name = "02.tscn"
 target_level = "uid://dbws3ync16n1s"
 
 [node name="player_spawn" parent="level_tools" unique_id=1487865817 instance=ExtResource("7_vdj2u")]
-position = Vector2(1008, 192)
+position = Vector2(718, 204)
 
 [node name="Music_auto_trigger" type="Node" parent="level_tools" unique_id=1791391616]
 script = ExtResource("8_8sv46")

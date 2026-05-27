@@ -38,6 +38,7 @@ fill_to = Vector2(0, 0)
 
 [node name="world" type="Node2D" parent="." unique_id=1083080888]
 position = Vector2(0, -24)
+metadata/_edit_group_ = true
 
 [node name="parallaxBG" type="Node2D" parent="world" unique_id=106115435]
 position = Vector2(2, 58)
@@ -309,7 +310,7 @@ location = 1
 target_level = "uid://cuyoqrryc3www"
 
 [node name="player_spawn" parent="level_tools" unique_id=606501393 instance=ExtResource("7_yy75x")]
-position = Vector2(1055, 189)
+position = Vector2(724, 191)
 
 [node name="Music_auto_trigger" type="Node" parent="level_tools" unique_id=1995496840]
 script = ExtResource("8_yy75x")

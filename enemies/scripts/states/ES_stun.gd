@@ -25,10 +25,8 @@ func start() -> void:
 func enter() -> void:
 	start()
 
-
 func re_enter() -> void:
 	start()
-
 
 func exit() -> void:
 	blackboard.can_decide = true

@@ -8,14 +8,13 @@ signal damge_taken( attake_area : Attack_Area )
 func take_damge( attake_area : Attack_Area ) -> void:
 	damge_taken.emit( attake_area )
 	if audio:
-		#Audio.set_reverb( Audio.REVERB_TYPE.NONE )
 		Audio.play_apatial_sound( audio, global_position )
 
 
 func make_invurable( duration : float = 1.0 ) -> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
+	start_invurable()
 	await get_tree().create_timer( duration ).timeout
-	process_mode = Node.PROCESS_MODE_INHERIT
+	end_invurable()
 
 
 func start_invurable() -> void:

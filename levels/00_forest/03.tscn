@@ -77,7 +77,7 @@ target_level = "uid://dki7fmf6mu0yv"
 
 [node name="player_spawn" parent="level_tools" unique_id=444237077 instance=ExtResource("5_7vwju")]
 modulate = Color(0, 3.2944162, 1.3023835, 1)
-position = Vector2(223, 71)
+position = Vector2(231, 118)
 
 [node name="Music_auto_trigger" type="Node" parent="level_tools" unique_id=603824445]
 script = ExtResource("6_c06eb")

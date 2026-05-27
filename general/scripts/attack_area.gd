@@ -9,7 +9,6 @@ func _ready() -> void:
 	visible = false
 	monitorable = false
 	monitoring = false
-	
 
 
 func on_body_entered( body ) -> void:
@@ -24,8 +23,6 @@ func activate( duration : float = 0.1 ) -> void:
 	set_active()
 	await get_tree().create_timer( duration ).timeout
 	set_active( false )
-	
-	
 
 
 func set_active( val : bool = true ) -> void:

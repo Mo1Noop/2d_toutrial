@@ -84,7 +84,7 @@ target_area_name = "Level_Transtion2"
 
 [node name="player_spawn" parent="level_tools" unique_id=669089163 instance=ExtResource("6_helwq")]
 modulate = Color(0, 3.2944162, 1.3023835, 1)
-position = Vector2(233, 235)
+position = Vector2(277, 135)
 
 [node name="Music_auto_trigger" type="Node" parent="level_tools" unique_id=1048442270]
 script = ExtResource("7_8s6r2")

@@ -2,6 +2,11 @@ class_name PlayerState_Idle extends Player_state
 
 
 func enter() -> void:
+	if player.previous_state is PlayerState_crouch:
+		player.player_anim.play_backwards("crouch")
+		player.player_anim.speed_scale = 1.5
+		await player.player_anim.animation_finished
+		player.player_anim.speed_scale = 1.0
 	player.player_anim.play("idle")
 	player.velocity.x = 0.0
 	player.jump_count = 0

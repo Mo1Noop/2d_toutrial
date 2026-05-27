@@ -21,8 +21,7 @@ func _ready() -> void:
 func transtion_scene(
 	new_scene : String, target_area : String, 
 	player_offset : Vector2, dir : String ) -> void:
-	
-	check_new_scene( new_scene )
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = true
 	var fade_pos : Vector2 = get_fade_pos( dir )
 	fade.visible = true
@@ -61,11 +60,3 @@ func get_fade_pos( dir : String ) -> Vector2:
 		"down":
 			pos *= Vector2.DOWN
 	return pos
-
-
-func check_new_scene( new_scene : String ) -> void:
-	if new_scene in [ "uid://cvi1svgb3cnok", "res://title_screen/BG_menu.tscn" ]: # <- title scene
-		PlayerHud.visible = false
-	else:
-		await load_scene_finished
-		PlayerHud.visible = true

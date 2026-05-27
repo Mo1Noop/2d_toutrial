@@ -73,6 +73,10 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("game_time"):
+		Engine.time_scale = 0.5
+	if event.is_action_released("game_time"):
+		Engine.time_scale = 1.0
 	if event.is_action_released("jump") and velocity.y < 0.0:
 		velocity.y *= 0.5
 	if event.is_action_pressed("action"):
@@ -147,16 +151,17 @@ func update_dirction() -> void:
 	var x_axis : float = Input.get_axis("left", "right")
 	var y_axis : float = Input.get_axis("up", "down")
 	dirction = Vector2(x_axis, y_axis)
-	attack_area.flip( dirction.x )
 	if prev_dirction.x == dirction.x:
 		return
 	if dirction.x < 0.0:
 		#LEFT
+		attack_area.flip( dirction.x )
 		hero.flip_h = true
 		attack_sprite.flip_h = true
 		attack_sprite.position.x = -24
 	elif dirction.x > 0.0:
 		#RIGHT
+		attack_area.flip( dirction.x )
 		hero.flip_h = false
 		attack_sprite.flip_h = false
 		attack_sprite.position.x = 24.0

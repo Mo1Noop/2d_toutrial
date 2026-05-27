@@ -40,8 +40,7 @@ func _ready() -> void:
 func _on_load_scene_finished() -> void:
 	area_2d.monitoring = false
 	area_2d.body_entered.connect( _on_player_entered )
-	await get_tree().physics_frame
-	await get_tree().physics_frame
+	await get_tree().create_timer( 0.5 ).timeout
 	area_2d.monitoring = true
 
 
@@ -111,10 +110,5 @@ func get_transition_dir() -> String:
 
 ## this dose not effect the code it display the level name only
 func get_level_name() -> void:
-	if target_level == "":
-		return
-	var _name : String
-	_name = ResourceUID.ensure_path( target_level )
-	_name = _name.replace("res://levels/", "")
-	_name = _name.replace(".tscn", "")
-	level_name = _name
+	if target_level == "": return
+	level_name = ResourceUID.ensure_path( target_level ).get_file()

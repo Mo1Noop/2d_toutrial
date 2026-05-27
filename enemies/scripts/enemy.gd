@@ -12,11 +12,13 @@ signal was_killed()
 	set( val ):
 		face_left_on_start = val
 		_update_face_left()
+@export var use_audio_sensor : bool = false
 
 var sprite : Sprite2D
 var animation : AnimationPlayer
 var damage_area : Damege_area
 var hazard_area : Hazard_Area
+var Sensor : Player_Sensor
 
 var state_machine : Enemy_State_Machine
 var decision_engine : Decision_Engine
@@ -28,6 +30,7 @@ func _ready() -> void:
 		set_physics_process( false )
 		return
 	setup()
+	Sensor.activate_audio_Sensor( use_audio_sensor )
 
 
 func setup() -> void:
@@ -43,7 +46,9 @@ func setup() -> void:
 			damage_area = c
 			damage_area.damge_taken.connect( on_damge_taken ) 
 		elif c is Hazard_Area and not hazard_area:
-			hazard_area = c 
+			hazard_area = c
+		elif c is Player_Sensor and not Sensor:
+			Sensor = c
 		elif c is Enemy_State_Machine and not state_machine:
 			state_machine = c 
 		elif c is Decision_Engine and not decision_engine:

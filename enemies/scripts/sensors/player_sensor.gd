@@ -7,7 +7,7 @@ signal started_searching
 
 @export var search_duration : float = 2.0
 @export var use_audio_sensor : bool = false
-@export var audio_detect_dist : float = 450.0
+@export var audio_detect_dist : float = 350.0
 @export var min_audio_sense : float = 0.25
 
 var enemy : Enemy
@@ -21,11 +21,16 @@ func _ready() -> void:
 	if owner is Enemy:
 		enemy = owner
 		set_collision_mask_value( 5, true )
-		if use_audio_sensor:
-			Audio.player_made_sound.connect( _on_player_sound )
+		activate_audio_Sensor( use_audio_sensor )
 		body_entered.connect( _on_body_entered )
 		body_exited.connect( _on_body_exited )
 		enemy.direction_changed.connect( _on_dir_changed )
+
+
+func activate_audio_Sensor( b : bool ) -> void:
+	use_audio_sensor = b
+	if use_audio_sensor:
+		Audio.player_made_sound.connect( _on_player_sound )
 
 
 func _physics_process(delta: float) -> void:
@@ -40,13 +45,17 @@ func _on_body_entered( body : Node2D ) -> void:
 	player_in_range = true
 	player_enterd.emit()
 	enemy.blackboard.target = body
-	
+	var look : Vector2 = enemy.global_position - body.global_position
+	enemy.change_dir( -sign(look.x) )
+	#print( sign(look.x) )
 
 
-func _on_body_exited( _body : Node2D ) -> void:
+func _on_body_exited( body : Node2D ) -> void:
 	player_in_range = false
 	started_searching.emit()
 	timer = search_duration
+	var look : Vector2 = enemy.global_position - body.global_position
+	enemy.change_dir( -sign(look.x) )
 
 
 func _on_dir_changed( dir : float ) -> void:

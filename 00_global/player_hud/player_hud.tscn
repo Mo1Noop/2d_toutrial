@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bq52dfj3hoyer" path="res://00_global/player_hud/health_bar_frame.png" id="1_hv14i"]
 [ext_resource type="Script" uid="uid://b1fqlupre1du6" path="res://00_global/player_hud/player_hud.gd" id="1_vb1bs"]
+[ext_resource type="Script" uid="uid://bx2i0pwc3nea4" path="res://00_global/player_hud/tester.gd" id="3_26715"]
 
 [sub_resource type="Gradient" id="Gradient_vb1bs"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -15,35 +16,6 @@ colors = PackedColorArray(0.7624948, 0.30101445, 0.34352872, 1, 0.8530103, 0.613
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4jtec"]
 gradient = SubResource("Gradient_tdgrf")
-
-[sub_resource type="GDScript" id="GDScript_vb1bs"]
-script/source = "extends Button
-
-#@export var particles_settings : Hit_Particle_Settings
-#const SPIKE_DOMMY = preload(\"uid://pm005prnlt1u\")
-func _ready() -> void:
-	pressed.connect( _on_pressed )
-	
-#const slim = preload(\"res://enemies/slime/slime.tscn\")
-const slim = preload(\"uid://bxqpfuddfroja\")
-
-func _on_pressed() -> void:
-	var player : Player = get_tree().get_first_node_in_group( \"Player\" )
-	#player.dash = !player.dash
-	#focus_mode = Control.FOCUS_NONE
-	var g:Node2D = slim.instantiate()
-	player.get_parent().add_child( g )
-	g.global_position = player.global_position + Vector2( 60, -60 )
-	g.z_index = 10
-	g.visible = true
-	#var g := SPIKE_DOMMY.instantiate()
-	#owner.add_child(g)
-	#g.global_position = player_pos
-	
-	#VisualEffects.hit_particles( player_pos, Vector2(0,-1), particles_settings )
-	#VisualEffects.camera_chake( 50.0 )
-	
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_26715"]
 font_size = 32
@@ -101,19 +73,31 @@ nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_26715")
 texture_progress = SubResource("GradientTexture2D_4jtec")
 
-[node name="Button" type="Button" parent="Control" unique_id=1758011586]
+[node name="tester" type="OptionButton" parent="Control" unique_id=1939055427]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -90.0
+offset_left = -97.0
 offset_top = 8.0
-offset_right = -8.0
+offset_right = -10.0
 offset_bottom = 31.0
 grow_horizontal = 0
 focus_mode = 0
-text = "test"
-script = SubResource("GDScript_vb1bs")
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 4
+popup/item_0/text = "living_armor"
+popup/item_0/id = 0
+popup/item_1/text = "doom_scrib"
+popup/item_1/id = 1
+popup/item_2/text = "slime"
+popup/item_2/id = 2
+popup/item_3/text = "slime_2"
+popup/item_3/id = 3
+script = ExtResource("3_26715")
+scene_path = Array[String](["uid://o8b10ebqoby2", "uid://vfq7ou8ph8jy", "uid://c7fq2naxvvvo1", "uid://bxqpfuddfroja"])
 
 [node name="game_over" type="Control" parent="Control" unique_id=1884820450]
 unique_name_in_owner = true

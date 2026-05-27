@@ -37,7 +37,6 @@ func handle_input(_event : InputEvent) -> Player_state:
 func process(_delta: float) -> Player_state:
 	if player.dirction.y <= 0.5:
 		if player.is_on_floor():
-			player.player_anim.play_backwards("crouch")
 			return idle
 		else:
 			return fall

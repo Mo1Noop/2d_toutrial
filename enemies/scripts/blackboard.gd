@@ -4,6 +4,7 @@ var heath : float = 3
 var target : Player = null
 var distance_to_target : float = -1
 var can_decide : bool = true
+var can_idle : bool = false
 var edge_detected : bool = false
 var damage_source : Attack_Area = null
 var dir : float = 1.0

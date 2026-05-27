@@ -1,9 +1,10 @@
 class_name ES_Attack extends Enemy_State
 
-@export var attack_range : float = 100.0
-@export var move_speed : float = 5.0
-@export var cooldown : float = 3.0
 @export var attack_area: Attack_Area
+@export var attack_range : float = 100.0
+@export var cooldown : float = 3.0
+@export var move_speed : float = 75.0
+@export var move_speed_curve : Curve
 
 var timer : float = 0.0
 var duration : float = 0.0
@@ -30,6 +31,9 @@ func physics_update( detla : float ) -> void:
 	timer += detla
 	if timer >= duration:
 		blackboard.can_decide = true
+	if move_speed_curve:
+		var sample : float = move_speed_curve.sample( timer / duration )
+		enemy.velocity.x = move_speed * sample * blackboard.dir
 
 
 func can_attack() -> bool:
