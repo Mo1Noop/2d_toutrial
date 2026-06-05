@@ -14,6 +14,9 @@ signal was_killed()
 		_update_face_left()
 @export var use_audio_sensor : bool = false
 
+@export var patrol_limit_R : Patrol_Limit
+@export var patrol_limit_L : Patrol_Limit
+
 var sprite : Sprite2D
 var animation : AnimationPlayer
 var damage_area : Damege_area
@@ -101,6 +104,8 @@ func on_damge_taken( a : Attack_Area ) -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings : PackedStringArray = []
 	
+	if not find_children( "*", "Player_Sensor", false ):
+		warnings.append( "Requires an Player_Sensor" )
 	if not find_children( "*", "Sprite2D", false ):
 		warnings.append( "Requires an Sprite2D!" )
 	if not find_children( "*", "AnimationPlayer", false ):

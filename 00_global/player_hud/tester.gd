@@ -14,6 +14,7 @@ class_name Test_Tool extends OptionButton
 		scene_path = val
 		on_scene_set()
 
+
 @export var spawn_offset : Vector2 = Vector2( 100, -50 )
 var current_scene : Node2D
 var box : ColorRect
@@ -30,6 +31,11 @@ func _ready() -> void:
 	current_scene = get_tree().current_scene
 	item_selected.connect( on_item_selected )
 	on_scene_set()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("tester"):
+		grab_focus()
 
 
 func _process( delta: float ) -> void:

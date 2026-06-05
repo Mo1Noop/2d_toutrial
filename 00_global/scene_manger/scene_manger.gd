@@ -21,7 +21,6 @@ func _ready() -> void:
 func transtion_scene(
 	new_scene : String, target_area : String, 
 	player_offset : Vector2, dir : String ) -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = true
 	var fade_pos : Vector2 = get_fade_pos( dir )
 	fade.visible = true

@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://btax3igpa2swt" path="res://general/scripts/loot_dropper.gd" id="15_v01k6"]
 [ext_resource type="Script" uid="uid://ciky3g73lvmw" path="res://general/scripts/loot_data.gd" id="16_3xwrv"]
 [ext_resource type="Script" uid="uid://coc14pl4amedm" path="res://enemies/scripts/decision_engine/Decision_Engine_Basic_Attack.gd" id="17_np20x"]
+[ext_resource type="Script" uid="uid://eoluhbkk7kub" path="res://general/scripts/damge_flash.gd" id="21_gjt4y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cba3"]
 radius = 8.0
@@ -165,7 +166,7 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="Resource" id="Resource_qpicr"]
 script = ExtResource("14_4cgso")
 count = 12
-color = Color(0.47597554, 0.47597554, 0.8448077, 1)
+color = Color(0.89678305, 0.4031758, 0.5066229, 1)
 texture = SubResource("GradientTexture2D_uucha")
 metadata/_custom_type_script = "uid://bfn6kk1670xxq"
 
@@ -184,7 +185,7 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="Resource" id="Resource_uucha"]
 script = ExtResource("14_4cgso")
 count = 16
-color = Color(0.47597554, 0.47597554, 0.8448077, 1)
+color = Color(0.7827901, 0.32447067, 0.36347654, 1)
 texture = SubResource("GradientTexture2D_dq0sk")
 metadata/_custom_type_script = "uid://bfn6kk1670xxq"
 
@@ -202,13 +203,22 @@ fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Resource" id="Resource_7lkcl"]
 script = ExtResource("14_4cgso")
-color = Color(0.34901962, 0.3372549, 0.32156864, 1)
+color = Color(0.8529396, 0.57053506, 0.44329792, 1)
 texture = SubResource("GradientTexture2D_vpnvx")
 metadata/_custom_type_script = "uid://bfn6kk1670xxq"
 
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hjl6i"]
+gradient = SubResource("Gradient_qpicr")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [sub_resource type="Resource" id="Resource_rai4y"]
 script = ExtResource("14_4cgso")
-color = Color(0.5019608, 0.15294118, 0.15294118, 1)
+color = Color(0.453123, 0.22144105, 0.6775659, 1)
+texture = SubResource("GradientTexture2D_hjl6i")
 metadata/_custom_type_script = "uid://bfn6kk1670xxq"
 
 [sub_resource type="Resource" id="Resource_vpnvx"]
@@ -217,9 +227,16 @@ item = "uid://t0n57e3cw4k2"
 maximum = 3
 metadata/_custom_type_script = "uid://ciky3g73lvmw"
 
+[sub_resource type="Resource" id="Resource_gjt4y"]
+script = ExtResource("16_3xwrv")
+item = "uid://taa8cdfy04w0"
+maximum = 3
+drop_chance = 1.0
+metadata/_custom_type_script = "uid://ciky3g73lvmw"
+
 [node name="living_armor" type="CharacterBody2D" unique_id=624553533]
+z_index = 5
 collision_layer = 0
-collision_mask = 3
 script = ExtResource("1_870d3")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=2072687623]
@@ -343,6 +360,12 @@ death_particles = Array[ExtResource("14_4cgso")]([SubResource("Resource_uucha"),
 metadata/_custom_type_script = "uid://dro2gkp4ceyx6"
 
 [node name="Loot_Dropper" type="Marker2D" parent="." unique_id=627129050]
+position = Vector2(0, -30)
 script = ExtResource("15_v01k6")
-items = Array[ExtResource("16_3xwrv")]([SubResource("Resource_vpnvx")])
+items = Array[ExtResource("16_3xwrv")]([SubResource("Resource_vpnvx"), SubResource("Resource_gjt4y")])
 metadata/_custom_type_script = "uid://btax3igpa2swt"
+
+[node name="Damge_Flash" type="Node" parent="." unique_id=1445035490]
+script = ExtResource("21_gjt4y")
+flash_color = Color(2.844042, 0, 0, 1)
+metadata/_custom_type_script = "uid://eoluhbkk7kub"

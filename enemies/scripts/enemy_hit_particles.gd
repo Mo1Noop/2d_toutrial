@@ -4,7 +4,7 @@ class_name Enemy_Hit_Particles extends Marker2D
 @export var hit_particles : Array[ Hit_Particle_Settings ]
 @export var death_particles : Array[ Hit_Particle_Settings ]
 
-var enemy_was_killed : bool = false
+@export var enemy_was_killed : bool = false
 
 func _ready() -> void:
 	if owner is Enemy:

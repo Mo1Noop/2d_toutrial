@@ -7,7 +7,8 @@ extends VBoxContainer
 
 func _ready() -> void:
 	var player : Player = get_tree().get_first_node_in_group("Player")
-	ability_dash.visible = player.dash
-	ability_double_jump.visible = player.double_jump
-	ability_morph_roll.visible = player.morph_roll
-	ability_ground_slam.visible = player.ground_slam
+	if player:
+		ability_dash.visible = player.dash
+		ability_double_jump.visible = player.double_jump
+		ability_morph_roll.visible = player.morph_roll
+		ability_ground_slam.visible = player.ground_slam

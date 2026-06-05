@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://bn5rop0e7wgj2"]
 
-[ext_resource type="PackedScene" uid="uid://dyfx1i54kbcaw" path="res://general/abillty_pickup/abillty_pickup.tscn" id="1_hp2oo"]
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="1_hsgd5"]
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="2_ffawd"]
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="4_ffawd"]
@@ -14,8 +13,9 @@
 [ext_resource type="Script" uid="uid://dro2gkp4ceyx6" path="res://enemies/scripts/enemy_hit_particles.gd" id="13_f5hqa"]
 [ext_resource type="Script" uid="uid://bfn6kk1670xxq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="14_7hbc2"]
 [ext_resource type="Script" uid="uid://x1to7vuav48n" path="res://general/scripts/damge_area.gd" id="15_mo3kf"]
-[ext_resource type="PackedScene" uid="uid://vfq7ou8ph8jy" path="res://enemies/doom_scrib/doom_scrib.tscn" id="16_f5hqa"]
+[ext_resource type="PackedScene" uid="uid://b5rpt3dgg04of" path="res://enemies/flaying_chest/flaying_chest.tscn" id="16_7hbc2"]
 [ext_resource type="PackedScene" uid="uid://dmxv6s0l2ajl1" path="res://general/level_transtion/level_transtion.tscn" id="17_7hbc2"]
+[ext_resource type="Script" uid="uid://b4ey2xj85kvix" path="res://general/scripts/patrol_limit.gd" id="17_mo3kf"]
 
 [sub_resource type="Gradient" id="Gradient_dq0sk"]
 offsets = PackedFloat32Array(0.45948276, 1)
@@ -32,7 +32,7 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="Resource" id="Resource_qpicr"]
 script = ExtResource("14_7hbc2")
 count = 12
-color = Color(0, 0.2893099, 0.9844699, 1)
+color = Color(0, 0.56006944, 1.7968466, 1)
 texture = SubResource("GradientTexture2D_uucha")
 metadata/_custom_type_script = "uid://bfn6kk1670xxq"
 
@@ -51,7 +51,7 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="Resource" id="Resource_mxoxg"]
 script = ExtResource("14_7hbc2")
 count = 24
-color = Color(0, 0.2893099, 0.9844699, 1)
+color = Color(0, 0.56006944, 1.7968466, 1)
 texture = SubResource("GradientTexture2D_dq0sk")
 metadata/_custom_type_script = "uid://bfn6kk1670xxq"
 
@@ -69,7 +69,7 @@ fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Resource" id="Resource_7hbc2"]
 script = ExtResource("14_7hbc2")
-color = Color(0.44495642, 1.2386523, 0.20320319, 1)
+color = Color(0.15891121, 1.6410685, 0.15891121, 1)
 texture = SubResource("GradientTexture2D_f5hqa")
 metadata/_custom_type_script = "uid://bfn6kk1670xxq"
 
@@ -85,25 +85,13 @@ size = Vector2(22.5, 26)
 [node name="00" parent="." unique_id=29551148 instance=ExtResource("17_7hbc2")]
 top_level = true
 position = Vector2(1188, 229)
-size = 6
+size = 10
 level_name = "01.tscn"
 target_level = "uid://cb886t8m51hde"
 target_area_name = "00"
 
-[node name="AbilltyPickup" parent="." unique_id=291328138 instance=ExtResource("1_hp2oo")]
-position = Vector2(341, -92)
-
-[node name="AbilltyPickup2" parent="." unique_id=62743442 instance=ExtResource("1_hp2oo")]
-position = Vector2(373, -92)
-type = 1
-
-[node name="AbilltyPickup3" parent="." unique_id=1262226313 instance=ExtResource("1_hp2oo")]
-position = Vector2(405, -92)
-type = 2
-
-[node name="AbilltyPickup4" parent="." unique_id=1037227942 instance=ExtResource("1_hp2oo")]
-position = Vector2(437, -92)
-type = 3
+[node name="player_spawn" parent="." unique_id=140463160 instance=ExtResource("4_ffawd")]
+position = Vector2(417, 209)
 
 [node name="world" type="Node2D" parent="." unique_id=1812117284]
 metadata/_edit_group_ = true
@@ -133,14 +121,6 @@ position = Vector2(980, 223)
 [node name="Torch" parent="world/props" unique_id=805234344 instance=ExtResource("2_ffawd")]
 position = Vector2(351, 224)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="world" unique_id=622600430]
-color = Color(0.14334755, 0.16509277, 0.15422016, 1)
-energy = 0.2
-blend_mode = 2
-
-[node name="player_spawn" parent="." unique_id=140463160 instance=ExtResource("4_ffawd")]
-position = Vector2(417, 209)
-
 [node name="Level_bounds" type="Node2D" parent="." unique_id=1274864306]
 z_index = 256
 position = Vector2(-64, -232)
@@ -154,6 +134,10 @@ position = Vector2(1047, 227)
 
 [node name="SpikeDommy" parent="." unique_id=102335626 instance=ExtResource("7_jv0uq")]
 position = Vector2(947, 229)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=622600430]
+color = Color(0.41842866, 0.5137744, 0.6424911, 1)
+blend_mode = 2
 
 [node name="crates" type="Node" parent="." unique_id=2136142298]
 
@@ -191,6 +175,7 @@ position = Vector2(0, -40)
 script = ExtResource("13_f5hqa")
 hit_particles = Array[ExtResource("14_7hbc2")]([SubResource("Resource_qpicr")])
 death_particles = Array[ExtResource("14_7hbc2")]([SubResource("Resource_mxoxg"), SubResource("Resource_7hbc2")])
+enemy_was_killed = true
 metadata/_custom_type_script = "uid://dro2gkp4ceyx6"
 
 [node name="Damege_area" type="Area2D" parent="Slime_Sprite" unique_id=664094057]
@@ -207,5 +192,18 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_co2sg")
 debug_color = Color(0.02040116, 0.70196074, 0, 0.41960785)
 
-[node name="doom_scrib" parent="." unique_id=624553533 instance=ExtResource("16_f5hqa")]
-position = Vector2(563, 127)
+[node name="FlayingChest" parent="." unique_id=1052791334 node_paths=PackedStringArray("patrol_limit_R", "patrol_limit_L") instance=ExtResource("16_7hbc2")]
+position = Vector2(507, 110)
+patrol_limit_R = NodePath("../R_Patrol_Limit")
+patrol_limit_L = NodePath("../L_Patrol_Limit")
+
+[node name="L_Patrol_Limit" type="Node2D" parent="." unique_id=1732248806]
+position = Vector2(307, 110)
+script = ExtResource("17_mo3kf")
+metadata/_custom_type_script = "uid://b4ey2xj85kvix"
+
+[node name="R_Patrol_Limit" type="Node2D" parent="." unique_id=193334591]
+position = Vector2(707, 110)
+script = ExtResource("17_mo3kf")
+side = 2
+metadata/_custom_type_script = "uid://b4ey2xj85kvix"

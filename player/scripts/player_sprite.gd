@@ -1,7 +1,7 @@
 class_name Player_Sprite extends Sprite2D
 
 var tween : Tween
-@export var effect_color : Color = Color(0.0, 1.0, 0.95, 1.0)
+@export var effect_color : Color = Color(0.0, 1.572, 0.544, 1.0)
 
 func tween_color( duration : float = 0.5, color : Color = effect_color ) -> void:
 	if tween:

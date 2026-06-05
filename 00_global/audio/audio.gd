@@ -93,11 +93,8 @@ func set_reverb( type : REVERB_TYPE ) -> void:
 
 
 func play_apatial_sound(
-	audio : AudioStream, pos : Vector2,
-	ignore_pool : bool = false,
-	was_player : bool = false,
-	volume : float = 0.5
-	) -> void:
+	audio : AudioStream, pos : Vector2, ignore_pool : bool = false,
+	was_player : bool = false, volume : float = 0.5 ) -> void:
 	if ignore_pool:
 		var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 		add_child( ap )
@@ -121,7 +118,7 @@ func play_ui_audio( audio : AudioStream ) -> void:
 		ui_audio_player.play_stream( audio )
 
 
-func setup_button_audio( node : Node ) -> void:
+func setup_button_audio( node : CanvasLayer ) -> void:
 	for c in node.find_children( "*", "Button" ):
 		c.pressed.connect( ui_select )
 		c.focus_entered.connect( ui_focus_change )

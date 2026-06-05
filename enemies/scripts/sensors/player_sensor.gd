@@ -45,17 +45,12 @@ func _on_body_entered( body : Node2D ) -> void:
 	player_in_range = true
 	player_enterd.emit()
 	enemy.blackboard.target = body
-	var look : Vector2 = enemy.global_position - body.global_position
-	enemy.change_dir( -sign(look.x) )
-	#print( sign(look.x) )
 
 
-func _on_body_exited( body : Node2D ) -> void:
+func _on_body_exited( _body : Node2D ) -> void:
 	player_in_range = false
 	started_searching.emit()
 	timer = search_duration
-	var look : Vector2 = enemy.global_position - body.global_position
-	enemy.change_dir( -sign(look.x) )
 
 
 func _on_dir_changed( dir : float ) -> void:

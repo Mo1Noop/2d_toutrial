@@ -9,6 +9,7 @@ class_name Pause_Menu extends CanvasLayer
 @onready var music_slider: HSlider = %Music_Slider
 @onready var sfx_slider: HSlider = %SFX_Slider
 @onready var ui_slider: HSlider = %UI_Slider
+@onready var hdr_check_button: CheckButton = %HDRCheckButton
 
 var player : Player
 
@@ -20,18 +21,16 @@ func _ready() -> void:
 	system_menu_button.pressed.connect( show_system_menu )
 	Audio.setup_button_audio( self )
 	setup_system_menu()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		get_viewport().set_input_as_handled()
 		get_tree().paused = false
-		#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 		queue_free()
 	if pause_screen.visible:
 		if event.is_action_pressed("right") or event.is_action_pressed("down"):
-			system_menu_button.grab_focus()
+			system_menu_button.call_deferred("grab_focus")
 
 
 func show_pause_screen() -> void:
@@ -53,10 +52,21 @@ func setup_system_menu() -> void:
 	music_slider.value_changed.connect( on_music_slider_changed )
 	sfx_slider.value_changed.connect( on_sfx_slider_changed )
 	ui_slider.value_changed.connect( on_ui_slider_changed )
-	
+	set_hdr_button()
 	
 	back_title_button.pressed.connect( on_back_title_button_pressed )
 	back_map_button.pressed.connect( show_pause_screen )
+
+
+func set_hdr_button() -> void:
+	hdr_check_button.toggled.connect( on_hdr_toggled )
+	hdr_check_button.set_pressed_no_signal( get_viewport().use_hdr_2d )
+	hdr_check_button.text = "Enabeld" if get_viewport().use_hdr_2d else "Disabeld"
+
+
+func on_hdr_toggled( toggled : bool ) -> void:
+	get_viewport().use_hdr_2d = toggled
+	hdr_check_button.text = "Enabeld" if toggled else "Disabeld"
 
 
 func on_back_title_button_pressed() -> void:

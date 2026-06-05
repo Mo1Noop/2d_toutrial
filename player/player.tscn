@@ -511,6 +511,7 @@ texture = ExtResource("10_wodsf")
 hframes = 8
 
 [node name="Heal_Particles" type="CPUParticles2D" parent="Hero" unique_id=96868843]
+unique_name_in_owner = true
 z_index = 1
 position = Vector2(0, 39.999996)
 emitting = false
@@ -589,9 +590,8 @@ position = Vector2(0, -37)
 script = ExtResource("9_2ieo8")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=950997235]
-visible = false
 position = Vector2(0, -29)
-color = Color(1, 0.8029762, 0.50438434, 1)
+color = Color(1.353256, 1.0915228, 0.69368815, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_hg6s5")
 
@@ -638,7 +638,7 @@ debug_color = Color(0.70196074, 0, 0.06355715, 0.41960785)
 [node name="Damege_area" type="Area2D" parent="." unique_id=572712740]
 unique_name_in_owner = true
 visible = false
-collision_layer = 0
+collision_layer = 16
 collision_mask = 0
 script = ExtResource("15_wodsf")
 audio = SubResource("AudioStreamWAV_65viv")

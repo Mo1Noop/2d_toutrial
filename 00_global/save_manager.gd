@@ -9,6 +9,26 @@ var game_data : Dictionary
 var discovered_areas : Array = []
 var presistent_data : Dictionary = {}
 
+#enum DATA { scene_path, scene_name, pos, coin, hp }
+#var enum_game_data : Dictionary[ DATA, Variant ]
+#var save_test_path : String = "user://save_test_file.save"
+#func test() -> void:
+	#enum_game_data = {
+		#DATA.scene_path : level_01,
+		#DATA.scene_name : ResourceUID.uid_to_path( level_01 ),
+		#DATA.pos : Vector2(100,200),
+		#DATA.coin : 0, DATA.hp : 20 }
+	#var save_test : FileAccess = FileAccess.open( save_test_path,FileAccess.WRITE )
+	#save_test.store_var( enum_game_data )
+	#save_test.close()
+#
+#
+#func load_test() -> void:
+	#var save_test : FileAccess = FileAccess.open( save_test_path, FileAccess.READ )
+	#var the_test : Dictionary[ DATA, Variant ] = save_test.get_var()
+	#prints( the_test )
+	#save_test.close()
+
 
 func _ready() -> void:
 	load_audio_conifg()
@@ -19,8 +39,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_5:
 			save_game()
+			#test()
 		elif event.keycode == KEY_7:
 			load_game( current_slot )
+			#load_test()
 
 
 func add_to_presistent_data( b : Node ) -> void:
@@ -39,6 +61,7 @@ func create_new_game_save( slot : int ) -> void:
 		"scene_name" : ResourceUID.uid_to_path( level_01 ),
 		"x" : 100,
 		"y" : 230,
+		"coin" : 0,
 		"hp" : 20,
 		"max_hp" : 20,
 		"dash" : false,
@@ -60,6 +83,7 @@ func save_game() -> void:
 		"scene_name" : ResourceUID.uid_to_path( SceneManger.current_scene_uid ),
 		"x" : player.global_position.x,
 		"y" : player.global_position.y,
+		"coin" : player.coin,
 		"hp" : player.hp,
 		"max_hp" : player.max_hp,
 		"dash" : player.dash,
@@ -96,7 +120,7 @@ func setup_player() -> void:
 	
 	player.max_hp = game_data.get( "max_hp", 20 )
 	player.hp = game_data.get( "hp", 20 )
-	
+	player.coin = game_data.get( "coin", 0 )
 	player.dash = game_data.get( "dash", false )
 	player.double_jump = game_data.get( "double_jump", false )
 	player.ground_slam = game_data.get( "ground_slam", false )

@@ -44,23 +44,22 @@ func _on_load_scene_finished() -> void:
 	area_2d.monitoring = true
 
 
-func _on_player_entered(_n : Node2D) -> void:
+func _on_player_entered( n : Node2D ) -> void:
 	if target_level == "":
 		return
 	SceneManger.transtion_scene(
-		target_level, target_area_name, get_offset(_n), get_transition_dir() )
+		target_level, target_area_name, get_offset(n), get_transition_dir() )
 
 
 func _on_new_scene_ready( target_name : String, offset : Vector2 ) -> void:
 	if target_name == name:
-		var player : Node = get_tree().get_first_node_in_group("Player")
+		var player : Player = get_tree().get_first_node_in_group("Player")
 		player.global_position = global_position + offset
 
 
 func apply_area_settings() -> void:
 	area_2d = get_node_or_null("Area2D")
-	if not area_2d:
-		return
+	if not area_2d: return
 	if location == SIDE.LEFT or location == SIDE.RIGHT:
 		area_2d.scale.y = size
 		if location == SIDE.LEFT:
@@ -105,7 +104,6 @@ func get_transition_dir() -> String:
 			return "up"
 		_:
 			return "down"
-
 
 
 ## this dose not effect the code it display the level name only

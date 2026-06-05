@@ -292,7 +292,7 @@ hieght = 334
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
 [node name="Level_Transtion" parent="level_tools" unique_id=1907709714 instance=ExtResource("3_epyyu")]
-position = Vector2(0, 224)
+position = Vector2(0, 238)
 size = 12
 level_name = "00_forest/01"
 target_level = "uid://cb886t8m51hde"
@@ -304,7 +304,7 @@ location = 3
 target_level = "uid://cvp1dgtknfga3"
 
 [node name="Level_Transtion3" parent="level_tools" unique_id=489272373 instance=ExtResource("3_epyyu")]
-position = Vector2(1152, 240)
+position = Vector2(1152, 237)
 size = 20
 location = 1
 target_level = "uid://cuyoqrryc3www"

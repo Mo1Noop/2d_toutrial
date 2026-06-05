@@ -4,6 +4,9 @@ class_name Player extends CharacterBody2D
 signal damge_taken
 #region /// var
 #const DEBUG = preload("uid://c08vbptobbyb3")
+@export var move_speed : float = 150
+@export var max_fall_velocity : float = 600.0
+
 @onready var states_node: Node = $states
 
 @onready var collision_stand: CollisionShape2D = %CollisionStand
@@ -16,10 +19,9 @@ signal damge_taken
 @onready var player_anim: AnimationPlayer = %PlayerAnim
 @onready var one_way_chape_cast: ShapeCast2D = %one_way_chapeCast
 
-@export var move_speed : float = 150
-@export var max_fall_velocity : float = 600.0
 @onready var attack_area: Attack_Area = %Attack_Area
 @onready var damege_area: Damege_area = $Damege_area
+@onready var heal_particles: CPUParticles2D = %Heal_Particles
 
 #endregion
 
@@ -42,6 +44,11 @@ var max_hp : float = 20 :
 	set( value ):
 		max_hp = value
 		Messages.player_helth_changed.emit( hp, max_hp )
+
+var coin : int = 0:
+	set( val ):
+		coin = val
+		Messages.coin_changed.emit( coin )
 
 var dash : bool = true
 var dash_count : int = 0
@@ -66,10 +73,12 @@ func _ready() -> void:
 	initialize_states()
 	self.call_deferred( "reparent", get_tree().root )
 	hp = max_hp
-	Messages.player_healed.connect( _on_player_healed )
+	Messages.player_healed.connect( on_player_healed )
 	Messages.back_to_title_screen.connect( queue_free )
 	Messages.input_hint_changed.connect( on_input_hint_changed )
 	damege_area.damge_taken.connect( _on_damge_taken )
+	print(  )
+	#WorldEnvironment
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -178,9 +187,8 @@ func update_dirction() -> void:
 func move() -> void:
 	velocity.x = dirction.x * move_speed
 
-@onready var heal_particles: CPUParticles2D = $Hero/Heal_Particles
 
-func _on_player_healed( amount : float ) -> void:
+func on_player_healed( amount : float ) -> void:
 	hp += amount
 	heal_particles.emitting = true
 

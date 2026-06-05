@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://t0n57e3cw4k2"]
+
+[ext_resource type="Script" uid="uid://b4b6jfhom8nld" path="res://general/pickup/health_pickup/health_pickup.gd" id="1_4tdop"]
+[ext_resource type="Texture2D" uid="uid://bbr2prsjp6twn" path="res://general/pickup/health_pickup/heart.png" id="1_oswdi"]
+[ext_resource type="AudioStream" uid="uid://bbj6cwagd01x6" path="res://general/audio/health_up.wav" id="2_4bav5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oswdi"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tdop"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bav5"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66wk7"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndoxy"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unxoq"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcori"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdm24"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4aj6"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlaxf"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce7n6"]
+atlas = ExtResource("1_oswdi")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4dpvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tdop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bav5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66wk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndoxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unxoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcori")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdm24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4aj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlaxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce7n6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4tdop"]
+radius = 8.0
+
+[node name="HealthPickup" type="CharacterBody2D" unique_id=1958139848]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_4tdop")
+pickup_audio = ExtResource("2_4bav5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=591329906]
+shape = SubResource("CircleShape2D_oswdi")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="heart" type="AnimatedSprite2D" parent="." unique_id=717170426]
+sprite_frames = SubResource("SpriteFrames_4dpvj")
+autoplay = "default"
+frame_progress = 0.0016289557
+offset = Vector2(0.5, 0)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=987428796]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=417099501]
+shape = SubResource("CircleShape2D_4tdop")
+debug_color = Color(0, 0.5950001, 0.7, 0)

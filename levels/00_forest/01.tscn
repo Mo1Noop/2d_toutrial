@@ -338,14 +338,14 @@ hieght = 334
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
 [node name="00" parent="level_tools" unique_id=605095959 instance=ExtResource("4_vhcel")]
-position = Vector2(48, 232)
+position = Vector2(47, 238)
 size = 15
 level_name = "playGround"
 target_level = "uid://bn5rop0e7wgj2"
 target_area_name = "00"
 
 [node name="Level_Transtion" parent="level_tools" unique_id=902388490 instance=ExtResource("4_vhcel")]
-position = Vector2(1120, 208)
+position = Vector2(1120, 207)
 size = 13
 location = 1
 level_name = "02.tscn"

@@ -5,6 +5,7 @@ extends CanvasLayer # player hud
 @onready var game_over: Control = %game_over
 @onready var load_button: Button = %Load_Button
 @onready var quit_button: Button = %Quit_Button
+@onready var coin_count_label: Label = %coin_count_label
 
 
 func _ready() -> void:
@@ -12,6 +13,11 @@ func _ready() -> void:
 	game_over.visible = false
 	load_button.pressed.connect( _on_load_button_pressed )
 	quit_button.pressed.connect( _on_quit_button_pressed )
+	Messages.coin_changed.connect( _update_coin )
+
+
+func _update_coin( amount : int ) -> void:
+	coin_count_label.text = str( amount )
 
 
 func update_helth_bar( hp : float, max_hp : float ) -> void:

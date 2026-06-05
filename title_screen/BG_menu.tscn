@@ -1,21 +1,11 @@
 [gd_scene format=4 uid="uid://cvi1svgb3cnok"]
 
 [ext_resource type="TileSet" uid="uid://m33v4tewta8i" path="res://levels/tilesets/forgotten_forest.tres" id="1_ao164"]
-[ext_resource type="Script" uid="uid://2xqor115khsv" path="res://title_screen/bg_menu.gd" id="1_f00ii"]
 [ext_resource type="PackedScene" uid="uid://he3jeovjo2u6" path="res://levels/props/Torch.tscn" id="2_f00ii"]
 [ext_resource type="PackedScene" uid="uid://bhu4wmpu6vi7q" path="res://title_screen/title_screen.tscn" id="3_hqtqf"]
 
-[sub_resource type="Gradient" id="Gradient_ao164"]
-offsets = PackedFloat32Array(0, 0.54189944, 1)
-colors = PackedColorArray(1, 0, 0, 0.88235295, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mogef"]
-gradient = SubResource("Gradient_ao164")
-fill_from = Vector2(1, 1)
-
 [node name="BG_Menu" type="Node2D" unique_id=652531354]
 z_index = 250
-script = ExtResource("1_f00ii")
 
 [node name="title_screen" parent="." unique_id=690995478 instance=ExtResource("3_hqtqf")]
 
@@ -34,12 +24,6 @@ tile_map_data = PackedByteArray("AAAHAAIAAAAHAAwAAAAIAAIAAAAIAAwAAAAJAAIAAAAJAAw
 tile_set = ExtResource("1_ao164")
 collision_enabled = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1917640445]
-light_mask = 0
-position = Vector2(240.50002, 180.00002)
-scale = Vector2(8.515625, 2.4375002)
-texture = SubResource("GradientTexture2D_mogef")
-
 [node name="MapLayer_3" type="TileMapLayer" parent="Node2D" unique_id=754894390]
 position = Vector2(-31, -1)
 tile_map_data = PackedByteArray("AAABAAcAAAADAAgAAAABAAgAAAADAAkAAAACAAcAAAADAAgAAAACAAgAAAADAAkAAAADAAgAAAADAAkAAAAEAAgAAAACAAkAAAAFAAgAAAADAAkAAAAAAAcAAAACAAgAAAAAAAgAAAACAAkAAAAAAAAAAAADAAsAAAAAAAEAAAADAAoAAAAAAAIAAAADAAwAAAABAAAAAAADAAsAAAABAAEAAAAEAA4AAAABAAIAAAAEAAwAAAACAAAAAAADAAsAAAACAAEAAAADAAwAAAADAAAAAAACAAsAAAADAAEAAAACAAwAAAAEAAAAAAADAAsAAAAEAAEAAAADAAwAAAAFAAAAAAACAAsAAAAFAAEAAAACAAwAAAACAAIAAAAFAAwAAAAHAAAAAAACAAsAAAAHAAEAAAACAAwAAAAHAAgAAAADAAkAAAAIAAAAAAADAAsAAAAIAAEAAAADAAwAAAAIAAcAAAACAAgAAAAIAAgAAAACAAkAAAAJAAAAAAADAAsAAAAJAAEAAAADAAwAAAAJAAcAAAADAAgAAAAJAAgAAAADAAkAAAAKAAAAAAACAAsAAAAKAAEAAAACAAwAAAAKAAcAAAACAAgAAAAKAAgAAAACAAkAAAALAAAAAAADAAsAAAALAAEAAAADAAwAAAALAAcAAAADAAgAAAALAAgAAAADAAkAAAAMAAAAAAADAAsAAAAMAAEAAAACAAwAAAAMAAcAAAACAAgAAAAMAAgAAAACAAkAAAANAAAAAAADAAsAAAANAAEAAAADAAwAAAANAAcAAAADAAgAAAANAAgAAAADAAkAAAAOAAAAAAADAAsAAAAOAAEAAAACAAwAAAAOAAIAAAAAAAwAAAAOAAcAAAACAAgAAAAOAAgAAAACAAkAAAAPAAAAAAADAAsAAAAPAAEAAAADAA4AAAAPAAIAAAABAAwAAAAPAAcAAAADAAgAAAAPAAgAAAADAAkAAAAQAAAAAAADAAsAAAAQAAEAAAADAAsAAAAQAAIAAAACAAwAAAAQAAcAAAACAAgAAAAQAAgAAAACAAkAAAAGAAgAAAACAAkAAAAGAAEAAAADAAwAAAAGAAAAAAADAAsAAAADAAcAAAADAAgAAAAEAAcAAAACAAgAAAAFAAcAAAADAAgAAAAGAAcAAAACAAgAAAAHAAcAAAADAAgAAAA=")
@@ -53,5 +37,6 @@ position = Vector2(136, 229)
 position = Vector2(348, 230)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Node2D" unique_id=1838418441]
-color = Color(0.37501723, 0.42030638, 0.42758763, 1)
+color = Color(0.2423824, 0.32866758, 0.34435582, 1)
+energy = 1.2
 blend_mode = 2

@@ -90,15 +90,12 @@ offset = Vector2(0, -32)
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1633910731]
 position = Vector2(0, -34)
-color = Color(1, 0.8029762, 0.50438434, 1)
-energy = 0.8
 texture = SubResource("GradientTexture2D_7yq1y")
 script = ExtResource("2_dok03")
 
 [node name="Timer" type="Timer" parent="PointLight2D" unique_id=1150959103]
 process_callback = 0
 wait_time = 0.5
-autostart = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=691845495]
 material = SubResource("CanvasItemMaterial_dok03")

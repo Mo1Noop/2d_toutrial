@@ -51,13 +51,13 @@ width = 544
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
 [node name="Level_Transtion" parent="level_tools" unique_id=241420397 instance=ExtResource("4_knfet")]
-position = Vector2(-32, 224)
+position = Vector2(-32, 229)
 size = 4
 target_level = "uid://dbws3ync16n1s"
 target_area_name = "Level_Transtion3"
 
 [node name="Level_Transtion2" parent="level_tools" unique_id=437342650 instance=ExtResource("4_knfet")]
-position = Vector2(512, 224)
+position = Vector2(512, 228)
 size = 4
 location = 1
 level_name = "00_forest/06"

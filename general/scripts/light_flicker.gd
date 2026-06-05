@@ -1,14 +1,15 @@
 class_name Light_Flicker extends PointLight2D
 
-@export var flicker_intensity : float = 0.2
+@export var flicker_intensity : float = 0.6
 @export var flicker_frequency : float = 0.6
 @onready var timer: Timer = $Timer
-var og_energy : float = 1.0
+var og_energy : float
 var tween : Tween
 
 func _ready() -> void:
 	og_energy = energy
 	timer.timeout.connect( Flicker )
+	timer.start()
 
 
 func Flicker() -> void:
@@ -18,7 +19,8 @@ func Flicker() -> void:
 	
 	if tween: tween.kill()
 	tween = create_tween()
-	tween.tween_property(self, "energy",
-	snappedf(new_value, 0.01), snappedf(duration * 0.5, 0.01) * 0.5 )
+	new_value = clampf( new_value, 0.8, 2 )
+	tween.tween_property(self, "energy", new_value, duration * 0.5 )
 	
 	timer.wait_time = duration
+	timer.start()

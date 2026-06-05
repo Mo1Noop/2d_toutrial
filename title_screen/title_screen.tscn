@@ -82,6 +82,7 @@ grow_vertical = 2
 
 [node name="main_menu" type="VBoxContainer" parent="Control" unique_id=1896130959]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -121,6 +122,11 @@ text = "New Game"
 unique_name_in_owner = true
 layout_mode = 2
 text = "load Game"
+
+[node name="settings_button" type="Button" parent="Control/main_menu" unique_id=1607954637]
+unique_name_in_owner = true
+layout_mode = 2
+text = "settings"
 
 [node name="exit_game_button" type="Button" parent="Control/main_menu" unique_id=721224656]
 unique_name_in_owner = true
@@ -218,6 +224,94 @@ text = "Load Slot 03"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Back"
+
+[node name="settings_menu" type="VBoxContainer" parent="Control" unique_id=375557312]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -64.5
+offset_right = 132.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="Control/settings_menu" unique_id=1833670079]
+layout_mode = 2
+text = "Audio levels"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/settings_menu" unique_id=428629688]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/settings_menu/HBoxContainer2" unique_id=1755285860]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Music"
+
+[node name="Music_Slider" type="HSlider" parent="Control/settings_menu/HBoxContainer2" unique_id=1727270635]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/settings_menu" unique_id=1096703208]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/settings_menu/HBoxContainer3" unique_id=1941412543]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="SFX_Slider" type="HSlider" parent="Control/settings_menu/HBoxContainer3" unique_id=2032019443]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/settings_menu" unique_id=247671317]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/settings_menu/HBoxContainer4" unique_id=1410165511]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "UI"
+
+[node name="UI_Slider" type="HSlider" parent="Control/settings_menu/HBoxContainer4" unique_id=1720221858]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="vfxLabel" type="Label" parent="Control/settings_menu" unique_id=1728881554]
+layout_mode = 2
+text = "VFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Control/settings_menu" unique_id=488535881]
+layout_mode = 2
+theme_override_constants/separation = 110
+
+[node name="Label" type="Label" parent="Control/settings_menu/HBoxContainer5" unique_id=1771002385]
+layout_mode = 2
+text = "HDR"
+
+[node name="HDRCheckButton" type="CheckButton" parent="Control/settings_menu/HBoxContainer5" unique_id=1410914559]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Disabeld"
 
 [node name="Music_auto_trigger" type="Node" parent="." unique_id=1059404608]
 script = ExtResource("3_vbjqi")

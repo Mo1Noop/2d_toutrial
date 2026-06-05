@@ -7,13 +7,14 @@
 [ext_resource type="Resource" uid="uid://cmkwibqb2tcg3" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_small.tres" id="3_7662d"]
 [ext_resource type="Resource" uid="uid://uhbpmjdbj466" path="res://00_global/visual_effects/hit_partecle_settings/hit_wood_meduim.tres" id="4_7662d"]
 [ext_resource type="AudioStream" uid="uid://bb407knta2dss" path="res://general/audio/hit.wav" id="7_dp6iv"]
+[ext_resource type="Script" uid="uid://eoluhbkk7kub" path="res://general/scripts/damge_flash.gd" id="8_2aqwc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2aqwc"]
+size = Vector2(14, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7662d"]
 atlas = ExtResource("2_ewjr1")
 region = Rect2(17, 10, 14, 38)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2aqwc"]
-size = Vector2(14, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dp6iv"]
 atlas = ExtResource("2_ewjr1")
@@ -23,25 +24,28 @@ region = Rect2(16, 51, 16, 12)
 script = ExtResource("1_l1nux")
 particles = Array[ExtResource("2_5vj00")]([ExtResource("3_7662d"), ExtResource("4_7662d")])
 
-[node name="body_sprite" type="Sprite2D" parent="." unique_id=691696627]
-position = Vector2(0, -9)
-texture = SubResource("AtlasTexture_7662d")
-offset = Vector2(0, -19)
-
-[node name="Damege_area" type="Area2D" parent="body_sprite" unique_id=1868173229]
+[node name="Damege_area" type="Area2D" parent="." unique_id=1868173229]
 unique_name_in_owner = true
-position = Vector2(0, 9)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_5vj00")
 audio = ExtResource("7_dp6iv")
 metadata/_custom_type_script = "uid://x1to7vuav48n"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="body_sprite/Damege_area" unique_id=959655784]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damege_area" unique_id=959655784]
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_2aqwc")
 debug_color = Color(0, 0.5950001, 0.7, 0)
 
+[node name="body_sprite" type="Sprite2D" parent="." unique_id=691696627]
+position = Vector2(0, -9)
+texture = SubResource("AtlasTexture_7662d")
+offset = Vector2(0, -19)
+
 [node name="base_sprite" type="Sprite2D" parent="." unique_id=520136865]
 position = Vector2(0, -6)
 texture = SubResource("AtlasTexture_dp6iv")
+
+[node name="Damge_Flash" type="Node" parent="." unique_id=1186673213]
+script = ExtResource("8_2aqwc")
+metadata/_custom_type_script = "uid://eoluhbkk7kub"

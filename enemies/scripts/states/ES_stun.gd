@@ -1,7 +1,7 @@
 class_name ES_Stun extends Enemy_State
 
 
-@export var knockback_strength : float = 30.0
+@export var knockback_strength : float = 50.0
 var vel_x : float = 0.0
 var duration : float = 0.0
 var timer : float = 0.0
@@ -14,7 +14,6 @@ func start() -> void:
 		enemy.animation.seek( 0.0 )
 	else:
 		enemy.play_animation( anim )
-	blink()
 	duration = enemy.animation.current_animation_length
 	timer = 0.0
 	calc_vel( blackboard.damage_source )
@@ -44,13 +43,4 @@ func calc_vel( a : Attack_Area ) -> void:
 	if a.global_position.x > enemy.global_position.x:
 		vel_x = -1.0
 	vel_x *= knockback_strength
-
-
-func blink() -> void:
-	if twen: twen.kill()
-	twen = create_tween()
-	twen.set_loops( 2 )
-	twen.tween_property( enemy.sprite, "modulate:a", 0.4, 0.15 )
-	twen.tween_property( enemy.sprite, "modulate:a", 1.0, 0.05 )
-	twen.tween_property( enemy.sprite, "modulate:a", 0.4, 0.13 )
-	twen.tween_property( enemy.sprite, "modulate:a", 1.0, 0.05 )
+	enemy.change_dir( -sign(vel_x) )

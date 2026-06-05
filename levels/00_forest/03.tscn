@@ -69,7 +69,7 @@ target_level = "uid://dbws3ync16n1s"
 target_area_name = "Level_Transtion2"
 
 [node name="Level_Transtion2" parent="level_tools" unique_id=1757257984 instance=ExtResource("3_vv2jw")]
-position = Vector2(1151, 224)
+position = Vector2(1152, 229)
 size = 7
 location = 1
 level_name = "00_forest/04"

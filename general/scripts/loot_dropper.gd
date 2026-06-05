@@ -12,8 +12,7 @@ func _ready() -> void:
 
 func drop_loot() -> void:
 	for i in items:
-		if i.drop_chance <= randf():
-			continue
+		if i.drop_chance <= randf(): continue
 		var drop_scene = load( i.item )
 		var count : int = randi_range( i.minimum, i.maximum )
 		for j in count:
@@ -21,4 +20,6 @@ func drop_loot() -> void:
 			owner.add_sibling.call_deferred( drop )
 			drop.global_position = global_position
 			if drop is CharacterBody2D:
-				drop.velocity = Vector2( randf_range( -100.0, 100.0 ), randf_range( -200.0, -400.0 ) )
+				drop.velocity = Vector2(
+					randf_range( -100.0, 100.0 ),
+					randf_range( -200.0, -400.0 ) )
