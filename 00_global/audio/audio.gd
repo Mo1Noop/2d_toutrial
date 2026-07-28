@@ -3,24 +3,29 @@ extends Node # Audio
 #region /// var
 enum REVERB_TYPE { NONE, SMALL, MEDIUM, LARGE }
 
-signal player_made_sound( pos : Vector2, volume : float )
+const MUSIC_BUS_INDEX: int = 2
+const SFX_BUS_INDEX: int = 3
+const UI_BUS_INDEX: int = 4
 
-@export var ui_focus_audio : AudioStream
-@export var ui_select_audio : AudioStream
-@export var ui_cancel_audio : AudioStream
-@export var ui_success_audio : AudioStream
-@export var ui_error_audio : AudioStream
+signal player_made_sound( pos: Vector2, volume: float )
+
+@export var ui_focus_audio: AudioStream
+@export var ui_select_audio: AudioStream
+@export var ui_cancel_audio: AudioStream
+@export var ui_success_audio: AudioStream
+@export var ui_error_audio: AudioStream
 
 @onready var music_1: AudioStreamPlayer = $Music1
 @onready var music_2: AudioStreamPlayer = $Music2
 @onready var ui: AudioStreamPlayer = $UI
 
-var audio_pool : Array[ AudioStreamPlayer2D ]
-var audio_index : int = 0
+var audio_pool: Array[ AudioStreamPlayer2D ]
+var max_audio_stream: int = 16
+var audio_index: int = 0
 
-var current_track : int = 0
-var music_tweens : Array[ Tween ]
-var ui_audio_player : AudioStreamPlaybackPolyphonic
+var current_track: int = 0
+var music_tweens: Array[ Tween ]
+var ui_audio_player: AudioStreamPlaybackPolyphonic
 
 #endregion
 
@@ -28,58 +33,56 @@ var ui_audio_player : AudioStreamPlaybackPolyphonic
 func _ready() -> void:
 	ui.play()
 	ui_audio_player = ui.get_stream_playback()
-	for i in 32:
-		var audio_player : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+	for i in max_audio_stream:
+		var audio_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 		add_child( audio_player )
 		audio_player.bus = "SFX"
 		audio_pool.append( audio_player )
 
 
-func play_music( audio : AudioStream ) -> void:
-	var current_player : AudioStreamPlayer = get_music_player( current_track )
-	if current_player.stream == audio:
-		return
+func play_music( audio: AudioStream ) -> void:
+	var current_player: AudioStreamPlayer = get_music_player( current_track )
+	if current_player.stream == audio: return
 	
-	var next_track : int = wrapi( current_track + 1, 0, 2  )
-	var next_player : AudioStreamPlayer = get_music_player( next_track )
+	var next_track: int = wrapi( current_track + 1, 0, 2 )
+	var next_player: AudioStreamPlayer = get_music_player( next_track )
 	
 	next_player.stream = audio
 	next_player.play()
 	
-	for t in music_tweens:
-		t.kill()
+	for t in music_tweens: t.kill()
 	music_tweens.clear()
 	
 	fade_track_out( current_player )
 	fade_track_in( next_player )
 	
 	current_track = next_track
-	
 
 
-func get_music_player( i : int ) -> AudioStreamPlayer:
+func get_music_player( i: int ) -> AudioStreamPlayer:
 	if i == 0:
 		return music_1
 	else:
 		return music_2
 
 
-func fade_track_out( player : AudioStreamPlayer ) -> void:
-	var tween : Tween = create_tween()
+func fade_track_out( player: AudioStreamPlayer ) -> void:
+	var tween: Tween = create_tween()
 	music_tweens.append( tween )
 	tween.tween_property( player, "volume_linear", 0.0, 1.5 )
 	tween.tween_callback( player.stop )
 
-func fade_track_in( player : AudioStreamPlayer ) -> void:
-	var tween : Tween = create_tween()
+
+func fade_track_in( player: AudioStreamPlayer ) -> void:
+	var tween: Tween = create_tween()
 	music_tweens.append( tween )
 	tween.tween_property( player, "volume_linear", 1.0, 1.0 )
 
 
-func set_reverb( type : REVERB_TYPE ) -> void:
-	var reverb_fx : AudioEffectReverb = AudioServer.get_bus_effect( 1, 0 )
-	if not reverb_fx:
-		return
+func set_reverb( type: REVERB_TYPE ) -> void:
+	var reverb_fx: AudioEffectReverb = AudioServer.get_bus_effect( 1, 0 )
+	if not reverb_fx: return
+	
 	AudioServer.set_bus_effect_enabled( 1, 0, true )
 	match type:
 		REVERB_TYPE.NONE:
@@ -93,10 +96,10 @@ func set_reverb( type : REVERB_TYPE ) -> void:
 
 
 func play_apatial_sound(
-	audio : AudioStream, pos : Vector2, ignore_pool : bool = false,
-	was_player : bool = false, volume : float = 0.5 ) -> void:
+	audio: AudioStream, pos: Vector2, ignore_pool: bool = false,
+	was_player: bool = false, volume: float = 0.5 ) -> void:
 	if ignore_pool:
-		var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		var ap: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 		add_child( ap )
 		ap.bus = "SFX"
 		ap.global_position = pos
@@ -104,22 +107,23 @@ func play_apatial_sound(
 		ap.finished.connect( ap.queue_free )
 		ap.play()
 	else:
-		var ap : AudioStreamPlayer2D = audio_pool[ audio_index ]
+		var ap: AudioStreamPlayer2D = audio_pool[ audio_index ]
 		ap.global_position = pos
 		ap.stream = audio
 		ap.play()
-		audio_index = wrapi( audio_index +1 , 0, 32)
+		audio_index = wrapi( audio_index +1 , 0, max_audio_stream)
 	
 	if was_player:
 		player_made_sound.emit( pos, volume )
 
-func play_ui_audio( audio : AudioStream ) -> void:
+
+func play_ui_audio( audio: AudioStream ) -> void:
 	if ui_audio_player:
 		ui_audio_player.play_stream( audio )
 
 
-func setup_button_audio( node : CanvasLayer ) -> void:
-	for c in node.find_children( "*", "Button" ):
+func setup_button_audio( node: CanvasLayer ) -> void:
+	for c: Button in node.find_children( "*", "Button" ):
 		c.pressed.connect( ui_select )
 		c.focus_entered.connect( ui_focus_change )
 
@@ -140,9 +144,3 @@ func ui_success() -> void:
 func ui_error() -> void:
 	play_ui_audio( ui_error_audio )
 #endregion
-
-
-
-
-
-#

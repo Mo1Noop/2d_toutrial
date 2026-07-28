@@ -541,8 +541,7 @@ debug_color = Color(0, 0.6, 0.69803923, 0.15686275)
 
 [node name="CollisionCrouch" type="CollisionShape2D" parent="." unique_id=624254358]
 unique_name_in_owner = true
-visible = false
-position = Vector2(0, -15.206)
+position = Vector2(0, -15)
 scale = Vector2(1.0000005, 1.0000005)
 shape = SubResource("CapsuleShape2D_8t03j")
 disabled = true
@@ -592,7 +591,7 @@ script = ExtResource("9_2ieo8")
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=950997235]
 position = Vector2(0, -29)
 color = Color(1.353256, 1.0915228, 0.69368815, 1)
-energy = 0.5
+energy = 0.2
 texture = SubResource("GradientTexture2D_hg6s5")
 
 [node name="input_hints" type="Node2D" parent="." unique_id=853307203]
@@ -611,7 +610,6 @@ collision_layer = 0
 collision_mask = 96
 monitorable = false
 script = ExtResource("12_ebec5")
-damge = 1.0
 metadata/_custom_type_script = "uid://cns0lapeysi1i"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area" unique_id=1044652208]
@@ -630,7 +628,6 @@ script = ExtResource("12_ebec5")
 metadata/_custom_type_script = "uid://cns0lapeysi1i"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground_slam_Attack_Area" unique_id=1691228661]
-visible = false
 position = Vector2(-17.5, 0)
 shape = SubResource("RectangleShape2D_65viv")
 debug_color = Color(0.70196074, 0, 0.06355715, 0.41960785)
@@ -638,7 +635,7 @@ debug_color = Color(0.70196074, 0, 0.06355715, 0.41960785)
 [node name="Damege_area" type="Area2D" parent="." unique_id=572712740]
 unique_name_in_owner = true
 visible = false
-collision_layer = 16
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("15_wodsf")
 audio = SubResource("AudioStreamWAV_65viv")

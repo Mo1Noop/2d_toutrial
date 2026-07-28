@@ -22,10 +22,8 @@ var indicator_offset : Vector2 = Vector2.ZERO
 
 #endregion
 
-
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
+	if Engine.is_editor_hint(): return
 	else:
 		label.queue_free()
 		create_entrance_blocks()
@@ -72,9 +70,7 @@ func update_node() -> void:
 func update_node_label( scene : Node ) -> void:
 	if not label:
 		label = $Label
-	var t : String = scene.scene_file_path
-	t = t.replace( "res://levels/", "" )
-	t = t.replace( ".tscn", "" )
+	var t : String = scene.scene_file_path.get_file()
 	label.text = t
 	scene_name = t
 

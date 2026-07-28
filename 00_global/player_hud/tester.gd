@@ -1,6 +1,7 @@
 class_name Test_Tool extends OptionButton
 
 ## How to use:
+## - press T to grab focus
 ## - add your scene path to the array.
 ## - By default, the selected scene will spawn near the camera center
 ##   using the "spawn_offset" value.
@@ -23,25 +24,28 @@ var box_move_speed : float = 1500.0
 
 func _ready() -> void:
 	if get_tree().current_scene is CanvasLayer:
-		printerr( " can't use this on a CanvasLayer base scene " )
+		printerr( "can't use %s on a CanvasLayer base scene" % name )
 		set_process( false )
 		return
 	allow_reselect = true
 	z_index = 200
+	focus_mode = FocusMode.FOCUS_CLICK
 	current_scene = get_tree().current_scene
 	item_selected.connect( on_item_selected )
 	on_scene_set()
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("tester"):
+	if event is InputEventKey and Input.is_physical_key_pressed(KEY_T):
 		grab_focus()
 
 
 func _process( delta: float ) -> void:
+	if not current_scene:
+		current_scene = get_tree().current_scene
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and \
 				Input.is_key_pressed(KEY_CTRL) and not box:
-		box = add_color()
+		box = add_box()
 		current_scene.add_child( box )
 	
 	if box and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
@@ -74,7 +78,7 @@ func on_item_selected( index: int ) -> void:
 	if cam:
 		spawn( scene, cam.get_screen_center_position() + spawn_offset )
 	else:
-		printerr(" can't spawn scene there is no camera use box ")
+		printerr("can't spawn scene. use box (Ctrl + left mouse click) ")
 
 
 func spawn( path: String, pos : Vector2 ) -> void:
@@ -86,9 +90,9 @@ func spawn( path: String, pos : Vector2 ) -> void:
 		box = null
 
 
-func add_color() -> ColorRect:
+func add_box() -> ColorRect:
 	var _box : ColorRect = ColorRect.new()
-	_box.custom_minimum_size = Vector2( 15, 15 )
+	_box.custom_minimum_size = Vector2( 8, 8 )
 	_box.color = Color("e74545ff")
 	_box.z_index = 200
 	return _box

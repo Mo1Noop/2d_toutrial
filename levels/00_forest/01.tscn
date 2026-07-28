@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="7_vdj2u"]
 [ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="8_8sv46"]
 [ext_resource type="AudioStream" uid="uid://beoakjt1uw5ws" path="res://music/forest_01.ogg" id="9_08onm"]
+[ext_resource type="PackedScene" uid="uid://c7fq2naxvvvo1" path="res://enemies/slime/slime.tscn" id="11_7jd6w"]
 
 [sub_resource type="Gradient" id="Gradient_vdj2u"]
 offsets = PackedFloat32Array(0, 0.74509805)
@@ -17,6 +18,8 @@ colors = PackedColorArray(0.70029575, 0.84869444, 0.90731955, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8sv46"]
 gradient = SubResource("Gradient_vdj2u")
+width = 32
+height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9000001, 0.5)
@@ -74,7 +77,7 @@ seamless_blend_skirt = 0.3
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1178446863]
 z_index = 4
 position = Vector2(550, 112)
-amount = 21
+amount = 30
 texture = SubResource("GradientTexture2D_8sv46")
 lifetime = 3.0
 preprocess = 2.0
@@ -170,7 +173,7 @@ texture = SubResource("GradientTexture2D_qmxb0")
 
 [node name="MapLayer_2" type="TileMapLayer" parent="world" unique_id=871513783]
 position = Vector2(0, 6)
-tile_map_data = PackedByteArray("AAAHAAUAAAATAA0AAAAIAAUAAAAUAA0AAAAHAAYAAAATAA4AAAAIAAYAAAAUAA4AAAAJAAUAAAAVAA0AAAAJAAYAAAAVAA4AAAAKAAUAAAAWAA0AAAAKAAYAAAAWAA4AAAAMAAYAAAAUAAcAAAAFAAYAAAAUAAcAAAAUAAUAAAAUAAcAAAAbAAUAAAAUAAcAAAAPAAUAAAAVAAcAAAAPAAYAAAAVAAgAAAAEAAUAAAAVAAcAAAAEAAYAAAAVAAgAAAACAAYAAAAWAAYAAAAhAAUAAAAWAAYAAAAXAAUAAAAVAAYAAAA=")
+tile_map_data = PackedByteArray("AAAHAAUAAAATAA0AAAAIAAUAAAAUAA0AAAAHAAYAAAATAA4AAAAIAAYAAAAUAA4AAAAJAAUAAAAVAA0AAAAJAAYAAAAVAA4AAAAKAAUAAAAWAA0AAAAKAAYAAAAWAA4AAAAMAAYAAAAUAAcAAAAFAAYAAAAUAAcAAAAUAAUAAAAUAAcAAAAbAAUAAAAUAAcAAAAPAAUAAAAVAAcAAAAPAAYAAAAVAAgAAAAEAAUAAAAVAAcAAAAEAAYAAAAVAAgAAAACAAYAAAAWAAYAAAAhAAUAAAAWAAYAAAAXAAUAAAAWAAYAAAA=")
 tile_set = ExtResource("1_fvrtv")
 
 [node name="MapLayer_3" type="TileMapLayer" parent="world" unique_id=663250909]
@@ -180,6 +183,7 @@ tile_set = ExtResource("1_fvrtv")
 
 [node name="parallaxFG" type="Node2D" parent="world" unique_id=390111803]
 z_index = 5
+position = Vector2(0, 8)
 metadata/_edit_group_ = true
 
 [node name="small_tree" type="Parallax2D" parent="world/parallaxFG" unique_id=332254560]
@@ -358,3 +362,11 @@ position = Vector2(718, 204)
 script = ExtResource("8_8sv46")
 track = ExtResource("9_08onm")
 metadata/_custom_type_script = "uid://b288j8ci26yr7"
+
+[node name="level_enemys" type="Node" parent="." unique_id=1026905224]
+
+[node name="Slime" parent="level_enemys" unique_id=963342991 instance=ExtResource("11_7jd6w")]
+position = Vector2(305, 176)
+
+[node name="Slime2" parent="level_enemys" unique_id=416728260 instance=ExtResource("11_7jd6w")]
+position = Vector2(179, 236)

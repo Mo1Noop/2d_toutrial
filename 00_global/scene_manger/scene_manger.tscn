@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://uev6jyxgbgbp"]
+[gd_scene format=3 uid="uid://uev6jyxgbgbp"]
 
 [ext_resource type="Script" uid="uid://by76fyh20bbl6" path="res://00_global/scene_manger/scene_manger.gd" id="1_q5yoj"]
 
@@ -14,11 +14,11 @@ fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="SceneManger" type="CanvasLayer"]
+[node name="SceneManger" type="CanvasLayer" unique_id=49617677]
 process_mode = 3
 script = ExtResource("1_q5yoj")
 
-[node name="Fade" type="Control" parent="."]
+[node name="Fade" type="Control" parent="." unique_id=461705159]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Fade"]
+[node name="TextureRect" type="TextureRect" parent="Fade" unique_id=1435706259]
 modulate = Color(0.0827328, 0.080021866, 0.08815467, 1)
 layout_mode = 1
 anchors_preset = 15

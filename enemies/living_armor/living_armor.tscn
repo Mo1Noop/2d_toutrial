@@ -367,5 +367,5 @@ metadata/_custom_type_script = "uid://btax3igpa2swt"
 
 [node name="Damge_Flash" type="Node" parent="." unique_id=1445035490]
 script = ExtResource("21_gjt4y")
-flash_color = Color(2.844042, 0, 0, 1)
+flash_color = Color(1.8247963, 0, 0, 1)
 metadata/_custom_type_script = "uid://eoluhbkk7kub"

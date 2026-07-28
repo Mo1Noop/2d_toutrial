@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://wbuh4lbmy56n" path="res://00_global/audio/ui_audio/ui_error_audio.wav" id="6_diqwh"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_6i7w7"]
-polyphony = 16
+polyphony = 8
 
 [node name="Audio" type="Node" unique_id=169415896]
 process_mode = 3
@@ -20,11 +20,14 @@ ui_success_audio = ExtResource("5_ts5ui")
 ui_error_audio = ExtResource("6_diqwh")
 
 [node name="Music1" type="AudioStreamPlayer" parent="." unique_id=2013281094]
+volume_db = -12.0
 bus = &"Music"
 
 [node name="Music2" type="AudioStreamPlayer" parent="." unique_id=1481603138]
+volume_db = -12.0
 bus = &"Music"
 
 [node name="UI" type="AudioStreamPlayer" parent="." unique_id=19176952]
 stream = SubResource("AudioStreamPolyphonic_6i7w7")
+volume_db = 3.0
 bus = &"UI"

@@ -371,7 +371,7 @@ metadata/_custom_type_script = "uid://hc20vsv0fkg3"
 
 [node name="Damge_Flash" type="Node" parent="." unique_id=1625596794]
 script = ExtResource("16_pet7w")
-flash_color = Color(0.7007295, 0, 2.454227, 1)
+flash_color = Color(1.8247963, 0, 1.6291479, 1)
 metadata/_custom_type_script = "uid://eoluhbkk7kub"
 
 [node name="Loot_Dropper" type="Marker2D" parent="." unique_id=1930819673]

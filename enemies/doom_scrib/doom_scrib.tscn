@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cgaos837st1cw" path="res://enemies/scripts/sensors/edge_sensor.gd" id="15_hx68p"]
 [ext_resource type="Script" uid="uid://b1h7raekiavog" path="res://enemies/scripts/sensors/player_sensor.gd" id="16_q7och"]
 [ext_resource type="Script" uid="uid://dro2gkp4ceyx6" path="res://enemies/scripts/enemy_hit_particles.gd" id="17_mqorg"]
+[ext_resource type="Script" uid="uid://eoluhbkk7kub" path="res://general/scripts/damge_flash.gd" id="18_6684p"]
 [ext_resource type="Script" uid="uid://bfn6kk1670xxq" path="res://00_global/visual_effects/hit_particle_settings.gd" id="18_dedh4"]
 [ext_resource type="Script" uid="uid://btax3igpa2swt" path="res://general/scripts/loot_dropper.gd" id="19_5j6t3"]
 [ext_resource type="Script" uid="uid://ciky3g73lvmw" path="res://general/scripts/loot_data.gd" id="20_dmm4r"]
@@ -203,7 +204,7 @@ script = ExtResource("1_otrr7")
 affected_by_gravity = false
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=2072687623]
-self_modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
+self_modulate = Color(1.353256, 1.353256, 1.353256, 1)
 texture = ExtResource("2_0xb2c")
 offset = Vector2(0, -31)
 hframes = 6
@@ -302,3 +303,8 @@ metadata/_custom_type_script = "uid://dro2gkp4ceyx6"
 script = ExtResource("19_5j6t3")
 items = Array[ExtResource("20_dmm4r")]([SubResource("Resource_vpnvx")])
 metadata/_custom_type_script = "uid://btax3igpa2swt"
+
+[node name="Damge_Flash" type="Node" parent="." unique_id=1541742532]
+script = ExtResource("18_6684p")
+flash_color = Color(0.12538867, 0, 1.2971562, 1)
+metadata/_custom_type_script = "uid://eoluhbkk7kub"

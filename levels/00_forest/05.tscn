@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="6_up2o2"]
 [ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="7_xp4yb"]
 [ext_resource type="AudioStream" uid="uid://beq21e0hk3mkp" path="res://music/dungeon_01.ogg" id="8_qvb4s"]
+[ext_resource type="PackedScene" uid="uid://o8b10ebqoby2" path="res://enemies/living_armor/living_armor.tscn" id="9_y15e0"]
+[ext_resource type="PackedScene" uid="uid://b5rpt3dgg04of" path="res://enemies/flaying_chest/flaying_chest.tscn" id="10_7yw7p"]
 
 [node name="05" type="Node2D" unique_id=1783641130]
 
@@ -60,7 +62,7 @@ script = ExtResource("3_y15e0")
 [node name="Level_bounds" type="Node2D" parent="level_tools" unique_id=1912003212]
 z_index = 256
 script = ExtResource("4_7yw7p")
-width = 704
+width = 1216
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
 [node name="Level_Transtion" parent="level_tools" unique_id=1275642746 instance=ExtResource("5_yeebe")]
@@ -86,3 +88,9 @@ position = Vector2(73, 215)
 script = ExtResource("7_xp4yb")
 track = ExtResource("8_qvb4s")
 metadata/_custom_type_script = "uid://b288j8ci26yr7"
+
+[node name="living_armor" parent="." unique_id=624553533 instance=ExtResource("9_y15e0")]
+position = Vector2(997, 217)
+
+[node name="FlayingChest" parent="." unique_id=1052791334 instance=ExtResource("10_7yw7p")]
+position = Vector2(889, 107)

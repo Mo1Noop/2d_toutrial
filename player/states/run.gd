@@ -19,8 +19,6 @@ func handle_input(_event : InputEvent) -> Player_state:
 
 func physics_process(_delta: float) -> Player_state:
 	player.move()
-
-	
 	if !player.is_on_floor():
 		return fall
 	elif player.dirction.x == 0:

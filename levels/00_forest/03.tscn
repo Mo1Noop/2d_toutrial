@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="5_7vwju"]
 [ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="6_c06eb"]
 [ext_resource type="AudioStream" uid="uid://beq21e0hk3mkp" path="res://music/dungeon_01.ogg" id="7_1pjxa"]
+[ext_resource type="PackedScene" uid="uid://o8b10ebqoby2" path="res://enemies/living_armor/living_armor.tscn" id="9_b4vbt"]
 
 [node name="03" type="Node2D" unique_id=534286408]
 
@@ -82,4 +83,8 @@ position = Vector2(231, 118)
 [node name="Music_auto_trigger" type="Node" parent="level_tools" unique_id=603824445]
 script = ExtResource("6_c06eb")
 track = ExtResource("7_1pjxa")
+reverb = 2
 metadata/_custom_type_script = "uid://b288j8ci26yr7"
+
+[node name="living_armor" parent="." unique_id=624553533 instance=ExtResource("9_b4vbt")]
+position = Vector2(234, 227)

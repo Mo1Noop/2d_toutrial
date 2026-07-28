@@ -6,6 +6,7 @@ extends CanvasLayer # player hud
 @onready var load_button: Button = %Load_Button
 @onready var quit_button: Button = %Quit_Button
 @onready var coin_count_label: Label = %coin_count_label
+var player: Player
 
 
 func _ready() -> void:
@@ -14,6 +15,8 @@ func _ready() -> void:
 	load_button.pressed.connect( _on_load_button_pressed )
 	quit_button.pressed.connect( _on_quit_button_pressed )
 	Messages.coin_changed.connect( _update_coin )
+	await get_tree().create_timer( 1.0 ).timeout
+	player = get_tree().get_first_node_in_group("Player")
 
 
 func _update_coin( amount : int ) -> void:

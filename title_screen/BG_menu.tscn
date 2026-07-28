@@ -10,7 +10,6 @@ z_index = 250
 [node name="title_screen" parent="." unique_id=690995478 instance=ExtResource("3_hqtqf")]
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1603020270]
-position = Vector2(0, 4)
 
 [node name="MapLayer_1" type="TileMapLayer" parent="Node2D" unique_id=829529099]
 position = Vector2(-159, -1)

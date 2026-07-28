@@ -14,6 +14,7 @@ func init() -> void:
 
 
 func enter() -> void:
+	player.velocity = Vector2.ZERO
 	do_attack()
 	player.player_anim.animation_finished.connect( on_anim_finished )
 
@@ -25,13 +26,19 @@ func exit() -> void:
 	next_state = null
 	player.attack_sprite.visible = false
 
-func handle_input(_event : InputEvent) -> Player_state:
-	if _event.is_action_pressed("attack"):
+
+func handle_input(event : InputEvent) -> Player_state:
+	if event.is_action_pressed("attack"):
 		timer = combo_time_window
-	if _event.is_action_pressed("dash") and player.can_dash():
+	if event.is_action_pressed("dash") and player.can_dash():
 		return dash
-	if _event.is_action_pressed("action") and player.can_morph():
+	if event.is_action_pressed("action") and player.can_morph():
 		return ball
+	if event.is_action_pressed("left") or event.is_action_pressed("right"):
+		if player.is_on_floor():
+			return run
+		else:
+			return fall
 	return next_state
 
 

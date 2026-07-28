@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c8d25lw8s4a2j" path="res://general/player_spawn/player_spawn.tscn" id="6_helwq"]
 [ext_resource type="Script" uid="uid://b288j8ci26yr7" path="res://music/music_auto_trigger.gd" id="7_8s6r2"]
 [ext_resource type="AudioStream" uid="uid://beq21e0hk3mkp" path="res://music/dungeon_01.ogg" id="8_4kuoc"]
+[ext_resource type="PackedScene" uid="uid://o8b10ebqoby2" path="res://enemies/living_armor/living_armor.tscn" id="11_y4bso"]
 
 [node name="05" type="Node2D" unique_id=1971376180]
 
@@ -64,7 +65,7 @@ script = ExtResource("3_8yto1")
 [node name="Level_bounds" type="Node2D" parent="level_tools" unique_id=1592810041]
 z_index = 256
 script = ExtResource("4_y4bso")
-width = 928
+width = 1216
 metadata/_custom_type_script = "uid://cbjs6k8batccp"
 
 [node name="Level_Transtion" parent="level_tools" unique_id=680353591 instance=ExtResource("5_bc0qc")]
@@ -89,4 +90,11 @@ position = Vector2(277, 135)
 [node name="Music_auto_trigger" type="Node" parent="level_tools" unique_id=1048442270]
 script = ExtResource("7_8s6r2")
 track = ExtResource("8_4kuoc")
+reverb = 1
 metadata/_custom_type_script = "uid://b288j8ci26yr7"
+
+[node name="living_armor" parent="." unique_id=624553533 instance=ExtResource("11_y4bso")]
+position = Vector2(685, 225)
+
+[node name="living_armor2" parent="." unique_id=388796116 instance=ExtResource("11_y4bso")]
+position = Vector2(1024, 218)

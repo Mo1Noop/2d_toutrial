@@ -14,6 +14,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		add_sprite()
 		return
+	await get_tree().process_frame
 	queue_free()
 
 
@@ -36,8 +37,10 @@ func add_sprite() -> void:
 		s.modulate = Color.WHITE
 		l.modulate = Color( 0.2, 0.2, 0.2 )
 		l.text = "L"
+		name = "L_Patrol_Limit"
 	else:
 		s.modulate = Color.INDIAN_RED
 		l.modulate = Color.WHITE
 		l.text = "R"
+		name = "R_Patrol_Limit"
 		

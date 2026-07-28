@@ -6,6 +6,7 @@ class_name ES_Fly_Attack extends Enemy_State
 @export var attack_area: Attack_Area
 @export var move_speed_curve : Curve
 
+
 var dir : Vector2
 var timer : float = 0.0
 var duration : float = 0.0

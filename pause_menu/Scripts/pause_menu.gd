@@ -67,6 +67,7 @@ func set_hdr_button() -> void:
 func on_hdr_toggled( toggled : bool ) -> void:
 	get_viewport().use_hdr_2d = toggled
 	hdr_check_button.text = "Enabeld" if toggled else "Disabeld"
+	SaveManager.save_settings_config()
 
 
 func on_back_title_button_pressed() -> void:
@@ -79,14 +80,14 @@ func on_back_title_button_pressed() -> void:
 
 func on_music_slider_changed( val : float ) -> void:
 	AudioServer.set_bus_volume_linear( 2, val )
-	SaveManager.save_audio_config()
+	SaveManager.save_settings_config()
 
 func on_sfx_slider_changed( val : float ) -> void:
 	AudioServer.set_bus_volume_linear( 3, val )
 	Audio.ui_focus_change()
-	SaveManager.save_audio_config()
+	SaveManager.save_settings_config()
 
 func on_ui_slider_changed( val : float ) -> void:
 	AudioServer.set_bus_volume_linear( 4, val )
 	Audio.ui_focus_change()
-	SaveManager.save_audio_config()
+	SaveManager.save_settings_config()

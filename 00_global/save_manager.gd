@@ -9,29 +9,9 @@ var game_data : Dictionary
 var discovered_areas : Array = []
 var presistent_data : Dictionary = {}
 
-#enum DATA { scene_path, scene_name, pos, coin, hp }
-#var enum_game_data : Dictionary[ DATA, Variant ]
-#var save_test_path : String = "user://save_test_file.save"
-#func test() -> void:
-	#enum_game_data = {
-		#DATA.scene_path : level_01,
-		#DATA.scene_name : ResourceUID.uid_to_path( level_01 ),
-		#DATA.pos : Vector2(100,200),
-		#DATA.coin : 0, DATA.hp : 20 }
-	#var save_test : FileAccess = FileAccess.open( save_test_path,FileAccess.WRITE )
-	#save_test.store_var( enum_game_data )
-	#save_test.close()
-#
-#
-#func load_test() -> void:
-	#var save_test : FileAccess = FileAccess.open( save_test_path, FileAccess.READ )
-	#var the_test : Dictionary[ DATA, Variant ] = save_test.get_var()
-	#prints( the_test )
-	#save_test.close()
-
 
 func _ready() -> void:
-	load_audio_conifg()
+	load_settings_conifg()
 	SceneManger.scene_entered.connect( on_scene_entered )
 
 # for debuging
@@ -77,19 +57,19 @@ func create_new_game_save( slot : int ) -> void:
 
 
 func save_game() -> void:
-	var player : Player = get_tree().get_first_node_in_group("Player")
+	#var player : Player = get_tree().get_first_node_in_group("Player")
 	game_data = {
 		"scene_path" : SceneManger.current_scene_uid,
 		"scene_name" : ResourceUID.uid_to_path( SceneManger.current_scene_uid ),
-		"x" : player.global_position.x,
-		"y" : player.global_position.y,
-		"coin" : player.coin,
-		"hp" : player.hp,
-		"max_hp" : player.max_hp,
-		"dash" : player.dash,
-		"double_jump" : player.double_jump,
-		"ground_slam" : player.ground_slam,
-		"morph_roll" : player.morph_roll,
+		"x" : PlayerHud.player.global_position.x,
+		"y" : PlayerHud.player.global_position.y,
+		"coin" : PlayerHud.player.coin,
+		"hp" : PlayerHud.player.hp,
+		"max_hp" : PlayerHud.player.max_hp,
+		"dash" : PlayerHud.player.dash,
+		"double_jump" : PlayerHud.player.double_jump,
+		"ground_slam" : PlayerHud.player.ground_slam,
+		"morph_roll" : PlayerHud.player.morph_roll,
 		"discovered_areas" : discovered_areas,
 		"presistent_data" : presistent_data,
 	}
@@ -101,7 +81,6 @@ func load_game( slot : int ) -> void:
 	current_slot = slot
 	if not FileAccess.file_exists( get_file_name( current_slot ) ):
 		return
-	#var save_file := FileAccess.open( get_file_name( current_slot ), FileAccess.READ )
 	var save_file := FileAccess.get_file_as_string( get_file_name( current_slot ) )
 	game_data = JSON.parse_string( save_file )
 	presistent_data = game_data.get( "presistent_data", {} )
@@ -110,6 +89,7 @@ func load_game( slot : int ) -> void:
 	SceneManger.transtion_scene( scene_path, "", Vector2.ZERO, "up" )
 	await SceneManger.new_scene_ready
 	setup_player()
+	load_settings_conifg()
 
 
 func setup_player() -> void:
@@ -150,25 +130,30 @@ func on_scene_entered( scene_uid : String ) -> void:
 	else:
 		discovered_areas.append( scene_uid )
 
+var pleyr : String = "qweasd123dbgb"
 
-func save_audio_config() -> void:
+func save_settings_config() -> void:
 	var config := ConfigFile.new()
 	config.set_value( "audio", "music", AudioServer.get_bus_volume_linear( 2 ) )
 	config.set_value( "audio", "sfx", AudioServer.get_bus_volume_linear( 3 ) )
 	config.set_value( "audio", "ui", AudioServer.get_bus_volume_linear( 4 ) )
+	config.set_value( "settings", "hdr", get_viewport().use_hdr_2d )
 	
-	config.save( CONFIG_FILE_PATH )
+	config.save_encrypted_pass( CONFIG_FILE_PATH, pleyr  )
+	#config.save( CONFIG_FILE_PATH )
 
 
-func load_audio_conifg() -> void:
+func load_settings_conifg() -> void:
 	var config := ConfigFile.new()
-	var err := config.load( CONFIG_FILE_PATH )
+	var err := config.load_encrypted_pass( CONFIG_FILE_PATH, pleyr )
 	if err != OK:
 		AudioServer.set_bus_volume_linear( 2, 0.1 )
 		AudioServer.set_bus_volume_linear( 3, 1.0 )
 		AudioServer.set_bus_volume_linear( 4, 1.0 )
+		get_viewport().use_hdr_2d = false
 		return
 	
 	AudioServer.set_bus_volume_linear( 2, config.get_value( "audio", "music", 0.7 ) )
 	AudioServer.set_bus_volume_linear( 3, config.get_value( "audio", "sfx", 1.0 ) )
 	AudioServer.set_bus_volume_linear( 4, config.get_value( "audio", "ui", 1.0 ) )
+	get_viewport().use_hdr_2d = config.get_value( "settings", "hdr", false )

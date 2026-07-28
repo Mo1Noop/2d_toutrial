@@ -33,6 +33,7 @@ class_name Titel_screen extends CanvasLayer
 
 func _ready() -> void:
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	PlayerHud.hide()
 	new_game_button.pressed.connect( show_new_game_menu )
 	load_game_button.pressed.connect( show_load_game_menu )
 	settings_button.pressed.connect( show_settings_menu )
@@ -54,6 +55,10 @@ func _ready() -> void:
 	animation_player.animation_finished.connect( _on_anim_finished )
 	show_main_menu()
 	setup_settings_menu()
+
+
+func _exit_tree() -> void:
+	PlayerHud.show()
 
 
 func exit_game() -> void:
@@ -127,17 +132,18 @@ func setup_settings_menu() -> void:
 
 func on_music_slider_changed( val : float ) -> void:
 	AudioServer.set_bus_volume_linear( 2, val )
-	SaveManager.save_audio_config()
+	SaveManager.save_settings_config()
 
 func on_sfx_slider_changed( val : float ) -> void:
 	AudioServer.set_bus_volume_linear( 3, val )
 	Audio.ui_focus_change()
-	SaveManager.save_audio_config()
+	SaveManager.save_settings_config()
 
 func on_ui_slider_changed( val : float ) -> void:
 	AudioServer.set_bus_volume_linear( 4, val )
+	print(AudioServer.get_bus_volume_db( 4 ))
 	Audio.ui_focus_change()
-	SaveManager.save_audio_config()
+	SaveManager.save_settings_config()
 
 
 func set_hdr_button() -> void:
@@ -149,6 +155,7 @@ func set_hdr_button() -> void:
 func on_hdr_toggled( toggled : bool ) -> void:
 	get_viewport().use_hdr_2d = toggled
 	hdr_check_button.text = "Enabeld" if toggled else "Disabeld"
+	SaveManager.save_settings_config()
 #endregion
 
 

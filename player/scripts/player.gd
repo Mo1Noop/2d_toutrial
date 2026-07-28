@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 
 signal damge_taken
+static var player_ref : Player = self
 #region /// var
 #const DEBUG = preload("uid://c08vbptobbyb3")
 @export var move_speed : float = 150
@@ -69,6 +70,7 @@ var gravity_mulitplier : float = 1.0
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self:
+		print("ohh i die")
 		self.queue_free()
 	initialize_states()
 	self.call_deferred( "reparent", get_tree().root )
@@ -77,8 +79,7 @@ func _ready() -> void:
 	Messages.back_to_title_screen.connect( queue_free )
 	Messages.input_hint_changed.connect( on_input_hint_changed )
 	damege_area.damge_taken.connect( _on_damge_taken )
-	print(  )
-	#WorldEnvironment
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -156,6 +157,9 @@ func change_state( new_state : Player_state ) -> void:
 
 
 func update_dirction() -> void:
+	if current_state is PlayerState_attack:
+		await player_anim.animation_finished
+	
 	var prev_dirction : Vector2 = dirction
 	var x_axis : float = Input.get_axis("left", "right")
 	var y_axis : float = Input.get_axis("up", "down")

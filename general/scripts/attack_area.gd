@@ -1,22 +1,21 @@
 @icon("res://general/icons/attack_area.svg")
 class_name Attack_Area extends Area2D
 
-@export var damge : float = 2.0
+@export var damge: float = 1.0
 
 func _ready() -> void:
 	area_entered.connect( on_body_entered )
-	body_entered.connect( on_body_entered )
 	visible = false
 	monitorable = false
 	monitoring = false
 
 
-func on_body_entered( body ) -> void:
-	if body is Damege_area:
+func on_body_entered( area: Area2D ) -> void:
+	if area is Damege_area:
 		var pos: Vector2 = global_position
-		pos.x = body.global_position.x
+		pos.x = area.global_position.x
 		VisualEffects.hit_dust( pos )
-		body.take_damge( self )
+		area.take_damge( self )
 
 
 func activate( duration : float = 0.1 ) -> void:
